@@ -1,0 +1,243 @@
+//
+
+//  ViewController.m
+//  Green Machine
+//
+//  Created by Eyal Shpits on 5/29/14.
+//  Copyright (c) 2014 GreenShpits. All rights reserved.
+//
+
+#import "RecorderViewController.h"
+#import "DataBackground.h"
+
+
+@interface RecorderViewController ()
+
+@end
+
+@implementation RecorderViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = true;
+    data = [Data shared];
+    [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
+    bgNameIndex = 1;
+    menuIsOpened = false;
+    [self updateBackgroundImage];
+
+    alertUseCredits = [[UIAlertView alloc]initWithTitle:@"Using credits" message:@"You may purchase this background using your existing credits" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"Use Credits", nil];
+    alertBuyCredits = [[UIAlertView alloc]initWithTitle:@"Purchase credits" message:@"You need to get more credits" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"Get Credits", nil];
+
+    alertLockedBackground = [[UIAlertView alloc]initWithTitle:@"Locked background" message:@"This background is still locked. would you like to get it?" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"Get it", nil];
+    
+    if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
+        viewInstructionsLandscape.alpha = 1.0;
+    else
+        viewInstructionsPortraight.alpha = 1.0;
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+
+
+}
+
+- (void) updateBackgroundImage {
+    DataBackground * background = [data.backgrounds objectAtIndex:data.currentBackground.intValue];
+    if ( background.isLocked.boolValue ) {
+        [self fadeIn:viewLocked];
+        [self fadeIn:viewLock];
+    }
+    else {
+        [self fadeOut:viewLocked];
+        [self fadeOut:viewLock];
+    }
+
+    NSString * format = [data.formats objectAtIndex:bgNameIndex];
+    NSString * name = [NSString stringWithFormat:format, data.currentBackground.intValue+1];
+    
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation))
+        name = [name stringByReplacingOccurrencesOfString:@"port" withString:@"land"];
+
+        
+    imageViewBackground.image = [UIImage imageNamed:name];
+    if ( !background.isLocked.boolValue ) {
+        labelBackgroundCost.text = [NSString stringWithFormat:@"%@", background.cost];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)leftPressed:(id)sender {
+    if ( data.currentBackground.intValue > 0) data.currentBackground = [NSNumber numberWithInt:data.currentBackground.intValue-1];
+    else data.currentBackground = [NSNumber numberWithInt:22];
+    [self updateBackgroundImage];
+}
+-(IBAction)rightPressed:(id)sender {
+    if ( data.currentBackground.intValue < 22 ) data.currentBackground = [NSNumber numberWithInt:data.currentBackground.intValue+1];
+    else data.currentBackground = [NSNumber numberWithInt:0];
+    [self updateBackgroundImage];
+}
+
+-(IBAction)upPressed:(id)sender {
+    if ( bgNameIndex < 4) bgNameIndex++;
+    else bgNameIndex = 0;
+    [self updateBackgroundImage];
+
+}
+-(IBAction)closeInstructionsPressed:(id)sender {
+    [UIView animateWithDuration:0.3 animations:^{
+        viewInstructionsLandscape.alpha = 0.0;
+        viewInstructionsPortraight.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [viewInstructionsLandscape removeFromSuperview];
+        [viewInstructionsPortraight removeFromSuperview];
+    }];
+}
+
+-(IBAction)menuTogglePressed:(UIButton *)sender {
+    CGRect frame = [sender superview].frame;
+    if ( menuIsOpened ) {
+        [self fadeOut:bgResolutions];
+        [self fadeOut:viewLocked];
+        menuIsOpened = false;
+        [UIView animateWithDuration:0.3 animations:^{
+            [sender superview].frame = CGRectMake ( frame.origin.x, frame.origin.y+200, frame.size.width, frame.size.height-200 );
+            secondsView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [sender setImage:[UIImage imageNamed:@"menuOpen"] forState:UIControlStateNormal];
+        }];
+    }
+    else {
+        menuIsOpened = true;
+        [UIView animateWithDuration:0.3 animations:^{
+            secondsView.alpha = 0.0;
+            [sender superview].frame = CGRectMake ( frame.origin.x, frame.origin.y-200, frame.size.width, frame.size.height+200 );
+        } completion:^(BOOL finished) {
+            [sender setImage:[UIImage imageNamed:@"menuClose"] forState:UIControlStateNormal];
+        }];
+    }
+}
+
+-(void) fadeOut:(UIView *) view {
+    [UIView animateWithDuration:0.1 animations:^{
+        view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
+-(void) fadeIn:(UIView *) view {
+    [UIView animateWithDuration:0.1 animations:^{
+        view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        ;
+    }];
+}
+-(IBAction) buycreditPressed:(id)sender {
+    [self fadeOut:bgResolutions];
+    
+    [[[UIAlertView alloc]initWithTitle:@"Buy Credit Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+
+//    [self fadeIn:bgBuyCredit];
+}
+-(IBAction) upgradePressed:(id)sender {
+    [self fadeOut:bgResolutions];
+    
+    [[[UIAlertView alloc]initWithTitle:@"Upgrade Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+-(IBAction)resolution360Pressed:(UIButton * )sender {
+    sender.selected = !sender.selected;
+    [(UIButton *)[bgResolutions viewWithTag:720] setSelected:false];
+    data.resolution = [NSNumber numberWithInt:360];
+}
+-(IBAction)resolution720Pressed:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [(UIButton *)[bgResolutions viewWithTag:360] setSelected:false];
+    data.resolution = [NSNumber numberWithInt:720];
+}
+-(IBAction) resolutionPressed:(id)sender {
+    int resolution = data.resolution.intValue; 
+    [(UIButton *)[bgResolutions viewWithTag:resolution] setSelected:true];
+    
+    [self fadeIn:bgResolutions];
+//    [self fadeOut:bgBuyCredit];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ( buttonIndex == 0 ) return;
+    if ( alertView == alertLockedBackground ) {
+        [self buyBackgroundPressed:nil];
+    }
+    if ( alertView == alertBuyCredits ) {
+        
+    }
+    if ( alertView == alertUseCredits ) {
+        DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
+        background.isLocked = [NSNumber numberWithBool:false];
+        data.credits = [NSNumber numberWithInt:data.credits.intValue - background.cost.intValue];
+        [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
+        if ( background.isLocked.boolValue ) {
+            [self fadeIn:viewLocked];
+            [self fadeIn:viewLock];
+        }
+        else {
+            [self fadeOut:viewLocked];
+            [self fadeOut:viewLock];
+        }
+    }
+}
+
+-(IBAction)buyBackgroundPressed:(id)sender {
+    int credits = [data credits].intValue;
+    DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
+    int cost = background.cost.intValue;
+    
+    if ( credits >= cost )
+        [alertUseCredits show];
+    else
+        [alertBuyCredits show];
+}
+
+-(IBAction)beginRecordPressed:(id)sender {
+    DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
+    if ( background.isLocked.boolValue ) {
+        [alertLockedBackground show];
+        return;
+    }
+    [self performSegueWithIdentifier:@"record" sender:self];
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return scrollerMovies;
+}
+
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation))
+    {
+        viewInstructionsPortraight.alpha = 0.0;
+        viewInstructionsLandscape.alpha = 1.0;
+    }
+    else
+    {
+        viewInstructionsPortraight.alpha = 1.0;
+        viewInstructionsLandscape.alpha = 0.0;
+    }
+    [self updateBackgroundImage];
+}
+
+
+
+
+@end
