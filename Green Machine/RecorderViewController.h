@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "RosyWriter/RosyWriterViewController.h"
 
 @interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate> {
+    RosyWriterViewController * writerView;
+    
     IBOutlet UIImageView * imageViewBackground;
     IBOutlet UIView * viewInstructionsPortraight;
     IBOutlet UIView * viewInstructionsLandscape;
     IBOutlet UIView * viewLocked;
     IBOutlet UIView * secondsView;
+    IBOutlet UIView * previewView;
     
     IBOutlet UIView * bgBuyCredit;
     IBOutlet UIView * bgResolutions;

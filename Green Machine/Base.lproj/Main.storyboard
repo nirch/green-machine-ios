@@ -23,27 +23,6 @@
         <!--Recorder View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <swipeGestureRecognizer direction="right" id="eqy-B1-8lh" userLabel="Figure Right (Swipe Gesture Recognizer)">
-                    <connections>
-                        <action selector="rightPressed:" destination="vXZ-lx-hvc" id="ddd-Bh-5QM"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="rAt-Xu-Phx" userLabel="Instruction close (Tap Gesture Recognizer)">
-                    <connections>
-                        <action selector="closeInstructionsPressed:" destination="vXZ-lx-hvc" id="eMb-XW-Elc"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="V7o-rG-F72" userLabel="Figure Left (Swipe Gesture Recognizer)">
-                    <connections>
-                        <action selector="leftPressed:" destination="vXZ-lx-hvc" id="xim-OT-Zrd"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <tapGestureRecognizer id="WhF-DR-xti" userLabel="Figure Switch (Tap Gesture Recognizer)">
-                    <connections>
-                        <action selector="upPressed:" destination="vXZ-lx-hvc" id="kMj-Me-ZuF"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <viewController id="vXZ-lx-hvc" customClass="RecorderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -52,6 +31,7 @@
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="DgM-Bk-n5m">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="eqy-B1-8lh" appends="YES" id="Taz-fh-GWE"/>
                                     <outletCollection property="gestureRecognizers" destination="V7o-rG-F72" appends="YES" id="9dR-wg-Qls"/>
@@ -316,6 +296,27 @@
                         <segue destination="92G-3v-eiu" kind="push" identifier="record" id="pQM-Yf-nOg"/>
                     </connections>
                 </viewController>
+                <swipeGestureRecognizer direction="right" id="eqy-B1-8lh" userLabel="Figure Right (Swipe Gesture Recognizer)">
+                    <connections>
+                        <action selector="rightPressed:" destination="vXZ-lx-hvc" id="ddd-Bh-5QM"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rAt-Xu-Phx" userLabel="Instruction close (Tap Gesture Recognizer)">
+                    <connections>
+                        <action selector="closeInstructionsPressed:" destination="vXZ-lx-hvc" id="eMb-XW-Elc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="V7o-rG-F72" userLabel="Figure Left (Swipe Gesture Recognizer)">
+                    <connections>
+                        <action selector="leftPressed:" destination="vXZ-lx-hvc" id="xim-OT-Zrd"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer id="WhF-DR-xti" userLabel="Figure Switch (Tap Gesture Recognizer)">
+                    <connections>
+                        <action selector="upPressed:" destination="vXZ-lx-hvc" id="kMj-Me-ZuF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="105" y="47"/>
         </scene>

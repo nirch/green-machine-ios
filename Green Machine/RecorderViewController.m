@@ -21,6 +21,9 @@
 {
     [super viewDidLoad];
     
+    writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
+    [self.view insertSubview:writerView.view atIndex:0];
+
     self.navigationController.navigationBarHidden = true;
     data = [Data shared];
     [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
