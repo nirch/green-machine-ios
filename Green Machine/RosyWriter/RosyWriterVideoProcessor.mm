@@ -1,7 +1,7 @@
 /*
-     File: RosyWriterVideoProcessor.m
+ File: RosyWriterVideoProcessor.m
  Abstract: The class that creates and manages the AV capture session and asset writer
-  Version: 1.2
+ Version: 1.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -49,9 +49,27 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "RosyWriterVideoProcessor.h"
 
+#import "Gpw/Vtool/Vtool.h"
+#import "MattingLib/UniformBackground/UniformBackground.h"
+#import "Image3/Image3Tool.h"
+#import "ImageType/ImageTool.h"
+#import "ImageMark/ImageMark.h"
+#import "Utime/GpTime.h"
+
+
 #define BYTES_PER_PIXEL 4
 
-@interface RosyWriterVideoProcessor ()
+@interface RosyWriterVideoProcessor () {
+    
+    //int counter;
+    CUniformBackground *m_foregroundExtraction;
+    image_type *m_original_image;
+    image_type *m_foreground_image;
+    image_type *m_output_image;
+    image_type *m_background_image;
+    
+}
+
 
 // Redeclared as readwrite so that we can write to the property and still be atomic with external readers.
 @property (readwrite) Float64 videoFrameRate;
@@ -80,19 +98,35 @@
         
         // The temporary path for the video before saving it to the photo album
         movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"Movie.MOV"]];
-//        [movieURL retain];
+        [movieURL retain];
+        
+        m_foregroundExtraction = new CUniformBackground();
+        
+        NSString *backgroundImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"landscape360.png" ofType:nil];
+        UIImage *backgroundImage = [UIImage imageWithContentsOfFile:backgroundImagePath];
+        image_type *background_image4 = CVtool::DecomposeUIimage(backgroundImage);
+        m_background_image = image3_from(background_image4, NULL);
+        image_destroy(background_image4, 1);
+        
+        NSString *contourFile = [[NSBundle mainBundle] pathForResource:@"close+up+360" ofType:@"ctr"];
+        
+        m_foregroundExtraction->ReadMask((char*)contourFile.UTF8String, 640, 360);
+        
+        m_original_image = NULL;
+        m_foreground_image = NULL;
+        m_output_image = NULL;
     }
     return self;
 }
-/*
-- (void)dealloc 
+
+- (void)dealloc
 {
     [previousSecondTimestamps release];
     [movieURL release];
-
+    
 	[super dealloc];
 }
-*/
+
 #pragma mark Utilities
 
 - (void) calculateFramerateAtTimestamp:(CMTime) timestamp
@@ -141,14 +175,14 @@
 		default:
 			break;
 	}
-
+    
 	return angle;
 }
 
 - (CGAffineTransform)transformFromCurrentVideoOrientationToOrientation:(AVCaptureVideoOrientation)orientation
 {
 	CGAffineTransform transform = CGAffineTransformIdentity;
-
+    
 	// Calculate offsets from an arbitrary reference orientation (portrait)
 	CGFloat orientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:orientation];
 	CGFloat videoOrientationAngleOffset = [self angleOffsetFromPortraitOrientationToOrientation:self.videoOrientation];
@@ -179,14 +213,14 @@
 										[self.delegate recordingDidStop];
 									});
 								}];
-//	[library release];
+	[library release];
 }
 
 - (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType
 {
 	if ( assetWriter.status == AVAssetWriterStatusUnknown ) {
 		
-        if ([assetWriter startWriting]) {			
+        if ([assetWriter startWriting]) {
 			[assetWriter startSessionAtSourceTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
 		}
 		else {
@@ -216,7 +250,7 @@
 - (BOOL) setupAssetWriterAudioInput:(CMFormatDescriptionRef)currentFormatDescription
 {
 	const AudioStreamBasicDescription *currentASBD = CMAudioFormatDescriptionGetStreamBasicDescription(currentFormatDescription);
-
+    
 	size_t aclSize = 0;
 	const AudioChannelLayout *currentChannelLayout = CMAudioFormatDescriptionGetChannelLayout(currentFormatDescription, &aclSize);
 	NSData *currentChannelLayoutData = nil;
@@ -252,7 +286,7 @@
     return YES;
 }
 
-- (BOOL) setupAssetWriterVideoInput:(CMFormatDescriptionRef)currentFormatDescription 
+- (BOOL) setupAssetWriterVideoInput:(CMFormatDescriptionRef)currentFormatDescription
 {
 	float bitsPerPixel;
 	CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(currentFormatDescription);
@@ -298,24 +332,24 @@
 - (void) startRecording
 {
 	dispatch_async(movieWritingQueue, ^{
-	
+        
 		if ( recordingWillBeStarted || self.recording )
 			return;
-
+        
 		recordingWillBeStarted = YES;
-
+        
 		// recordingDidStart is called from captureOutput:didOutputSampleBuffer:fromConnection: once the asset writer is setup
 		[self.delegate recordingWillStart];
-
+        
 		// Remove the file if one with the same name already exists
 		[self removeFile:movieURL];
-			
+        
 		// Create an asset writer
 		NSError *error;
 		assetWriter = [[AVAssetWriter alloc] initWithURL:movieURL fileType:(NSString *)kUTTypeQuickTimeMovie error:&error];
 		if (error)
 			[self showError:error];
-	});	
+	});
 }
 
 - (void) stopRecording
@@ -329,11 +363,11 @@
 		
 		// recordingDidStop is called from saveMovieToCameraRoll
 		[self.delegate recordingWillStop];
-
+        
 		if ([assetWriter finishWriting]) {
-//			[assetWriterAudioIn release];
-//			[assetWriterVideoIn release];
-//			[assetWriter release];
+			[assetWriterAudioIn release];
+			[assetWriterVideoIn release];
+			[assetWriter release];
 			assetWriter = nil;
 			
 			readyToRecordVideo = NO;
@@ -349,15 +383,15 @@
 
 #pragma mark Processing
 
-- (void)processPixelBuffer: (CVImageBufferRef)pixelBuffer 
+- (void)processPixelBuffer: (CVImageBufferRef)pixelBuffer
 {
 	CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
 	
 	int bufferWidth = CVPixelBufferGetWidth(pixelBuffer);
 	int bufferHeight = CVPixelBufferGetHeight(pixelBuffer);
 	unsigned char *pixel = (unsigned char *)CVPixelBufferGetBaseAddress(pixelBuffer);
-
-	for( int row = 0; row < bufferHeight; row++ ) {		
+    
+	for( int row = 0; row < bufferHeight; row++ ) {
 		for( int column = 0; column < bufferWidth; column++ ) {
 			pixel[1] = 0; // De-green (second pixel in BGRA is green)
 			pixel += BYTES_PER_PIXEL;
@@ -367,10 +401,55 @@
 	CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
 }
 
+-(void)updatePixelBuffer:(CVImageBufferRef)pixelBuffer fromImageType:(image_type *)im
+{
+    int i,   j;
+	
+	u_char *sp = im->data;
+    
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0 );
+	unsigned char *buffer = (u_char *)CVPixelBufferGetBaseAddress(pixelBuffer);
+    int k;
+	for( i = 0, k = 0 ; i < im->height ; i++ ){
+		for( j = 0 ; j < im->width ; j++, sp += 3, k+= 4 ){
+			buffer[k] = sp[0];   // R
+			buffer[k+1] = sp[1]; // G
+			buffer[k+2] = sp[2]; // B
+			buffer[k+3] = 0;     // A
+            
+            
+		}
+	}
+    
+    CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
+}
+
+- (void)processFrame:(CVImageBufferRef)pixelBuffer
+{
+    // Converting the given PixelBuffer to image_type (and then converting it to BGR)
+    m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
+    //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
+    image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
+    
+    // Extracting the foreground
+    m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
+    
+    // Stitching the foreground and the background together (and then converting to RGB)
+    m_output_image = m_foregroundExtraction->GetImage(m_background_image, m_output_image);
+    image3_bgr2rgb(m_output_image);
+    
+    // Destroying the temp image
+    image_destroy(original_bgr_image, 1);
+    
+    // Updating the current pixelbuffer with the new foreground/background image
+    [self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
+}
+
+
 #pragma mark Capture
 
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection 
-{	
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
 	CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
     
 	if ( connection == videoConnection ) {
@@ -386,16 +465,19 @@
 		// Get buffer type
 		if ( self.videoType == 0 )
 			self.videoType = CMFormatDescriptionGetMediaSubType( formatDescription );
-
+        
 		CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 		
 		// Synchronously process the pixel buffer to de-green it.
-		[self processPixelBuffer:pixelBuffer];
+		//[self processPixelBuffer:pixelBuffer];
+        
+        // GreenMachine
+        [self processFrame:pixelBuffer];
 		
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
 		// we'll drop this frame for preview (this keeps preview latency low).
 		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
-		if ( !err ) {        
+		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
 				if (sbuf) {
@@ -410,9 +492,9 @@
 	CFRetain(sampleBuffer);
 	CFRetain(formatDescription);
 	dispatch_async(movieWritingQueue, ^{
-
+        
 		if ( assetWriter ) {
-		
+            
 			BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
 			
 			if (connection == videoConnection) {
@@ -448,7 +530,10 @@
 	});
 }
 
-- (AVCaptureDevice *)videoDeviceWithPosition:(AVCaptureDevicePosition)position 
+
+
+
+- (AVCaptureDevice *)videoDeviceWithPosition:(AVCaptureDevicePosition)position
 {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices)
@@ -467,23 +552,25 @@
     return nil;
 }
 
-- (BOOL) setupCaptureSession 
+- (BOOL) setupCaptureSession
 {
 	/*
-		Overview: RosyWriter uses separate GCD queues for audio and video capture.  If a single GCD queue
-		is used to deliver both audio and video buffers, and our video processing consistently takes
-		too long, the delivery queue can back up, resulting in audio being dropped.
-		
-		When recording, RosyWriter creates a third GCD queue for calls to AVAssetWriter.  This ensures
-		that AVAssetWriter is not called to start or finish writing from multiple threads simultaneously.
-		
-		RosyWriter uses AVCaptureSession's default preset, AVCaptureSessionPresetHigh.
+     Overview: RosyWriter uses separate GCD queues for audio and video capture.  If a single GCD queue
+     is used to deliver both audio and video buffers, and our video processing consistently takes
+     too long, the delivery queue can back up, resulting in audio being dropped.
+     
+     When recording, RosyWriter creates a third GCD queue for calls to AVAssetWriter.  This ensures
+     that AVAssetWriter is not called to start or finish writing from multiple threads simultaneously.
+     
+     RosyWriter uses AVCaptureSession's default preset, AVCaptureSessionPresetHigh.
 	 */
-	 
+    
     /*
 	 * Create capture session
 	 */
     captureSession = [[AVCaptureSession alloc] init];
+    
+    captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
     
     /*
 	 * Create audio connection
@@ -491,16 +578,16 @@
     AVCaptureDeviceInput *audioIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
     if ([captureSession canAddInput:audioIn])
         [captureSession addInput:audioIn];
-//	[audioIn release];
+	[audioIn release];
 	
 	AVCaptureAudioDataOutput *audioOut = [[AVCaptureAudioDataOutput alloc] init];
 	dispatch_queue_t audioCaptureQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL);
 	[audioOut setSampleBufferDelegate:self queue:audioCaptureQueue];
-//	dispatch_release(audioCaptureQueue);
+	dispatch_release(audioCaptureQueue);
 	if ([captureSession canAddOutput:audioOut])
 		[captureSession addOutput:audioOut];
 	audioConnection = [audioOut connectionWithMediaType:AVMediaTypeAudio];
-//	[audioOut release];
+	[audioOut release];
     
 	/*
 	 * Create video connection
@@ -508,25 +595,25 @@
     AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
     if ([captureSession canAddInput:videoIn])
         [captureSession addInput:videoIn];
-//	[videoIn release];
+	[videoIn release];
     
 	AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
 	/*
-		RosyWriter prefers to discard late video frames early in the capture pipeline, since its
-		processing can take longer than real-time on some platforms (such as iPhone 3GS).
-		Clients whose image processing is faster than real-time should consider setting AVCaptureVideoDataOutput's
-		alwaysDiscardsLateVideoFrames property to NO. 
+     RosyWriter prefers to discard late video frames early in the capture pipeline, since its
+     processing can take longer than real-time on some platforms (such as iPhone 3GS).
+     Clients whose image processing is faster than real-time should consider setting AVCaptureVideoDataOutput's
+     alwaysDiscardsLateVideoFrames property to NO.
 	 */
 	[videoOut setAlwaysDiscardsLateVideoFrames:YES];
 	[videoOut setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
 	dispatch_queue_t videoCaptureQueue = dispatch_queue_create("Video Capture Queue", DISPATCH_QUEUE_SERIAL);
 	[videoOut setSampleBufferDelegate:self queue:videoCaptureQueue];
-//	dispatch_release(videoCaptureQueue);
+	dispatch_release(videoCaptureQueue);
 	if ([captureSession canAddOutput:videoOut])
 		[captureSession addOutput:videoOut];
 	videoConnection = [videoOut connectionWithMediaType:AVMediaTypeVideo];
 	self.videoOrientation = [videoConnection videoOrientation];
-//	[videoOut release];
+	[videoOut release];
     
 	return YES;
 }
@@ -576,14 +663,14 @@
     [captureSession stopRunning];
 	if (captureSession)
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureSessionDidStopRunningNotification object:captureSession];
-//	[captureSession release];
+	[captureSession release];
 	captureSession = nil;
 	if (previewBufferQueue) {
 		CFRelease(previewBufferQueue);
-		previewBufferQueue = NULL;	
+		previewBufferQueue = NULL;
 	}
 	if (movieWritingQueue) {
-//		dispatch_release(movieWritingQueue);
+		dispatch_release(movieWritingQueue);
 		movieWritingQueue = NULL;
 	}
 }
@@ -599,7 +686,7 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
         [alertView show];
-//        [alertView release];
+        [alertView release];
     });
 }
 

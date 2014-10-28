@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
     [self.view insertSubview:writerView.view atIndex:0];
 
@@ -45,6 +45,7 @@
                                              selector:@selector(orientationChanged:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
+    [self orientationChanged:nil];
 
 
 }
@@ -216,7 +217,8 @@
         [alertLockedBackground show];
         return;
     }
-    [self performSegueWithIdentifier:@"record" sender:self];
+//    [self performSegueWithIdentifier:@"record" sender:self];
+    [[[UIAlertView alloc]initWithTitle:@"Not yet" message:@"We will be able to record only after the preview looks OK" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -238,6 +240,12 @@
         viewInstructionsLandscape.alpha = 0.0;
     }
     [self updateBackgroundImage];
+    if ( deviceOrientation == UIDeviceOrientationPortrait)
+        [self.view sendSubviewToBack:writerView.view];
+    if ( deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
+        [self.view bringSubviewToFront:writerView.view];
+
+    
 }
 
 

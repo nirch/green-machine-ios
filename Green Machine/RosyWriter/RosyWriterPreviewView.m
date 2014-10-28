@@ -251,6 +251,13 @@ enum {
     // Set the view port to the entire view
     glViewport(0, 0, renderBufferWidth, renderBufferHeight);
 	
+//    static const GLfloat squareVertices[] = {
+//        -1.0f, -1.0f,
+//        1.0f, -1.0f,
+//        -1.0f,  1.0f,
+//        1.0f,  1.0f,
+//    };
+
     static const GLfloat squareVertices[] = {
         -1.0f, -1.0f,
         1.0f, -1.0f,

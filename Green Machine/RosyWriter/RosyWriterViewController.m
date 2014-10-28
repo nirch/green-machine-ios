@@ -55,6 +55,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 @synthesize previewView;
 @synthesize recordButton;
 
+
 - (void)updateLabels
 {
 	if (shouldShowStats) {
@@ -136,16 +137,17 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
     [videoProcessor setupAndStartCaptureSession];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
-    
+
 	oglView = [[RosyWriterPreviewView alloc] initWithFrame:CGRectZero];
 	// Our interface is always in portrait.
 	oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:UIInterfaceOrientationPortrait];
     [previewView addSubview:oglView];
+
  	CGRect bounds = CGRectZero;
  	bounds.size = [self.previewView convertRect:self.previewView.bounds toView:oglView].size;
  	oglView.bounds = bounds;
     oglView.center = CGPointMake(previewView.bounds.size.width/2.0, previewView.bounds.size.height/2.0);
- 	
+/*
  	// Set up labels
  	shouldShowStats = YES;
 	
@@ -157,6 +159,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	
 	typeLabel = [self labelWithText:@"" yPosition: (CGFloat) 98.0];
 	[previewView addSubview:typeLabel];
+*/
 }
 
 - (void)cleanup
