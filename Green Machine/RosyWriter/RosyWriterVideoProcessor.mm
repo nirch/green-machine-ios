@@ -424,7 +424,7 @@
     CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
 }
 
-- (void)processFrame:(CVImageBufferRef)pixelBuffer
+- (CVPixelBufferRef)processFrame:(CVImageBufferRef)pixelBuffer
 {
     // Converting the given PixelBuffer to image_type (and then converting it to BGR)
     m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
@@ -441,8 +441,11 @@
     // Destroying the temp image
     image_destroy(original_bgr_image, 1);
     
+    // Converting the result of the algo into CVPixelBuffer
+    return CVtool::CVPixelBufferRef_from_image(m_output_image);
+    
     // Updating the current pixelbuffer with the new foreground/background image
-    [self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
+    //[self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
 }
 
 
@@ -466,24 +469,23 @@
 		if ( self.videoType == 0 )
 			self.videoType = CMFormatDescriptionGetMediaSubType( formatDescription );
         
-		CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+		CVImageBufferRef rawPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 		
 		// Synchronously process the pixel buffer to de-green it.
 		//[self processPixelBuffer:pixelBuffer];
         
         // GreenMachine
-        [self processFrame:pixelBuffer];
+        CVPixelBufferRef processedPixelBuffer = [self processFrame:rawPixelBuffer];
 		
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
 		// we'll drop this frame for preview (this keeps preview latency low).
-		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, sampleBuffer);
+		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, processedPixelBuffer);
 		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-				if (sbuf) {
-					CVImageBufferRef pixBuf = CMSampleBufferGetImageBuffer(sbuf);
+				CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+				if (pixBuf) {
 					[self.delegate pixelBufferReadyForDisplay:pixBuf];
-					CFRelease(sbuf);
+					//CFRelease(sbuf);
 				}
 			});
 		}
