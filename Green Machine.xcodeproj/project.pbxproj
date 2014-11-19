@@ -1277,7 +1277,7 @@
 				ORGANIZATIONNAME = GreenShpits;
 				TargetAttributes = {
 					7FF26D551937AEB100F0FAEB = {
-						DevelopmentTeam = MQC6GHTW38;
+						DevelopmentTeam = 56F7YSPHC5;
 					};
 					7FF26D761937AEB100F0FAEB = {
 						TestTargetID = 7FF26D551937AEB100F0FAEB;
@@ -1766,7 +1766,7 @@
 					"../homage-cv-app/Homage/**",
 				);
 				INFOPLIST_FILE = "Green Machine/Green Machine-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../homage-cv-app/Homage/Lib/Release$(EFFECTIVE_PLATFORM_NAME)",
 					"../homage-cv-app/VimGui/Lib/Release$(EFFECTIVE_PLATFORM_NAME)",
@@ -1816,7 +1816,7 @@
 					"../homage-cv-app/Homage/**",
 				);
 				INFOPLIST_FILE = "Green Machine/Green Machine-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"../homage-cv-app/Homage/Lib/Release$(EFFECTIVE_PLATFORM_NAME)",
 					"../homage-cv-app/VimGui/Lib/Release$(EFFECTIVE_PLATFORM_NAME)",

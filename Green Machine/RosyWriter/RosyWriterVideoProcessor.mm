@@ -424,8 +424,10 @@
     CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
 }
 
-- (CVPixelBufferRef)processFrame:(CVImageBufferRef)pixelBuffer
+- (CMSampleBufferRef)processFrame:(CMSampleBufferRef)sampleBuffer
 {
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    
     // Converting the given PixelBuffer to image_type (and then converting it to BGR)
     m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
     //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
@@ -442,11 +444,50 @@
     image_destroy(original_bgr_image, 1);
     
     // Converting the result of the algo into CVPixelBuffer
-    return CVtool::CVPixelBufferRef_from_image(m_output_image);
+    CVImageBufferRef processedPixelBuffer = CVtool::CVPixelBufferRef_from_image(m_output_image);
+    
+    // Getting the sample timing info from the sample buffer
+    CMSampleTimingInfo sampleTimingInfo = kCMTimingInfoInvalid;
+    CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &sampleTimingInfo);
+    
+    CMVideoFormatDescriptionRef videoInfo = NULL;
+    CMVideoFormatDescriptionCreateForImageBuffer(NULL, processedPixelBuffer, &videoInfo);
+    
+    CMSampleBufferRef processedSampleBuffer = NULL;
+    CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, processedPixelBuffer, true, NULL, NULL, videoInfo, &sampleTimingInfo, &processedSampleBuffer);
+    
+    CFRelease(processedPixelBuffer);
+    //CFRelease(videoInfo);
+    
+    return processedSampleBuffer;
     
     // Updating the current pixelbuffer with the new foreground/background image
     //[self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
 }
+
+//- (CVPixelBufferRef)processFrame:(CVImageBufferRef)pixelBuffer
+//{
+//    // Converting the given PixelBuffer to image_type (and then converting it to BGR)
+//    m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
+//    //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
+//    image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
+//    
+//    // Extracting the foreground
+//    m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
+//    
+//    // Stitching the foreground and the background together (and then converting to RGB)
+//    m_output_image = m_foregroundExtraction->GetImage(m_background_image, m_output_image);
+//    image3_bgr2rgb(m_output_image);
+//    
+//    // Destroying the temp image
+//    image_destroy(original_bgr_image, 1);
+//    
+//    // Converting the result of the algo into CVPixelBuffer
+//    return CVtool::CVPixelBufferRef_from_image(m_output_image);
+//    
+//    // Updating the current pixelbuffer with the new foreground/background image
+//    //[self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
+//}
 
 
 #pragma mark Capture
@@ -469,23 +510,29 @@
 		if ( self.videoType == 0 )
 			self.videoType = CMFormatDescriptionGetMediaSubType( formatDescription );
         
-		CVImageBufferRef rawPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+		//CVImageBufferRef rawPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 		
 		// Synchronously process the pixel buffer to de-green it.
 		//[self processPixelBuffer:pixelBuffer];
         
         // GreenMachine
-        CVPixelBufferRef processedPixelBuffer = [self processFrame:rawPixelBuffer];
-		
+        //CVImageBufferRef processedPixelBuffer = [self processFrame:pixelBuffer];
+        CMSampleBufferRef processedSampleBuffer = [self processFrame:sampleBuffer];
+        
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
 		// we'll drop this frame for preview (this keeps preview latency low).
-		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, processedPixelBuffer);
+		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, processedSampleBuffer);
+        CFRelease(processedSampleBuffer);
+        
 		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-				if (pixBuf) {
+				//CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+                CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+                if (sbuf) {
+                    CVImageBufferRef pixBuf = CMSampleBufferGetImageBuffer(sbuf);
+                    
 					[self.delegate pixelBufferReadyForDisplay:pixBuf];
-					//CFRelease(sbuf);
+					CFRelease(sbuf);
 				}
 			});
 		}
