@@ -217,8 +217,11 @@
         [alertLockedBackground show];
         return;
     }
+    writerView.recordButton = sender;
 //    [self performSegueWithIdentifier:@"record" sender:self];
-    [[[UIAlertView alloc]initWithTitle:@"Not yet" message:@"We will be able to record only after the preview looks OK" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+    [writerView toggleRecording:sender];
+    
+//    [[[UIAlertView alloc]initWithTitle:@"Not yet" message:@"We will be able to record only after the preview looks OK" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
