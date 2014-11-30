@@ -299,6 +299,9 @@
 		7F703B3719A9DDDB006A0F62 /* passThrough.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7F703B2F19A9DDDB006A0F62 /* passThrough.vsh */; };
 		7F703B3819A9DDDB006A0F62 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F703B3019A9DDDB006A0F62 /* ShaderUtilities.c */; };
 		7F703B3F19A9E250006A0F62 /* RosyWriterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F703B3E19A9E250006A0F62 /* RosyWriterViewController.xib */; };
+		7F7DB7B11A2B369000C00B7D /* BuyCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */; };
+		7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */; };
+		7F7DB7B41A2B3B6B00C00B7D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */; };
 		7FD4E99519C4F893000FEE82 /* cameraBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FD4E99419C4F893000FEE82 /* cameraBG@2x.png */; };
 		7FDA5A541937B278001F5B07 /* RecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA5A531937B278001F5B07 /* RecorderViewController.m */; };
 		7FF26D5C1937AEB100F0FAEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D5B1937AEB100F0FAEB /* CoreGraphics.framework */; };
@@ -626,6 +629,10 @@
 		7F703B3019A9DDDB006A0F62 /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
 		7F703B3119A9DDDB006A0F62 /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 		7F703B3E19A9E250006A0F62 /* RosyWriterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosyWriterViewController.xib; sourceTree = "<group>"; };
+		7F7DB7AA1A2B366900C00B7D /* BuyCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyCreditsViewController.h; sourceTree = "<group>"; };
+		7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCreditsViewController.m; sourceTree = "<group>"; };
+		7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyCreditsViewController.xib; sourceTree = "<group>"; };
+		7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7FD4E99419C4F893000FEE82 /* cameraBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraBG@2x.png"; sourceTree = "<group>"; };
 		7FDA5A521937B278001F5B07 /* RecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecorderViewController.h; sourceTree = "<group>"; };
 		7FDA5A531937B278001F5B07 /* RecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecorderViewController.m; sourceTree = "<group>"; };
@@ -653,6 +660,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F7DB7B41A2B3B6B00C00B7D /* StoreKit.framework in Frameworks */,
 				7F64870D19B89B8B00AE6B59 /* OpenGLES.framework in Frameworks */,
 				7F64871419B89C0200AE6B59 /* Foundation.framework in Frameworks */,
 				7FF26D5E1937AEB100F0FAEB /* UIKit.framework in Frameworks */,
@@ -1115,10 +1123,10 @@
 		7F703B2419A9DDDB006A0F62 /* RosyWriter */ = {
 			isa = PBXGroup;
 			children = (
+				7F703B2919A9DDDB006A0F62 /* RosyWriterVideoProcessor.h */,
 				7F6486FB19B8973600AE6B59 /* RosyWriterVideoProcessor.mm */,
 				7F703B2719A9DDDB006A0F62 /* RosyWriterPreviewView.h */,
 				7F703B2819A9DDDB006A0F62 /* RosyWriterPreviewView.m */,
-				7F703B2919A9DDDB006A0F62 /* RosyWriterVideoProcessor.h */,
 				7F703B2B19A9DDDB006A0F62 /* RosyWriterViewController.h */,
 				7F703B2C19A9DDDB006A0F62 /* RosyWriterViewController.m */,
 				7F703B3E19A9E250006A0F62 /* RosyWriterViewController.xib */,
@@ -1160,6 +1168,7 @@
 		7FF26D581937AEB100F0FAEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */,
 				7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */,
 				7F64871019B89BAE00AE6B59 /* QuartzCore.framework */,
 				7F64870E19B89BA600AE6B59 /* AssetsLibrary.framework */,
@@ -1191,6 +1200,9 @@
 				7F24FA6719A3524C0043AA96 /* DoneViewController.m */,
 				7F24FA9E19A393A00043AA96 /* RenderingViewController.h */,
 				7F24FA9F19A393A00043AA96 /* RenderingViewController.m */,
+				7F7DB7AA1A2B366900C00B7D /* BuyCreditsViewController.h */,
+				7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */,
+				7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */,
 				7F2E703B19A66EE8006F8405 /* Images */,
 				7FF26D711937AEB100F0FAEB /* Images.xcassets */,
 				7FF26D601937AEB100F0FAEB /* Supporting Files */,
@@ -1277,7 +1289,7 @@
 				ORGANIZATIONNAME = GreenShpits;
 				TargetAttributes = {
 					7FF26D551937AEB100F0FAEB = {
-						DevelopmentTeam = 56F7YSPHC5;
+						DevelopmentTeam = MQC6GHTW38;
 					};
 					7FF26D761937AEB100F0FAEB = {
 						TestTargetID = 7FF26D551937AEB100F0FAEB;
@@ -1366,6 +1378,7 @@
 				7F703ACB19A939DA006A0F62 /* head&shoulders land 18.png in Resources */,
 				7F703A5F19A939DA006A0F62 /* head&shoulders port 3.png in Resources */,
 				7F703A7C19A939DA006A0F62 /* head&chest port 9.png in Resources */,
+				7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */,
 				7F2E717319A66EE8006F8405 /* Menu iphone 5 Bye credits.png in Resources */,
 				7F703B1019A939DA006A0F62 /* PORTRAIT 4.png in Resources */,
 				7F703A3619A939DA006A0F62 /* close up port 8.png in Resources */,
@@ -1607,6 +1620,7 @@
 			files = (
 				7FDA5A541937B278001F5B07 /* RecorderViewController.m in Sources */,
 				7F703B3819A9DDDB006A0F62 /* ShaderUtilities.c in Sources */,
+				7F7DB7B11A2B369000C00B7D /* BuyCreditsViewController.m in Sources */,
 				7F24FAA019A393A00043AA96 /* RenderingViewController.m in Sources */,
 				7F24FA6819A3524C0043AA96 /* DoneViewController.m in Sources */,
 				7F6486FC19B8973600AE6B59 /* RosyWriterVideoProcessor.mm in Sources */,
@@ -1780,7 +1794,7 @@
 					"-lMattingLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21aa3657-3053-4071-84e9-3f6e76f13475";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1831,7 +1845,7 @@
 					"-lMattingLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21aa3657-3053-4071-84e9-3f6e76f13475";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};

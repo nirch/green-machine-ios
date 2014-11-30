@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Data.h"
 #import "RosyWriter/RosyWriterViewController.h"
+#import "BuyCreditsViewController.h"
+
 
 @interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate> {
     RosyWriterViewController * writerView;
+    BuyCreditsViewController * controllerBuyCredit;
     
     IBOutlet UIImageView * imageViewBackground;
     IBOutlet UIView * viewInstructionsPortraight;

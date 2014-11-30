@@ -7,11 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "Data.h"
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+
     // Override point for customization after application launch.
     return YES;
 }
@@ -42,5 +46,43 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)paymentQueue:(SKPaymentQueue *)queue
+ updatedTransactions:(NSArray *)transactions
+{
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+                // Call the appropriate custom method.
+            case SKPaymentTransactionStatePurchased: {
+                Data * data = [Data shared];
+                NSArray * productIdentifiers = [data objectForKey:@"productids"];
+                NSArray * productPicks = [data objectForKey:@"productpicks"];
+                NSString * productid = transaction.payment.productIdentifier;
+                int index = [productIdentifiers indexOfObject:productid];
+                int currnetpicks = [[data objectForKey:@"currentPicks"] intValue];
+                currnetpicks += [[productPicks objectAtIndex:index]intValue];
+                [data setObject:[NSString stringWithFormat:@"%d", currnetpicks] forKey:@"currentPicks"];
+                [data synchronize];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePicks" object:nil];
+                
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                
+                [[[UIAlertView alloc]initWithTitle:@"AppStore" message:@"Your purchase was successfull." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+                break;
+            }
+            case SKPaymentTransactionStateFailed: {
+                [[[UIAlertView alloc]initWithTitle:@"AppStore issue" message:[NSString stringWithFormat:@"Your purchase has failed, please try again. erorr: %@", transaction.error.description] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil]show ];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                break;
+            }
+            case SKPaymentTransactionStateRestored:
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 
 @end

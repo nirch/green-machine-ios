@@ -495,7 +495,6 @@
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
 	CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-    
 	if ( connection == videoConnection ) {
 		
 		// Get framerate
@@ -516,7 +515,6 @@
 		//[self processPixelBuffer:pixelBuffer];
         
         // GreenMachine
-        //CVImageBufferRef processedPixelBuffer = [self processFrame:pixelBuffer];
         CMSampleBufferRef processedSampleBuffer = [self processFrame:sampleBuffer];
         
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
@@ -536,27 +534,43 @@
 				}
 			});
 		}
-	}
-    
-	CFRetain(sampleBuffer);
-	CFRetain(formatDescription);
-	dispatch_async(movieWritingQueue, ^{
         
-		if ( assetWriter ) {
+        CFRetain(sampleBuffer);
+        CFRetain(formatDescription);
+        dispatch_async(movieWritingQueue, ^{
+            
+            if ( assetWriter ) {
+                
+//                BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+                
+                    // GreenMachine
+                    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+                    
+                    
+                    
+                    // Initialize the video input if this is not done yet
+                    if (!readyToRecordVideo)
+                        readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
+                    
+                    // Write video data to file
+                    if (readyToRecordVideo && readyToRecordAudio)
+                        [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
+                    
+                    CFRelease(processedSampleBuffer);
+            }
+
+        });
+    }
+    else {
+        CFRetain(sampleBuffer);
+        CFRetain(formatDescription);
+        dispatch_async(movieWritingQueue, ^{
+        
+            if ( assetWriter ) {
             
 			BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
 			
-			if (connection == videoConnection) {
-				
-				// Initialize the video input if this is not done yet
-				if (!readyToRecordVideo)
-					readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
-				
-				// Write video data to file
-				if (readyToRecordVideo && readyToRecordAudio)
-					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
-			}
-			else if (connection == audioConnection) {
+			if (connection == audioConnection) {
 				
 				// Initialize the audio input if this is not done yet
 				if (!readyToRecordAudio)
@@ -577,6 +591,7 @@
 		CFRelease(sampleBuffer);
 		CFRelease(formatDescription);
 	});
+    }
 }
 
 

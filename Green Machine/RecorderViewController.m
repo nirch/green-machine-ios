@@ -10,7 +10,6 @@
 #import "RecorderViewController.h"
 #import "DataBackground.h"
 
-
 @interface RecorderViewController ()
 
 @end
@@ -20,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    controllerBuyCredit = [[BuyCreditsViewController alloc]initWithNibName:@"BuyCreditsViewController" bundle:nil];
 
     writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
     [self.view insertSubview:writerView.view atIndex:0];
@@ -40,12 +41,14 @@
         viewInstructionsLandscape.alpha = 1.0;
     else
         viewInstructionsPortraight.alpha = 1.0;
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(orientationChanged:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
-    [self orientationChanged:nil];
+    
+    
+//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(orientationChanged:)
+//                                                 name:UIDeviceOrientationDidChangeNotification
+//                                               object:nil];
+//    [self orientationChanged:nil];
 
 
 }
@@ -182,7 +185,8 @@
         [self buyBackgroundPressed:nil];
     }
     if ( alertView == alertBuyCredits ) {
-        
+        [self.view addSubview:controllerBuyCredit.view];
+//        [self presentViewController:controller animated:YES completion:nil];
     }
     if ( alertView == alertUseCredits ) {
         DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
@@ -229,27 +233,25 @@
 }
 
 
-- (void)orientationChanged:(NSNotification *)notification
-{
-    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    if (UIDeviceOrientationIsLandscape(deviceOrientation))
-    {
-        viewInstructionsPortraight.alpha = 0.0;
-        viewInstructionsLandscape.alpha = 1.0;
-    }
-    else
-    {
-        viewInstructionsPortraight.alpha = 1.0;
-        viewInstructionsLandscape.alpha = 0.0;
-    }
-    [self updateBackgroundImage];
-    if ( deviceOrientation == UIDeviceOrientationPortrait)
-        [self.view sendSubviewToBack:writerView.view];
-    if ( deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
-        [self.view bringSubviewToFront:writerView.view];
-
-    
-}
+//- (void)orientationChanged:(NSNotification *)notification
+//{
+//    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+//    if (UIDeviceOrientationIsLandscape(deviceOrientation))
+//    {
+//        viewInstructionsPortraight.alpha = 0.0;
+//        viewInstructionsLandscape.alpha = 1.0;
+//    }
+//    else
+//    {
+//        viewInstructionsPortraight.alpha = 1.0;
+//        viewInstructionsLandscape.alpha = 0.0;
+//    }
+//    [self updateBackgroundImage];
+//    if ( deviceOrientation == UIDeviceOrientationPortrait)
+//        [self.view sendSubviewToBack:writerView.view];
+//    if ( deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
+//        [self.view bringSubviewToFront:writerView.view];
+//}
 
 
 
