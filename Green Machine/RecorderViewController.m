@@ -37,6 +37,8 @@
 
     alertLockedBackground = [[UIAlertView alloc]initWithTitle:@"Locked background" message:@"This background is still locked. would you like to get it?" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"Get it", nil];
     
+    viewInstructionsPortraight.alpha = viewInstructionsLandscape.alpha = 0.0;
+    
     if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
         viewInstructionsLandscape.alpha = 1.0;
     else
