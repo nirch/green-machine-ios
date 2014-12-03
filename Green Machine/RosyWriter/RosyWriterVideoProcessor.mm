@@ -534,64 +534,47 @@
 				}
 			});
 		}
+    }
+    
+    CFRetain(sampleBuffer);
+    CFRetain(formatDescription);
+    dispatch_async(movieWritingQueue, ^{
         
-        CFRetain(sampleBuffer);
-        CFRetain(formatDescription);
-        dispatch_async(movieWritingQueue, ^{
+        if ( assetWriter ) {
             
-            if ( assetWriter ) {
+            BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+            
+            if (connection == videoConnection) {
                 
-//                BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+                // Initialize the video input if this is not done yet
+                if (!readyToRecordVideo)
+                    readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
                 
-                    // GreenMachine
-                    CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-                    
-                    
-                    
-                    // Initialize the video input if this is not done yet
-                    if (!readyToRecordVideo)
-                        readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
-                    
-                    // Write video data to file
-                    if (readyToRecordVideo && readyToRecordAudio)
-                        [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
-                    
-                    CFRelease(processedSampleBuffer);
+                // Write video data to file
+                if (readyToRecordVideo && readyToRecordAudio)
+                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
             }
-
-        });
-    }
-    else {
-        CFRetain(sampleBuffer);
-        CFRetain(formatDescription);
-        dispatch_async(movieWritingQueue, ^{
-        
-            if ( assetWriter ) {
+            else if (connection == audioConnection) {
+                
+                // Initialize the audio input if this is not done yet
+                if (!readyToRecordAudio)
+                    readyToRecordAudio = [self setupAssetWriterAudioInput:formatDescription];
+                
+                // Write audio data to file
+                if (readyToRecordAudio && readyToRecordVideo)
+                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
+            }
             
-			BOOL wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
-			
-			if (connection == audioConnection) {
-				
-				// Initialize the audio input if this is not done yet
-				if (!readyToRecordAudio)
-					readyToRecordAudio = [self setupAssetWriterAudioInput:formatDescription];
-				
-				// Write audio data to file
-				if (readyToRecordAudio && readyToRecordVideo)
-					[self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
-			}
-			
-			BOOL isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
-			if ( !wasReadyToRecord && isReadyToRecord ) {
-				recordingWillBeStarted = NO;
-				self.recording = YES;
-				[self.delegate recordingDidStart];
-			}
-		}
-		CFRelease(sampleBuffer);
-		CFRelease(formatDescription);
-	});
-    }
+            BOOL isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+            if ( !wasReadyToRecord && isReadyToRecord ) {
+                recordingWillBeStarted = NO;
+                self.recording = YES;
+                [self.delegate recordingDidStart];
+            }
+        }
+        CFRelease(sampleBuffer);
+        CFRelease(formatDescription);
+    });
 }
 
 
