@@ -40,6 +40,8 @@
     UIAlertView * alertLockedBackground;
     UIAlertView * alertUseCredits;
     UIAlertView * alertBuyCredits;
+    
+    bool useFrontCamera;
 }
 
 -(IBAction)leftPressed:(id)sender;
@@ -59,4 +61,5 @@
 -(IBAction)buyBackgroundPressed:(id)sender;
 
 -(IBAction)beginRecordPressed:(id)sender;
+-(IBAction)toggleCameraPressed:(id)sender;
 @end

@@ -432,6 +432,18 @@
     m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
     //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
     image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
+
+//    // SAVING IMAGE TO DISK
+//    static int counter = 0;
+//    counter++;
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+//    NSString *path = [NSString stringWithFormat:@"/%d.jpg" , counter];
+//    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
+//    image_type *image = image4_from(original_bgr_image, NULL);
+//    UIImage *bgImage = CVtool::CreateUIImage(image);
+//    [UIImageJPEGRepresentation(bgImage, 1.0) writeToFile:dataPath atomically:YES];
+//    image_destroy(image, 1);
     
     // Extracting the foreground
     m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
