@@ -427,11 +427,15 @@
 - (CMSampleBufferRef)processFrame:(CMSampleBufferRef)sampleBuffer
 {
     CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+
+    //[self savePixelBuffer:pixelBuffer withName:@"Original"];
     
     // Converting the given PixelBuffer to image_type (and then converting it to BGR)
     m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
     //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
     image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
+    
+    //[self saveImageType3:original_bgr_image];
     
     // Extracting the foreground
     m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
@@ -443,8 +447,14 @@
     // Destroying the temp image
     image_destroy(original_bgr_image, 1);
     
+    //[self saveImageType3:m_output_image withName:@"before"];
+    
     // Converting the result of the algo into CVPixelBuffer
     CVImageBufferRef processedPixelBuffer = CVtool::CVPixelBufferRef_from_image(m_output_image);
+    
+    //image_type *processedImageType = CVtool::CVPixelBufferRef_to_image(processedPixelBuffer, NULL);
+    //[self savePixelBuffer:processedPixelBuffer withName:@"afterPixel"];
+    //[self saveImageType3:processedImageType withName:@"afterImageType"];
     
     // Getting the sample timing info from the sample buffer
     CMSampleTimingInfo sampleTimingInfo = kCMTimingInfoInvalid;
@@ -577,8 +587,138 @@
     });
 }
 
+- (UIImage*) UIImageFromPixelBuffer:(CVPixelBufferRef) pixelBuffer
+{
+    
+    size_t width = CVPixelBufferGetWidth(pixelBuffer);
+    size_t height = CVPixelBufferGetHeight(pixelBuffer);
+    
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0 );
+    unsigned char *pixels = (u_char *)CVPixelBufferGetBaseAddress(pixelBuffer);
+    
+    int size = (int)(width * height * 4);
+    
+    //   size_t width                    = width;
+    //   size_t height                   = height;
+    size_t bitsPerComponent         = 8;
+    size_t bitsPerPixel             = 32;
+    size_t bytesPerRow              = width * 4;
+    
+    CGColorSpaceRef colorspace      = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo         = kCGBitmapByteOrderDefault;
+    
+    NSData* newPixelData = [NSData dataWithBytes:pixels length:size];
+    CFDataRef imgData = (CFDataRef)newPixelData;
+    CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData(imgData);
+    
+    CGImageRef newImageRef = CGImageCreate (
+                                            width,
+                                            height,
+                                            bitsPerComponent,
+                                            bitsPerPixel,
+                                            bytesPerRow,
+                                            colorspace,
+                                            bitmapInfo,
+                                            imgDataProvider,
+                                            NULL,
+                                            NO,
+                                            kCGRenderingIntentDefault
+                                            );
+    
+    UIImage *newImage   = [[UIImage alloc] initWithCGImage:newImageRef];//[UIImage imageWithCGImage:newImageRef];
+    
+    CGColorSpaceRelease(colorspace);
+    CGDataProviderRelease(imgDataProvider);
+    CGImageRelease(newImageRef);
+    
+    
+    CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
+    
+    
+    return [newImage autorelease];
+}
+- (void)saveImageType3:(image_type *)image3 withName:(NSString *)name
+{
+    image_type* image4 = image4_from(image3, NULL);
+    UIImage *imageToSave = CVtool::CreateUIImage(image4);
+    [self saveImage:imageToSave withName:name];
+    image_destroy(image4, 1);
+}
+     
+- (void)savePixelBuffer:(CVPixelBufferRef)pixelBuffer withName:(NSString *)name
+{
+    UIImage *image = [self imageFromPixelBuffer:pixelBuffer];
+    //UIImage *image = [self UIImageFromPixelBuffer:pixelBuffer];
+    [self saveImage:image withName:name];
+}
 
+- (void)saveSampleBuffer:(CMSampleBufferRef)samlpleBuffer withName:(NSString *)name
+{
+    UIImage *bgImage = [self imageFromSampleBuffer:samlpleBuffer];
+    [self saveImage:bgImage withName:name];
+}
 
+- (void)saveImage:(UIImage *) image withName:(NSString *)name
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+
+    static int counter = 0;
+    ++counter;
+    
+    NSString *path = [NSString stringWithFormat:@"%@-%d.jpg" , name, counter];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
+    
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:dataPath atomically:YES];
+}
+
+// Create a UIImage from sample buffer data
+- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
+{
+    // Get a CMSampleBuffer's Core Video image buffer for the media data
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+
+    return [self imageFromPixelBuffer:imageBuffer];
+}
+
+// Create a UIImage from sample buffer data
+- (UIImage *) imageFromPixelBuffer:(CVImageBufferRef) imageBuffer
+{
+    // Lock the base address of the pixel buffer
+    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+    
+    // Get the number of bytes per row for the pixel buffer
+    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+    
+    // Get the number of bytes per row for the pixel buffer
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    // Get the pixel buffer width and height
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    
+    // Create a device-dependent RGB color space
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    // Create a bitmap graphics context with the sample buffer data
+    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    // Create a Quartz image from the pixel data in the bitmap graphics context
+    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    // Unlock the pixel buffer
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    // Free up the context and color space
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    
+    // Create an image object from the Quartz image
+    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+    
+    // Release the Quartz image
+    CGImageRelease(quartzImage);
+    
+    return (image);
+}
 
 - (AVCaptureDevice *)videoDeviceWithPosition:(AVCaptureDevicePosition)position
 {
