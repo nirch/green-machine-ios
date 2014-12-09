@@ -48,7 +48,7 @@
     
     
     // Hide siluevte
-    [self.view bringSubviewToFront:writerView.view];
+//    [self.view bringSubviewToFront:writerView.view];
 
     
 //    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -160,8 +160,7 @@
 -(IBAction) buycreditPressed:(id)sender {
     [self fadeOut:bgResolutions];
     
-    [[[UIAlertView alloc]initWithTitle:@"Buy Credit Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
+    [self.view addSubview:controllerBuyCredit.view];
 //    [self fadeIn:bgBuyCredit];
 }
 -(IBAction) upgradePressed:(id)sender {

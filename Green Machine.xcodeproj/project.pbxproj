@@ -1794,7 +1794,7 @@
 					"-lMattingLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "14a1a79d-8d8c-4776-acc5-851b6ab4958f";
+				PROVISIONING_PROFILE = "c95c2c9e-0224-4ce7-9ea8-6f5b3c273ebd";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1845,7 +1845,7 @@
 					"-lMattingLib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "14a1a79d-8d8c-4776-acc5-851b6ab4958f";
+				PROVISIONING_PROFILE = "c95c2c9e-0224-4ce7-9ea8-6f5b3c273ebd";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};
