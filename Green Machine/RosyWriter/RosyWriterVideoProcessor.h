@@ -82,6 +82,9 @@
 	BOOL recording;
 }
 
+@property (nonatomic, strong) AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferIn;
+
+
 @property (readwrite, assign) id <RosyWriterVideoProcessorDelegate> delegate;
 
 @property (readonly) Float64 videoFrameRate;

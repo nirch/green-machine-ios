@@ -216,7 +216,7 @@
 	[library release];
 }
 
-- (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType
+- (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType withPixelBuffer:(CVPixelBufferRef)processedPixelBuffer
 {
 	if ( assetWriter.status == AVAssetWriterStatusUnknown ) {
 		
@@ -232,7 +232,8 @@
 		
 		if (mediaType == AVMediaTypeVideo) {
 			if (assetWriterVideoIn.readyForMoreMediaData) {
-				if (![assetWriterVideoIn appendSampleBuffer:sampleBuffer]) {
+				//if (![assetWriterVideoIn appendSampleBuffer:sampleBuffer]) {
+                if (![_assetWriterPixelBufferIn appendPixelBuffer:processedPixelBuffer withPresentationTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)]) {
 					[self showError:[assetWriter error]];
 				}
 			}
@@ -314,6 +315,8 @@
 		assetWriterVideoIn = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeVideo outputSettings:videoCompressionSettings];
 		assetWriterVideoIn.expectsMediaDataInRealTime = YES;
 		assetWriterVideoIn.transform = [self transformFromCurrentVideoOrientationToOrientation:self.referenceOrientation];
+        _assetWriterPixelBufferIn = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:assetWriterVideoIn sourcePixelBufferAttributes:nil];
+        [_assetWriterPixelBufferIn retain];
 		if ([assetWriter canAddInput:assetWriterVideoIn])
 			[assetWriter addInput:assetWriterVideoIn];
 		else {
@@ -368,6 +371,7 @@
 			[assetWriterAudioIn release];
 			[assetWriterVideoIn release];
 			[assetWriter release];
+            [_assetWriterPixelBufferIn release];
 			assetWriter = nil;
 			
 			readyToRecordVideo = NO;
@@ -505,6 +509,7 @@
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
 	CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
+    CMSampleBufferRef processedSampleBuffer = nil;
 	if ( connection == videoConnection ) {
 		
 		// Get framerate
@@ -525,17 +530,19 @@
 		//[self processPixelBuffer:pixelBuffer];
         
         // GreenMachine
-        CMSampleBufferRef processedSampleBuffer = [self processFrame:sampleBuffer];
+        processedSampleBuffer = [self processFrame:sampleBuffer];
         
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
 		// we'll drop this frame for preview (this keeps preview latency low).
 		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, processedSampleBuffer);
-        CFRelease(processedSampleBuffer);
+
+        if (CFGetRetainCount(processedSampleBuffer) > 1) CFRelease(processedSampleBuffer);
         
 		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				//CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
                 CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
+                //NSLog(@"after dequeue %ld", CFGetRetainCount(processedSampleBuffer));
                 if (sbuf) {
                     CVImageBufferRef pixBuf = CMSampleBufferGetImageBuffer(sbuf);
                     
@@ -545,9 +552,10 @@
 			});
 		}
     }
-    
+
     CFRetain(sampleBuffer);
     CFRetain(formatDescription);
+    if (connection == videoConnection && processedSampleBuffer) CFRetain(processedSampleBuffer);
     dispatch_async(movieWritingQueue, ^{
         
         if ( assetWriter ) {
@@ -558,11 +566,20 @@
                 
                 // Initialize the video input if this is not done yet
                 if (!readyToRecordVideo)
-                    readyToRecordVideo = [self setupAssetWriterVideoInput:formatDescription];
+                {
+                    CMFormatDescriptionRef processedFormatDesc = CMSampleBufferGetFormatDescription(processedSampleBuffer);
+                    readyToRecordVideo = [self setupAssetWriterVideoInput:processedFormatDesc];
+                }
                 
                 // Write video data to file
                 if (readyToRecordVideo && readyToRecordAudio)
-                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo];
+                {
+                    //[self saveSampleBuffer:processedSampleBuffer withName:@"beforewriting"];
+                    CVPixelBufferRef processedPixelBuffer = CMSampleBufferGetImageBuffer(processedSampleBuffer);
+                    CVPixelBufferRetain(processedPixelBuffer);
+                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeVideo withPixelBuffer:processedPixelBuffer];
+                    CVPixelBufferRelease(processedPixelBuffer);
+                }
             }
             else if (connection == audioConnection) {
                 
@@ -572,7 +589,7 @@
                 
                 // Write audio data to file
                 if (readyToRecordAudio && readyToRecordVideo)
-                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
+                    [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio withPixelBuffer:nil];
             }
             
             BOOL isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
@@ -584,6 +601,7 @@
         }
         CFRelease(sampleBuffer);
         CFRelease(formatDescription);
+        if (connection == videoConnection && processedSampleBuffer) CFRelease(processedSampleBuffer);
     });
 }
 
