@@ -20,9 +20,11 @@
 {
     [super viewDidLoad];
 
+    useFrontCamera = true;
     controllerBuyCredit = [[BuyCreditsViewController alloc]initWithNibName:@"BuyCreditsViewController" bundle:nil];
 
     writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
+    writerView.view.frame = [UIScreen mainScreen].bounds;
     [self.view insertSubview:writerView.view atIndex:0];
 
     self.navigationController.navigationBarHidden = true;
@@ -44,6 +46,10 @@
     else
         viewInstructionsPortraight.alpha = 1.0;
     
+    
+    // Hide siluevte
+//    [self.view bringSubviewToFront:writerView.view];
+
     
 //    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 //    [[NSNotificationCenter defaultCenter] addObserver:self
@@ -154,8 +160,7 @@
 -(IBAction) buycreditPressed:(id)sender {
     [self fadeOut:bgResolutions];
     
-    [[[UIAlertView alloc]initWithTitle:@"Buy Credit Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
+    [self.view addSubview:controllerBuyCredit.view];
 //    [self fadeIn:bgBuyCredit];
 }
 -(IBAction) upgradePressed:(id)sender {
@@ -255,6 +260,10 @@
 //        [self.view bringSubviewToFront:writerView.view];
 //}
 
+
+-(IBAction)toggleCameraPressed:(id)sender {
+    useFrontCamera = !useFrontCamera;
+}
 
 
 

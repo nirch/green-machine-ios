@@ -138,15 +138,19 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
 
+    self.previewView.frame = [UIScreen mainScreen].bounds;
+
 	oglView = [[RosyWriterPreviewView alloc] initWithFrame:CGRectZero];
 	// Our interface is always in portrait.
-	oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:UIInterfaceOrientationPortrait];
+//	oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:UIInterfaceOrientationPortrait];
     [previewView addSubview:oglView];
 
  	CGRect bounds = CGRectZero;
  	bounds.size = [self.previewView convertRect:self.previewView.bounds toView:oglView].size;
  	oglView.bounds = bounds;
     oglView.center = CGPointMake(previewView.bounds.size.width/2.0, previewView.bounds.size.height/2.0);
+    
+
 /*
  	// Set up labels
  	shouldShowStats = YES;
