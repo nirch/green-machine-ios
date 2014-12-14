@@ -16,6 +16,20 @@
 
 @implementation RecorderViewController
 
+
+-(IBAction)readyPressed:(id)sender {
+    // Hide siluevte
+//    [self.view bringSubviewToFront:writerView.view];
+    
+
+    
+    writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
+    writerView.view.frame = [UIScreen mainScreen].bounds;
+//    [self.view insertSubview:writerView.view atIndex:0];
+    [self.view insertSubview:writerView.view aboveSubview:imageViewBackground];
+    [sender removeFromSuperview];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -23,9 +37,6 @@
     useFrontCamera = true;
     controllerBuyCredit = [[BuyCreditsViewController alloc]initWithNibName:@"BuyCreditsViewController" bundle:nil];
 
-    writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
-    writerView.view.frame = [UIScreen mainScreen].bounds;
-    [self.view insertSubview:writerView.view atIndex:0];
 
     self.navigationController.navigationBarHidden = true;
     data = [Data shared];

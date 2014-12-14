@@ -48,6 +48,7 @@
 		7F64871119B89BAE00AE6B59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64871019B89BAE00AE6B59 /* QuartzCore.framework */; };
 		7F64871319B89BB600AE6B59 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */; };
 		7F64871419B89C0200AE6B59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D591937AEB100F0FAEB /* Foundation.framework */; };
+		7F6DD9E11A3E00AD008C3C9A /* ready button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */; };
 		7F703A2119A939DA006A0F62 /* close up port 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392119A939DA006A0F62 /* close up port 1.png */; };
 		7F703A2219A939DA006A0F62 /* close up port 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392219A939DA006A0F62 /* close up port 10.png */; };
 		7F703A2319A939DA006A0F62 /* close up port 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392319A939DA006A0F62 /* close up port 11.png */; };
@@ -374,6 +375,7 @@
 		7F64870E19B89BA600AE6B59 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7F64871019B89BAE00AE6B59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ready button@2x.png"; sourceTree = "<group>"; };
 		7F70392119A939DA006A0F62 /* close up port 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 1.png"; sourceTree = "<group>"; };
 		7F70392219A939DA006A0F62 /* close up port 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 10.png"; sourceTree = "<group>"; };
 		7F70392319A939DA006A0F62 /* close up port 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 11.png"; sourceTree = "<group>"; };
@@ -748,6 +750,7 @@
 				7F2E70D819A66EE8006F8405 /* menu options bg@2x.png */,
 				7F2E70DB19A66EE8006F8405 /* menuClose@2x.png */,
 				7F2E70DC19A66EE8006F8405 /* menuOpen@2x.png */,
+				7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */,
 				7F2E70DE19A66EE8006F8405 /* start button@2x.png */,
 			);
 			path = recorder;
@@ -1576,6 +1579,7 @@
 				7F703AF919A939DA006A0F62 /* torso land 20.png in Resources */,
 				7F703AF019A939DA006A0F62 /* torso land 12.png in Resources */,
 				7F703A8D19A939DA006A0F62 /* torso port 3.png in Resources */,
+				7F6DD9E11A3E00AD008C3C9A /* ready button@2x.png in Resources */,
 				7F703A4019A939DA006A0F62 /* As land 17.png in Resources */,
 				7F703A4719A939DA006A0F62 /* As land 23.png in Resources */,
 				7F703AEE19A939DA006A0F62 /* torso land 10.png in Resources */,

@@ -60,6 +60,7 @@
 
 -(IBAction)buyBackgroundPressed:(id)sender;
 
+-(IBAction)readyPressed:(id)sender;
 -(IBAction)beginRecordPressed:(id)sender;
 -(IBAction)toggleCameraPressed:(id)sender;
 @end
