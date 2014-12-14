@@ -522,7 +522,8 @@
 {
 	CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
     CMSampleBufferRef processedSampleBuffer = nil;
-	if ( connection == videoConnection ) {
+	
+    if ( connection == videoConnection ) {
 		
 		// Get framerate
 		CMTime timestamp = CMSampleBufferGetPresentationTimeStamp( sampleBuffer );
@@ -548,8 +549,6 @@
 		// we'll drop this frame for preview (this keeps preview latency low).
 		OSStatus err = CMBufferQueueEnqueue(previewBufferQueue, processedSampleBuffer);
 
-        if (CFGetRetainCount(processedSampleBuffer) > 1) CFRelease(processedSampleBuffer);
-        
 		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				//CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
@@ -567,7 +566,7 @@
 
     CFRetain(sampleBuffer);
     CFRetain(formatDescription);
-    if (connection == videoConnection && processedSampleBuffer) CFRetain(processedSampleBuffer);
+    // if (connection == videoConnection && processedSampleBuffer) CFRetain(processedSampleBuffer);
     dispatch_async(movieWritingQueue, ^{
         
         if ( assetWriter ) {
