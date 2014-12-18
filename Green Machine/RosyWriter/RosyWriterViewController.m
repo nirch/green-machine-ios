@@ -145,11 +145,8 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 //	oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:UIInterfaceOrientationPortrait];
     [previewView addSubview:oglView];
 
- 	CGRect bounds = CGRectZero;
- 	bounds.size = [self.previewView convertRect:self.previewView.bounds toView:oglView].size;
- 	oglView.bounds = bounds;
-    oglView.center = CGPointMake(previewView.bounds.size.width/2.0, previewView.bounds.size.height/2.0);
-
+    self.previewView.frame = self.view.frame;
+    oglView.frame = self.view.frame;
 }
 
 -(void) initGreenMachine {

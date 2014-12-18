@@ -55,6 +55,9 @@
     
     writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
     writerView.view.frame = [UIScreen mainScreen].bounds;
+    if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
+        writerView.view.frame = CGRectMake(0,0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+
     [self.view insertSubview:writerView.view atIndex:0];
 
     
