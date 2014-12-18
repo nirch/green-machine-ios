@@ -19,8 +19,9 @@
 
 -(IBAction)readyPressed:(id)sender {
     // Hide siluevte
-    [self.view bringSubviewToFront:writerView.view];
-
+//    [self.view bringSubviewToFront:writerView.view];
+    imageViewBackground.alpha = 0.0;
+    
     [writerView initGreenMachine];
     [sender removeFromSuperview];
 }
