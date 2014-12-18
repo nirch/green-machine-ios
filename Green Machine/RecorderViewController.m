@@ -19,14 +19,9 @@
 
 -(IBAction)readyPressed:(id)sender {
     // Hide siluevte
-//    [self.view bringSubviewToFront:writerView.view];
-    
+    [self.view bringSubviewToFront:writerView.view];
 
-    
-    writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
-    writerView.view.frame = [UIScreen mainScreen].bounds;
-//    [self.view insertSubview:writerView.view atIndex:0];
-    [self.view insertSubview:writerView.view aboveSubview:imageViewBackground];
+    [writerView initGreenMachine];
     [sender removeFromSuperview];
 }
 
@@ -57,6 +52,11 @@
     else
         viewInstructionsPortraight.alpha = 1.0;
     
+    
+    writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
+    writerView.view.frame = [UIScreen mainScreen].bounds;
+    [self.view insertSubview:writerView.view atIndex:0];
+
     
     // Hide siluevte
 //    [self.view bringSubviewToFront:writerView.view];

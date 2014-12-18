@@ -149,23 +149,12 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
  	bounds.size = [self.previewView convertRect:self.previewView.bounds toView:oglView].size;
  	oglView.bounds = bounds;
     oglView.center = CGPointMake(previewView.bounds.size.width/2.0, previewView.bounds.size.height/2.0);
-    
 
-/*
- 	// Set up labels
- 	shouldShowStats = YES;
-	
-	frameRateLabel = [self labelWithText:@"" yPosition: (CGFloat) 10.0];
-	[previewView addSubview:frameRateLabel];
-	
-	dimensionsLabel = [self labelWithText:@"" yPosition: (CGFloat) 54.0];
-	[previewView addSubview:dimensionsLabel];
-	
-	typeLabel = [self labelWithText:@"" yPosition: (CGFloat) 98.0];
-	[previewView addSubview:typeLabel];
-*/
 }
 
+-(void) initGreenMachine {
+    [videoProcessor initGreenMachine];
+}
 - (void)cleanup
 {
 //	[oglView release];

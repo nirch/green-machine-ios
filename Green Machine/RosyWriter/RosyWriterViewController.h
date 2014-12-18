@@ -71,5 +71,6 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *recordButton;
 
 - (IBAction)toggleRecording:(id)sender;
+- ( void ) initGreenMachine;
 
 @end
