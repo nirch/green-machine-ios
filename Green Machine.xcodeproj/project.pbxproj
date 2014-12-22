@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F19F94119A6753B0049A991 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F19F94019A6753B0049A991 /* background@2x.png */; };
 		7F24FA4C19A237180043AA96 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4B19A237180043AA96 /* Data.m */; };
 		7F24FA4F19A238760043AA96 /* DataBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4D19A238760043AA96 /* DataBackground.m */; };
 		7F24FA6519A3523A0043AA96 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA6419A3523A0043AA96 /* RecordingViewController.m */; };
@@ -28,30 +27,6 @@
 		7F2824EF1A489DBE0060394B /* LANDSCAPE 8 640x360.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824E61A489DBE0060394B /* LANDSCAPE 8 640x360.png */; };
 		7F2824F01A489DBE0060394B /* LANDSCAPE 9 640x360.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824E71A489DBE0060394B /* LANDSCAPE 9 640x360.png */; };
 		7F2824F11A489DBE0060394B /* LANDSCAPE 1 640x360.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824E81A489DBE0060394B /* LANDSCAPE 1 640x360.png */; };
-		7F2E715F19A66EE8006F8405 /* create@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C019A66EE8006F8405 /* create@2x.png */; };
-		7F2E716019A66EE8006F8405 /* done iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C119A66EE8006F8405 /* done iphone.png */; };
-		7F2E716119A66EE8006F8405 /* done iphone~568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C219A66EE8006F8405 /* done iphone~568@2x.png */; };
-		7F2E716219A66EE8006F8405 /* rect iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C319A66EE8006F8405 /* rect iphone.png */; };
-		7F2E716319A66EE8006F8405 /* rect iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C419A66EE8006F8405 /* rect iphone@2x.png */; };
-		7F2E716419A66EE8006F8405 /* retake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C519A66EE8006F8405 /* retake@2x.png */; };
-		7F2E716519A66EE8006F8405 /* arrow left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C719A66EE8006F8405 /* arrow left@2x.png */; };
-		7F2E716619A66EE8006F8405 /* arrow right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C819A66EE8006F8405 /* arrow right@2x.png */; };
-		7F2E716719A66EE8006F8405 /* camera men@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70C919A66EE8006F8405 /* camera men@2x.png */; };
-		7F2E716819A66EE8006F8405 /* instr iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70CA19A66EE8006F8405 /* instr iphone@2x.png */; };
-		7F2E716919A66EE8006F8405 /* tap arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70CB19A66EE8006F8405 /* tap arrow@2x.png */; };
-		7F2E716A19A66EE8006F8405 /* bottom bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70CD19A66EE8006F8405 /* bottom bar@2x.png */; };
-		7F2E716D19A66EE8006F8405 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D019A66EE8006F8405 /* coins@2x.png */; };
-		7F2E716E19A66EE8006F8405 /* buy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D219A66EE8006F8405 /* buy@2x.png */; };
-		7F2E716F19A66EE8006F8405 /* cost place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D319A66EE8006F8405 /* cost place@2x.png */; };
-		7F2E717019A66EE8006F8405 /* lock background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D419A66EE8006F8405 /* lock background@2x.png */; };
-		7F2E717119A66EE8006F8405 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D519A66EE8006F8405 /* lock@2x.png */; };
-		7F2E717219A66EE8006F8405 /* menu bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D619A66EE8006F8405 /* menu bg@2x.png */; };
-		7F2E717319A66EE8006F8405 /* Menu iphone 5 Bye credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D719A66EE8006F8405 /* Menu iphone 5 Bye credits.png */; };
-		7F2E717419A66EE8006F8405 /* menu options bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70D819A66EE8006F8405 /* menu options bg@2x.png */; };
-		7F2E717719A66EE8006F8405 /* menuClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70DB19A66EE8006F8405 /* menuClose@2x.png */; };
-		7F2E717819A66EE8006F8405 /* menuOpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70DC19A66EE8006F8405 /* menuOpen@2x.png */; };
-		7F2E717A19A66EE8006F8405 /* start button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E70DE19A66EE8006F8405 /* start button@2x.png */; };
-		7F2E717F19A66F9C006F8405 /* camera rot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E717E19A66F9C006F8405 /* camera rot@2x.png */; };
 		7F6486FC19B8973600AE6B59 /* RosyWriterVideoProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F6486FB19B8973600AE6B59 /* RosyWriterVideoProcessor.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7F64870719B89B4D00AE6B59 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64870619B89B4D00AE6B59 /* AVFoundation.framework */; };
 		7F64870919B89B6200AE6B59 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64870819B89B6200AE6B59 /* CoreMedia.framework */; };
@@ -61,7 +36,6 @@
 		7F64871119B89BAE00AE6B59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64871019B89BAE00AE6B59 /* QuartzCore.framework */; };
 		7F64871319B89BB600AE6B59 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */; };
 		7F64871419B89C0200AE6B59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D591937AEB100F0FAEB /* Foundation.framework */; };
-		7F6DD9E11A3E00AD008C3C9A /* ready button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */; };
 		7F703A2119A939DA006A0F62 /* close up port 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392119A939DA006A0F62 /* close up port 1.png */; };
 		7F703A2219A939DA006A0F62 /* close up port 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392219A939DA006A0F62 /* close up port 10.png */; };
 		7F703A2319A939DA006A0F62 /* close up port 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392319A939DA006A0F62 /* close up port 11.png */; };
@@ -316,7 +290,6 @@
 		7F7DB7B11A2B369000C00B7D /* BuyCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */; };
 		7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */; };
 		7F7DB7B41A2B3B6B00C00B7D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */; };
-		7FD4E99519C4F893000FEE82 /* cameraBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FD4E99419C4F893000FEE82 /* cameraBG@2x.png */; };
 		7FDA5A541937B278001F5B07 /* RecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA5A531937B278001F5B07 /* RecorderViewController.m */; };
 		7FF26D5C1937AEB100F0FAEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D5B1937AEB100F0FAEB /* CoreGraphics.framework */; };
 		7FF26D5E1937AEB100F0FAEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D5D1937AEB100F0FAEB /* UIKit.framework */; };
@@ -343,7 +316,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F19F94019A6753B0049A991 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		7F24FA4A19A237180043AA96 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		7F24FA4B19A237180043AA96 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		7F24FA4D19A238760043AA96 /* DataBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBackground.m; sourceTree = "<group>"; };
@@ -369,30 +341,6 @@
 		7F2824E61A489DBE0060394B /* LANDSCAPE 8 640x360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LANDSCAPE 8 640x360.png"; sourceTree = "<group>"; };
 		7F2824E71A489DBE0060394B /* LANDSCAPE 9 640x360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LANDSCAPE 9 640x360.png"; sourceTree = "<group>"; };
 		7F2824E81A489DBE0060394B /* LANDSCAPE 1 640x360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LANDSCAPE 1 640x360.png"; sourceTree = "<group>"; };
-		7F2E70C019A66EE8006F8405 /* create@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create@2x.png"; sourceTree = "<group>"; };
-		7F2E70C119A66EE8006F8405 /* done iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done iphone.png"; sourceTree = "<group>"; };
-		7F2E70C219A66EE8006F8405 /* done iphone~568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done iphone~568@2x.png"; sourceTree = "<group>"; };
-		7F2E70C319A66EE8006F8405 /* rect iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rect iphone.png"; sourceTree = "<group>"; };
-		7F2E70C419A66EE8006F8405 /* rect iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rect iphone@2x.png"; sourceTree = "<group>"; };
-		7F2E70C519A66EE8006F8405 /* retake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retake@2x.png"; sourceTree = "<group>"; };
-		7F2E70C719A66EE8006F8405 /* arrow left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow left@2x.png"; sourceTree = "<group>"; };
-		7F2E70C819A66EE8006F8405 /* arrow right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow right@2x.png"; sourceTree = "<group>"; };
-		7F2E70C919A66EE8006F8405 /* camera men@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera men@2x.png"; sourceTree = "<group>"; };
-		7F2E70CA19A66EE8006F8405 /* instr iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr iphone@2x.png"; sourceTree = "<group>"; };
-		7F2E70CB19A66EE8006F8405 /* tap arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tap arrow@2x.png"; sourceTree = "<group>"; };
-		7F2E70CD19A66EE8006F8405 /* bottom bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom bar@2x.png"; sourceTree = "<group>"; };
-		7F2E70D019A66EE8006F8405 /* coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coins@2x.png"; sourceTree = "<group>"; };
-		7F2E70D219A66EE8006F8405 /* buy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buy@2x.png"; sourceTree = "<group>"; };
-		7F2E70D319A66EE8006F8405 /* cost place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cost place@2x.png"; sourceTree = "<group>"; };
-		7F2E70D419A66EE8006F8405 /* lock background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock background@2x.png"; sourceTree = "<group>"; };
-		7F2E70D519A66EE8006F8405 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
-		7F2E70D619A66EE8006F8405 /* menu bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu bg@2x.png"; sourceTree = "<group>"; };
-		7F2E70D719A66EE8006F8405 /* Menu iphone 5 Bye credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu iphone 5 Bye credits.png"; sourceTree = "<group>"; };
-		7F2E70D819A66EE8006F8405 /* menu options bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu options bg@2x.png"; sourceTree = "<group>"; };
-		7F2E70DB19A66EE8006F8405 /* menuClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuClose@2x.png"; sourceTree = "<group>"; };
-		7F2E70DC19A66EE8006F8405 /* menuOpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuOpen@2x.png"; sourceTree = "<group>"; };
-		7F2E70DE19A66EE8006F8405 /* start button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start button@2x.png"; sourceTree = "<group>"; };
-		7F2E717E19A66F9C006F8405 /* camera rot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera rot@2x.png"; sourceTree = "<group>"; };
 		7F6486FB19B8973600AE6B59 /* RosyWriterVideoProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RosyWriterVideoProcessor.mm; sourceTree = "<group>"; };
 		7F64870619B89B4D00AE6B59 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7F64870819B89B6200AE6B59 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -401,7 +349,6 @@
 		7F64870E19B89BA600AE6B59 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7F64871019B89BAE00AE6B59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ready button@2x.png"; sourceTree = "<group>"; };
 		7F70392119A939DA006A0F62 /* close up port 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 1.png"; sourceTree = "<group>"; };
 		7F70392219A939DA006A0F62 /* close up port 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 10.png"; sourceTree = "<group>"; };
 		7F70392319A939DA006A0F62 /* close up port 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 11.png"; sourceTree = "<group>"; };
@@ -661,7 +608,6 @@
 		7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCreditsViewController.m; sourceTree = "<group>"; };
 		7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyCreditsViewController.xib; sourceTree = "<group>"; };
 		7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		7FD4E99419C4F893000FEE82 /* cameraBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraBG@2x.png"; sourceTree = "<group>"; };
 		7FDA5A521937B278001F5B07 /* RecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecorderViewController.h; sourceTree = "<group>"; };
 		7FDA5A531937B278001F5B07 /* RecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecorderViewController.m; sourceTree = "<group>"; };
 		7FF26D561937AEB100F0FAEB /* Green Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -743,75 +689,8 @@
 			isa = PBXGroup;
 			children = (
 				7F70391F19A939DA006A0F62 /* backgrounds */,
-				7F2E70BF19A66EE8006F8405 /* done */,
-				7F2E70C619A66EE8006F8405 /* instruction */,
-				7F2E70CC19A66EE8006F8405 /* recorder */,
-				7F2E70DF19A66EE8006F8405 /* rendering */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		7F2E70BF19A66EE8006F8405 /* done */ = {
-			isa = PBXGroup;
-			children = (
-				7F2E70C019A66EE8006F8405 /* create@2x.png */,
-				7F2E70C119A66EE8006F8405 /* done iphone.png */,
-				7F2E70C219A66EE8006F8405 /* done iphone~568@2x.png */,
-				7F2E70C319A66EE8006F8405 /* rect iphone.png */,
-				7F2E70C419A66EE8006F8405 /* rect iphone@2x.png */,
-				7F2E70C519A66EE8006F8405 /* retake@2x.png */,
-			);
-			path = done;
-			sourceTree = "<group>";
-		};
-		7F2E70C619A66EE8006F8405 /* instruction */ = {
-			isa = PBXGroup;
-			children = (
-				7F2E70C719A66EE8006F8405 /* arrow left@2x.png */,
-				7F2E70C819A66EE8006F8405 /* arrow right@2x.png */,
-				7F2E70C919A66EE8006F8405 /* camera men@2x.png */,
-				7F2E70CA19A66EE8006F8405 /* instr iphone@2x.png */,
-				7F2E70CB19A66EE8006F8405 /* tap arrow@2x.png */,
-			);
-			path = instruction;
-			sourceTree = "<group>";
-		};
-		7F2E70CC19A66EE8006F8405 /* recorder */ = {
-			isa = PBXGroup;
-			children = (
-				7FD4E99419C4F893000FEE82 /* cameraBG@2x.png */,
-				7F2E70CD19A66EE8006F8405 /* bottom bar@2x.png */,
-				7F2E717E19A66F9C006F8405 /* camera rot@2x.png */,
-				7F2E70D019A66EE8006F8405 /* coins@2x.png */,
-				7F2E70D119A66EE8006F8405 /* locked */,
-				7F2E70D619A66EE8006F8405 /* menu bg@2x.png */,
-				7F2E70D719A66EE8006F8405 /* Menu iphone 5 Bye credits.png */,
-				7F2E70D819A66EE8006F8405 /* menu options bg@2x.png */,
-				7F2E70DB19A66EE8006F8405 /* menuClose@2x.png */,
-				7F2E70DC19A66EE8006F8405 /* menuOpen@2x.png */,
-				7F6DD9E01A3E00AD008C3C9A /* ready button@2x.png */,
-				7F2E70DE19A66EE8006F8405 /* start button@2x.png */,
-			);
-			path = recorder;
-			sourceTree = "<group>";
-		};
-		7F2E70D119A66EE8006F8405 /* locked */ = {
-			isa = PBXGroup;
-			children = (
-				7F2E70D219A66EE8006F8405 /* buy@2x.png */,
-				7F2E70D319A66EE8006F8405 /* cost place@2x.png */,
-				7F2E70D419A66EE8006F8405 /* lock background@2x.png */,
-				7F2E70D519A66EE8006F8405 /* lock@2x.png */,
-			);
-			path = locked;
-			sourceTree = "<group>";
-		};
-		7F2E70DF19A66EE8006F8405 /* rendering */ = {
-			isa = PBXGroup;
-			children = (
-				7F19F94019A6753B0049A991 /* background@2x.png */,
-			);
-			path = rendering;
 			sourceTree = "<group>";
 		};
 		7F70391F19A939DA006A0F62 /* backgrounds */ = {
@@ -1400,7 +1279,6 @@
 				7F703AA619A939DA006A0F62 /* As port 5.png in Resources */,
 				7F703AE619A939DA006A0F62 /* head&chest land 3.png in Resources */,
 				7F703A3219A939DA006A0F62 /* close up port 4.png in Resources */,
-				7F2E716719A66EE8006F8405 /* camera men@2x.png in Resources */,
 				7F703AB819A939DA006A0F62 /* close up land 20.png in Resources */,
 				7F703A2D19A939DA006A0F62 /* close up port 20.png in Resources */,
 				7F703B0E19A939DA006A0F62 /* PORTRAIT 2.png in Resources */,
@@ -1410,18 +1288,15 @@
 				7F703A4B19A939DA006A0F62 /* As land 6.png in Resources */,
 				7F703A7719A939DA006A0F62 /* head&chest port 4.png in Resources */,
 				7F703AD019A939DA006A0F62 /* head&shoulders land 3.png in Resources */,
-				7F2E716819A66EE8006F8405 /* instr iphone@2x.png in Resources */,
 				7F703AE319A939DA006A0F62 /* head&chest land 20.png in Resources */,
 				7F703AA319A939DA006A0F62 /* As port 23.png in Resources */,
 				7F703AB419A939DA006A0F62 /* close up land 17.png in Resources */,
 				7F703A8019A939DA006A0F62 /* torso port 12.png in Resources */,
 				7F703AAB19A939DA006A0F62 /* close up  land.png in Resources */,
 				7F703AAC19A939DA006A0F62 /* close up land 1.png in Resources */,
-				7F2E717819A66EE8006F8405 /* menuOpen@2x.png in Resources */,
 				7F703AE019A939DA006A0F62 /* head&chest land 18.png in Resources */,
 				7F703A2219A939DA006A0F62 /* close up port 10.png in Resources */,
 				7F703A3919A939DA006A0F62 /* As land 10.png in Resources */,
-				7F2E717019A66EE8006F8405 /* lock background@2x.png in Resources */,
 				7F703A9919A939DA006A0F62 /* As port 14.png in Resources */,
 				7F703A8C19A939DA006A0F62 /* torso port 23.png in Resources */,
 				7F703A4119A939DA006A0F62 /* As land 18.png in Resources */,
@@ -1432,21 +1307,16 @@
 				7F703A5F19A939DA006A0F62 /* head&shoulders port 3.png in Resources */,
 				7F703A7C19A939DA006A0F62 /* head&chest port 9.png in Resources */,
 				7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */,
-				7F2E717319A66EE8006F8405 /* Menu iphone 5 Bye credits.png in Resources */,
 				7F703B1019A939DA006A0F62 /* PORTRAIT 4.png in Resources */,
 				7F703A3619A939DA006A0F62 /* close up port 8.png in Resources */,
-				7FD4E99519C4F893000FEE82 /* cameraBG@2x.png in Resources */,
-				7F2E716F19A66EE8006F8405 /* cost place@2x.png in Resources */,
 				7F703B0519A939DA006A0F62 /* LANDSCAPE 2.png in Resources */,
 				7F703A4E19A939DA006A0F62 /* As land 9.png in Resources */,
 				7F703AB219A939DA006A0F62 /* close up land 15.png in Resources */,
-				7F19F94119A6753B0049A991 /* background@2x.png in Resources */,
 				7F703A3419A939DA006A0F62 /* close up port 6.png in Resources */,
 				7F703A7519A939DA006A0F62 /* head&chest port 23.png in Resources */,
 				7F703ACE19A939DA006A0F62 /* head&shoulders land 20.png in Resources */,
 				7F703A4919A939DA006A0F62 /* As land 4.png in Resources */,
 				7F703A2E19A939DA006A0F62 /* close up port 21.png in Resources */,
-				7F2E717419A66EE8006F8405 /* menu options bg@2x.png in Resources */,
 				7F703AD119A939DA006A0F62 /* head&shoulders land 4.png in Resources */,
 				7F703A7B19A939DA006A0F62 /* head&chest port 8.png in Resources */,
 				7F703AB519A939DA006A0F62 /* close up land 18.png in Resources */,
@@ -1469,14 +1339,12 @@
 				7F703A9219A939DA006A0F62 /* torso port 8.png in Resources */,
 				7F2824E91A489DBE0060394B /* LANDSCAPE 2 640x360.png in Resources */,
 				7F703A2419A939DA006A0F62 /* close up port 12.png in Resources */,
-				7F2E716419A66EE8006F8405 /* retake@2x.png in Resources */,
 				7F703ADA19A939DA006A0F62 /* head&chest land 12.png in Resources */,
 				7F703A4D19A939DA006A0F62 /* As land 8.png in Resources */,
 				7F703A8119A939DA006A0F62 /* torso port 13.png in Resources */,
 				7F703A5519A939DA006A0F62 /* head&shoulders port 15.png in Resources */,
 				7F703A2619A939DA006A0F62 /* close up port 14.png in Resources */,
 				7F703A5819A939DA006A0F62 /* head&shoulders port 18.png in Resources */,
-				7F2E717719A66EE8006F8405 /* menuClose@2x.png in Resources */,
 				7F703B1519A939DA006A0F62 /* PORTRAIT 9.png in Resources */,
 				7F2824C91A488EFF0060394B /* close+up+360.ctr in Resources */,
 				7F703A4519A939DA006A0F62 /* As land 21.png in Resources */,
@@ -1503,7 +1371,6 @@
 				7F703ACF19A939DA006A0F62 /* head&shoulders land 21.png in Resources */,
 				7F703A2C19A939DA006A0F62 /* close up port 2.png in Resources */,
 				7F703AB619A939DA006A0F62 /* close up land 19.png in Resources */,
-				7F2E717119A66EE8006F8405 /* lock@2x.png in Resources */,
 				7F703AA719A939DA006A0F62 /* As port 6.png in Resources */,
 				7F703A6E19A939DA006A0F62 /* head&chest port 17.png in Resources */,
 				7F703A8E19A939DA006A0F62 /* torso port 4.png in Resources */,
@@ -1515,7 +1382,6 @@
 				7F703AF719A939DA006A0F62 /* torso land 19.png in Resources */,
 				7F703AC319A939DA006A0F62 /* head&shoulders land 10.png in Resources */,
 				7F703AE719A939DA006A0F62 /* head&chest land 4.png in Resources */,
-				7F2E717F19A66F9C006F8405 /* camera rot@2x.png in Resources */,
 				7F703ADF19A939DA006A0F62 /* head&chest land 17.png in Resources */,
 				7F703AF519A939DA006A0F62 /* torso land 17.png in Resources */,
 				7F703AB119A939DA006A0F62 /* close up land 14.png in Resources */,
@@ -1530,13 +1396,10 @@
 				7F703A8619A939DA006A0F62 /* torso port 18.png in Resources */,
 				7F703A6819A939DA006A0F62 /* head&chest port 11.png in Resources */,
 				7F703AE819A939DA006A0F62 /* head&chest land 5.png in Resources */,
-				7F2E717A19A66EE8006F8405 /* start button@2x.png in Resources */,
-				7F2E716A19A66EE8006F8405 /* bottom bar@2x.png in Resources */,
 				7F703AED19A939DA006A0F62 /* torso land 1.png in Resources */,
 				7F703AB919A939DA006A0F62 /* close up land 21.png in Resources */,
 				7F703AB019A939DA006A0F62 /* close up land 13.png in Resources */,
 				7F703A5319A939DA006A0F62 /* head&shoulders port 13.png in Resources */,
-				7F2E716D19A66EE8006F8405 /* coins@2x.png in Resources */,
 				7F703ADD19A939DA006A0F62 /* head&chest land 15.png in Resources */,
 				7F703B0819A939DA006A0F62 /* LANDSCAPE 5.png in Resources */,
 				7F2824CB1A488EFF0060394B /* head+and+shoulders+360.ctr in Resources */,
@@ -1552,7 +1415,6 @@
 				7F703A7419A939DA006A0F62 /* head&chest port 22.png in Resources */,
 				7F703A7819A939DA006A0F62 /* head&chest port 5.png in Resources */,
 				7F703A4219A939DA006A0F62 /* As land 19.png in Resources */,
-				7F2E716E19A66EE8006F8405 /* buy@2x.png in Resources */,
 				7F703A6119A939DA006A0F62 /* head&shoulders port 5.png in Resources */,
 				7F703A9D19A939DA006A0F62 /* As port 18.png in Resources */,
 				7F2824ED1A489DBE0060394B /* LANDSCAPE 6 640x360.png in Resources */,
@@ -1569,14 +1431,11 @@
 				7F703AC719A939DA006A0F62 /* head&shoulders land 14.png in Resources */,
 				7F703AAF19A939DA006A0F62 /* close up land 12.png in Resources */,
 				7F703A4F19A939DA006A0F62 /* head&shoulders port 1.png in Resources */,
-				7F2E716619A66EE8006F8405 /* arrow right@2x.png in Resources */,
 				7F703A2919A939DA006A0F62 /* close up port 17.png in Resources */,
 				7F703A7319A939DA006A0F62 /* head&chest port 21.png in Resources */,
 				7F703ADB19A939DA006A0F62 /* head&chest land 13.png in Resources */,
-				7F2E716219A66EE8006F8405 /* rect iphone.png in Resources */,
 				7F703AC819A939DA006A0F62 /* head&shoulders land 15.png in Resources */,
 				7F703A9A19A939DA006A0F62 /* As port 15.png in Resources */,
-				7F2E715F19A66EE8006F8405 /* create@2x.png in Resources */,
 				7FF26D6D1937AEB100F0FAEB /* Main.storyboard in Resources */,
 				7F703B0019A939DA006A0F62 /* torso land 6.png in Resources */,
 				7F703A5C19A939DA006A0F62 /* head&shoulders port 21.png in Resources */,
@@ -1589,7 +1448,6 @@
 				7F703A2519A939DA006A0F62 /* close up port 13.png in Resources */,
 				7F703AF619A939DA006A0F62 /* torso land 18.png in Resources */,
 				7F703A9119A939DA006A0F62 /* torso port 7.png in Resources */,
-				7F2E716919A66EE8006F8405 /* tap arrow@2x.png in Resources */,
 				7F703AC919A939DA006A0F62 /* head&shoulders land 16.png in Resources */,
 				7F703ABF19A939DA006A0F62 /* close up land 7.png in Resources */,
 				7F703A7119A939DA006A0F62 /* head&chest port 2.png in Resources */,
@@ -1613,8 +1471,6 @@
 				7F703AC219A939DA006A0F62 /* head&shoulders land 1.png in Resources */,
 				7F703AF319A939DA006A0F62 /* torso land 15.png in Resources */,
 				7F703A4419A939DA006A0F62 /* As land 20.png in Resources */,
-				7F2E716119A66EE8006F8405 /* done iphone~568@2x.png in Resources */,
-				7F2E716319A66EE8006F8405 /* rect iphone@2x.png in Resources */,
 				7F703B3719A9DDDB006A0F62 /* passThrough.vsh in Resources */,
 				7F703A8B19A939DA006A0F62 /* torso port 22.png in Resources */,
 				7F703B0219A939DA006A0F62 /* torso land 8.png in Resources */,
@@ -1631,14 +1487,12 @@
 				7F703A3F19A939DA006A0F62 /* As land 16.png in Resources */,
 				7F2824F11A489DBE0060394B /* LANDSCAPE 1 640x360.png in Resources */,
 				7F703A5619A939DA006A0F62 /* head&shoulders port 16.png in Resources */,
-				7F2E716019A66EE8006F8405 /* done iphone.png in Resources */,
 				7F703A3E19A939DA006A0F62 /* As land 15.png in Resources */,
 				7F703B0119A939DA006A0F62 /* torso land 7.png in Resources */,
 				7F703A9C19A939DA006A0F62 /* As port 17.png in Resources */,
 				7F703AF919A939DA006A0F62 /* torso land 20.png in Resources */,
 				7F703AF019A939DA006A0F62 /* torso land 12.png in Resources */,
 				7F703A8D19A939DA006A0F62 /* torso port 3.png in Resources */,
-				7F6DD9E11A3E00AD008C3C9A /* ready button@2x.png in Resources */,
 				7F703A4019A939DA006A0F62 /* As land 17.png in Resources */,
 				7F703A4719A939DA006A0F62 /* As land 23.png in Resources */,
 				7F703AEE19A939DA006A0F62 /* torso land 10.png in Resources */,
@@ -1646,7 +1500,6 @@
 				7F703AC119A939DA006A0F62 /* close up land 9.png in Resources */,
 				7F703AD319A939DA006A0F62 /* head&shoulders land 6.png in Resources */,
 				7F703A6219A939DA006A0F62 /* head&shoulders port 6.png in Resources */,
-				7F2E716519A66EE8006F8405 /* arrow left@2x.png in Resources */,
 				7F703A8219A939DA006A0F62 /* torso port 14.png in Resources */,
 				7F703AA919A939DA006A0F62 /* As port 8.png in Resources */,
 				7F703A5219A939DA006A0F62 /* head&shoulders port 12.png in Resources */,
@@ -1654,7 +1507,6 @@
 				7F703AEC19A939DA006A0F62 /* head&chest land 9.png in Resources */,
 				7F703ACD19A939DA006A0F62 /* head&shoulders land 2.png in Resources */,
 				7F703A5B19A939DA006A0F62 /* head&shoulders port 20.png in Resources */,
-				7F2E717219A66EE8006F8405 /* menu bg@2x.png in Resources */,
 				7F703B0F19A939DA006A0F62 /* PORTRAIT 3.png in Resources */,
 				7F703A4A19A939DA006A0F62 /* As land 5.png in Resources */,
 				7F703AE519A939DA006A0F62 /* head&chest land 22.png in Resources */,

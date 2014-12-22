@@ -52,10 +52,7 @@
 @interface RosyWriterViewController : UIViewController <RosyWriterVideoProcessorDelegate>
 {
     RosyWriterVideoProcessor *videoProcessor;
-    
-	UIView *previewView;
     RosyWriterPreviewView *oglView;
-    UIBarButtonItem *recordButton;
 	UILabel *frameRateLabel;
 	UILabel *dimensionsLabel;
 	UILabel *typeLabel;
@@ -68,7 +65,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIView *previewView;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *recordButton;
+@property (nonatomic, retain) IBOutlet UIButton *recordButton;
 
 - (IBAction)toggleRecording:(id)sender;
 - ( void ) initGreenMachine;

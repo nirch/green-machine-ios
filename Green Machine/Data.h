@@ -20,6 +20,7 @@
 @property ( nonatomic, retain) NSNumber * credits;
 
 @property ( nonatomic, retain) NSArray * formats;
+@property ( nonatomic, retain) NSArray * contours;
 @property ( nonatomic, retain) NSNumber * currentFormat;
 @property ( nonatomic, retain) NSMutableArray * backgrounds;
 @property ( nonatomic, retain) NSNumber * currentBackground;

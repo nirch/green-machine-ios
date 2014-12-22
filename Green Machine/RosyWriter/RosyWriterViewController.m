@@ -223,7 +223,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[[self recordButton] setEnabled:NO];	
-		[[self recordButton] setTitle:@"Stop"];
+		[[self recordButton] setTitle:@"Stop" forState:UIControlStateNormal];
 
 		// Disable the idle timer while we are recording
 		[UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -245,7 +245,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		// Disable until saving to the camera roll is complete
-		[[self recordButton] setTitle:@"Record"];
+        [[self recordButton] setTitle:@"Record" forState:UIControlStateNormal];
 		[[self recordButton] setEnabled:NO];
 		
 		// Pause the capture session so that saving will be as fast as possible.

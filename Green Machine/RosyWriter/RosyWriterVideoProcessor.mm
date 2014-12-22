@@ -117,7 +117,9 @@
     m_background_image = image3_from(background_image4, NULL);
     image_destroy(background_image4, 1);
     
-    NSString *contourFile = [[NSBundle mainBundle] pathForResource:@"close+up+360" ofType:@"ctr"];
+    NSString * countourFileName = [[Data shared].contours objectAtIndex:[[Data shared].currentFormat intValue]];
+                                   
+    NSString *contourFile = [[NSBundle mainBundle] pathForResource:countourFileName ofType:@"ctr"];
     
     m_foregroundExtraction->ReadMask((char*)contourFile.UTF8String, 640, 360);
     

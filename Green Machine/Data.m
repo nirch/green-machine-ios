@@ -47,6 +47,7 @@
     
 
     self.formats = @[ @"close up port %d", @"head&shoulders port %d", @"head&chest port %d", @"torso port %d", @"As port %d"];
+    self.contours = @[ @"close+up+360", @"head+and+shoulders+360", @"head+and+chest+360", @"torso+360", @"american+shot+360",@"knees+up+360"];
     
     NSArray * isLocked = @[ @(false), @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
                                 @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
