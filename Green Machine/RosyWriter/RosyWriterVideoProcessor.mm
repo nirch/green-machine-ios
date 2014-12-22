@@ -56,6 +56,7 @@
 #import "ImageMark/ImageMark.h"
 #import "Utime/GpTime.h"
 
+#import "Data.h"
 
 #define BYTES_PER_PIXEL 4
 
@@ -107,7 +108,10 @@
 - ( void ) initGreenMachine {
     m_foregroundExtraction = new CUniformBackground();
     
-    NSString *backgroundImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"landscape360.png" ofType:nil];
+    
+    
+    NSString *backgroundImageName = [NSString stringWithFormat:@"LANDSCAPE %d 640x360.png", [[Data shared].currentBackground intValue]+1];
+    NSString * backgroundImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:backgroundImageName ofType:nil];
     UIImage *backgroundImage = [UIImage imageWithContentsOfFile:backgroundImagePath];
     image_type *background_image4 = CVtool::DecomposeUIimage(backgroundImage);
     m_background_image = image3_from(background_image4, NULL);
