@@ -404,21 +404,18 @@
 		// recordingDidStop is called from saveMovieToCameraRoll
 		[self.delegate recordingWillStop];
         
-		if ([assetWriter finishWriting]) {
-			[assetWriterAudioIn release];
-			[assetWriterVideoIn release];
-			[assetWriter release];
+		[assetWriter finishWritingWithCompletionHandler:^{
+            [assetWriterAudioIn release];
+            [assetWriterVideoIn release];
+            [assetWriter release];
             [_assetWriterPixelBufferIn release];
-			assetWriter = nil;
-			
-			readyToRecordVideo = NO;
-			readyToRecordAudio = NO;
-			
-			[self saveMovieToCameraRoll];
-		}
-		else {
-			[self showError:[assetWriter error]];
-		}
+            assetWriter = nil;
+            
+            readyToRecordVideo = NO;
+            readyToRecordAudio = NO;
+            
+            [self saveMovieToCameraRoll];
+        }];
 	});
 }
 

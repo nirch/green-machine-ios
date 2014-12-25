@@ -89,7 +89,7 @@
                                         <rect key="frame" x="0.0" y="30" width="480" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 sec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a05-PW-QfF">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a05-PW-QfF">
                                                 <rect key="frame" x="193.5" y="27" width="93" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -300,8 +300,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="buttonBuyCredit" destination="34B-C8-TJa" id="Lyl-Eb-lhD"/>
+                        <outlet property="buttonReady" destination="nzV-Bz-wR3" id="MQr-Pc-svk"/>
+                        <outlet property="buttonRecord" destination="2yJ-z8-AL0" id="oNY-XT-Yvu"/>
                         <outlet property="imageViewBackground" destination="DgM-Bk-n5m" id="IRP-CO-MNx"/>
                         <outlet property="labelBackgroundCost" destination="UcJ-m1-L1d" id="VTh-Q6-Aog"/>
+                        <outlet property="labelSeconds" destination="a05-PW-QfF" id="AZr-p9-MYg"/>
                         <outlet property="scrollerMovies" destination="vwy-Ml-VMp" id="Ewy-CK-A78"/>
                         <outlet property="secondsView" destination="ujx-s6-4pF" id="zgF-kQ-q5l"/>
                         <outlet property="viewInstructionsLandscape" destination="aS4-8e-ucg" id="rd5-Ou-WBU"/>

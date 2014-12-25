@@ -58,51 +58,12 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 
 - (void)updateLabels
 {
-	if (shouldShowStats) {
-		NSString *frameRateString = [NSString stringWithFormat:@"%.2f FPS ", [videoProcessor videoFrameRate]];
- 		frameRateLabel.text = frameRateString;
- 		[frameRateLabel setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25]];
- 		
- 		NSString *dimensionsString = [NSString stringWithFormat:@"%d x %d ", [videoProcessor videoDimensions].width, [videoProcessor videoDimensions].height];
- 		dimensionsLabel.text = dimensionsString;
- 		[dimensionsLabel setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25]];
- 		
- 		CMVideoCodecType type = [videoProcessor videoType];
- 		type = OSSwapHostToBigInt32( type );
- 		NSString *typeString = [NSString stringWithFormat:@"%.4s ", (char*)&type];
- 		typeLabel.text = typeString;
- 		[typeLabel setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25]];
- 	}
- 	else {
- 		frameRateLabel.text = @"";
- 		[frameRateLabel setBackgroundColor:[UIColor clearColor]];
- 		
- 		dimensionsLabel.text = @"";
- 		[dimensionsLabel setBackgroundColor:[UIColor clearColor]];
- 		
- 		typeLabel.text = @"";
- 		[typeLabel setBackgroundColor:[UIColor clearColor]];
- 	}
+    self.seconds = [NSNumber numberWithInt:self.seconds.intValue -1 ];
+    self.secondsLabel.text = [NSString stringWithFormat:@"%d seconds", self.seconds.intValue];
+    if ( self.seconds.intValue == 0 )
+        [self toggleRecording:nil];
 }
 
-- (UILabel *)labelWithText:(NSString *)text yPosition:(CGFloat)yPosition
-{
-	CGFloat labelWidth = 200.0;
-	CGFloat labelHeight = 40.0;
-	CGFloat xPosition = previewView.bounds.size.width - labelWidth - 10;
-	CGRect labelFrame = CGRectMake(xPosition, yPosition, labelWidth, labelHeight);
-	UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
-	[label setFont:[UIFont systemFontOfSize:36]];
-	[label setLineBreakMode:UILineBreakModeWordWrap];
-	[label setTextAlignment:UITextAlignmentRight];
-	[label setTextColor:[UIColor whiteColor]];
-	[label setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25]];
-	[[label layer] setCornerRadius: 4];
-	[label setText:text];
-	
-    return label;
-//	return [label autorelease];
-}
 
 - (void)applicationDidBecomeActive:(NSNotification*)notifcation
 {
@@ -183,8 +144,6 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-
-	timer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -210,10 +169,17 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	if ( [videoProcessor isRecording] ) {
 		// The recordingWill/DidStop delegate methods will fire asynchronously in response to this call
 		[videoProcessor stopRecording];
+        [timer invalidate];
+        
+        if ( self.seconds.intValue == 0 ) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"doneRecording" object:nil];
+        }
 	}
 	else {
 		// The recordingWill/DidStart delegate methods will fire asynchronously in response to this call
         [videoProcessor startRecording];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
 	}
 }
 

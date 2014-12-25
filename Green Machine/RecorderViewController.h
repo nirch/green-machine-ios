@@ -16,12 +16,15 @@
     RosyWriterViewController * writerView;
     BuyCreditsViewController * controllerBuyCredit;
     
+    IBOutlet UIButton * buttonRecord;
+    IBOutlet UIButton * buttonReady;
     IBOutlet UIImageView * imageViewBackground;
     IBOutlet UIView * viewInstructionsPortraight;
     IBOutlet UIView * viewInstructionsLandscape;
     IBOutlet UIView * viewLocked;
     IBOutlet UIView * secondsView;
     IBOutlet UIView * previewView;
+    IBOutlet UILabel * labelSeconds;
     
     IBOutlet UIView * bgBuyCredit;
     IBOutlet UIView * bgResolutions;

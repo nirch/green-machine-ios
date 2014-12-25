@@ -66,6 +66,8 @@
 
 @property (nonatomic, retain) IBOutlet UIView *previewView;
 @property (nonatomic, retain) IBOutlet UIButton *recordButton;
+@property (nonatomic, retain) IBOutlet UILabel * secondsLabel;
+@property (nonatomic, retain) IBOutlet NSNumber * seconds;
 
 - (IBAction)toggleRecording:(id)sender;
 - ( void ) initGreenMachine;

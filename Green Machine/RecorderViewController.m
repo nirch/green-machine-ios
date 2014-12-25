@@ -17,6 +17,15 @@
 @implementation RecorderViewController
 
 
+-(void) doneRecording {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
+     [UIView animateWithDuration:0.5 animations:^{
+        labelSeconds.text = @"";
+        imageViewBackground.alpha = 1.0;
+        buttonRecord.alpha = 1.0;
+        buttonReady.alpha = 1.0;
+    }];
+}
 -(IBAction)readyPressed:(UIButton *)sender {
     DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
     if ( background.isLocked.boolValue ) {
@@ -27,9 +36,12 @@
     // Hide siluevte
 //    [self.view bringSubviewToFront:writerView.view];
     imageViewBackground.alpha = 0.0;
-    
+    writerView.seconds = [NSNumber numberWithInt:10];
+    writerView.secondsLabel = labelSeconds;
     [writerView initGreenMachine];
     sender.alpha = 0.0;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneRecording) name:@"doneRecording" object:nil];
 }
 
 - (void)viewDidLoad
