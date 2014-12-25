@@ -97,8 +97,18 @@
         previousSecondTimestamps = [[NSMutableArray alloc] init];
         referenceOrientation = UIDeviceOrientationPortrait;
         
-        // The temporary path for the video before saving it to the photo album
-        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"Movie.MOV"]];
+        
+        // The path for the video
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+
+        NSArray * movies = [[Data shared] valueForKey:@"movies"];
+        if ( movies )
+            movieIndex = [NSNumber numberWithInt:[movies count]+1];
+        else
+            movieIndex = [NSNumber numberWithInt:0];
+        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.MOV", movieIndex]]];
+        NSLog ( @"Saving: %@", movieURL);
         [movieURL retain];
         
     }
@@ -235,22 +245,26 @@
 
 - (void)saveMovieToCameraRoll
 {
-	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-	[library writeVideoAtPathToSavedPhotosAlbum:movieURL
-								completionBlock:^(NSURL *assetURL, NSError *error) {
-									if (error)
-										[self showError:error];
-									else
-										[self removeFile:movieURL];
-									
-									dispatch_async(movieWritingQueue, ^{
-										recordingWillBeStopped = NO;
-										self.recording = NO;
-										
-										[self.delegate recordingDidStop];
-									});
-								}];
-	[library release];
+    recordingWillBeStopped = NO;
+    self.recording = NO;
+    [self.delegate recordingDidStop];
+    
+//	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//	[library writeVideoAtPathToSavedPhotosAlbum:movieURL
+//								completionBlock:^(NSURL *assetURL, NSError *error) {
+//									if (error)
+//										[self showError:error];
+//									else
+//										[self removeFile:movieURL];
+//									
+//									dispatch_async(movieWritingQueue, ^{
+//										recordingWillBeStopped = NO;
+//										self.recording = NO;
+//										
+//										[self.delegate recordingDidStop];
+//									});
+//								}];
+//	[library release];
 }
 
 - (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType withPixelBuffer:(CVPixelBufferRef)processedPixelBuffer
@@ -377,6 +391,7 @@
 			return;
         
 		recordingWillBeStarted = YES;
+        imageCreated = false;
         
 		// recordingDidStart is called from captureOutput:didOutputSampleBuffer:fromConnection: once the asset writer is setup
 		[self.delegate recordingWillStart];
@@ -480,20 +495,29 @@
         
         // Extracting the foreground
     
-        //    // SAVING IMAGE TO DISK
-        //    static int counter = 0;
-        //    counter++;
-        //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        //    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-        //    NSString *path = [NSString stringWithFormat:@"/%d.jpg" , counter];
-        //    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
-        //    image_type *image = image4_from(original_bgr_image, NULL);
-        //    UIImage *bgImage = CVtool::CreateUIImage(image);
-        //    [UIImageJPEGRepresentation(bgImage, 1.0) writeToFile:dataPath atomically:YES];
-        //    image_destroy(image, 1);
-        
-        //[self saveImageType3:original_bgr_image];
+            // SAVING IMAGE TO DISK
+        if ( !imageCreated ) {
+            imageCreated = true;
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
 
+            NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
+            NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
+            NSLog ( @"Saving: %@", dataPath);
+            image_type *image = image4_from(original_bgr_image, NULL);
+            UIImage *bgImage = CVtool::CreateUIImage(image);
+            NSData * data = UIImageJPEGRepresentation(bgImage, 1.0);
+            NSMutableArray * movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+            if ( !movies ) movies = [NSMutableArray array];
+            [movies insertObject:data atIndex:0];
+            [[Data shared] setObject:movies forKey:@"movies"];
+            [[Data shared] synchronize];
+            
+            [data  writeToFile:dataPath atomically:YES];
+            image_destroy(image, 1);
+        }
+
+        // [self saveImageType3:original_bgr_image];
         
         m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
     

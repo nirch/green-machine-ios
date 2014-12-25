@@ -167,6 +167,36 @@
     }
     else {
         menuIsOpened = true;
+        
+        NSArray * movies = [[Data shared] objectForKey:@"movies"];
+        if ( [[scrollerMovies subviews] count] != [movies count] ) {
+            for ( UIView * view in [scrollerMovies subviews] ) {
+                [view removeFromSuperview];
+            }
+            
+            int x = 10;
+            for ( NSData * dataMovie in movies ) {
+                UIImage * image = [UIImage imageWithData:dataMovie];
+                UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+                int width = 200;
+                int height = (int) ( 200.0 / image.size.width * image.size.height);
+                button.frame = CGRectMake(x, 30, width, height);
+
+                button.layer.shadowColor = [UIColor whiteColor].CGColor;
+                button.layer.shadowOpacity = 0.5;
+                button.layer.shadowRadius = 10;
+                button.layer.shadowOffset = CGSizeMake(3.0f,3.0f);
+                
+                button.backgroundColor = [UIColor whiteColor];
+                button.layer.cornerRadius = 5.0;
+                [button setImage:image  forState:UIControlStateNormal];
+                x+= ( width  + 20 );
+                [scrollerMovies addSubview:button];
+            }
+            scrollerMovies.contentSize = CGSizeMake ( x, scrollerMovies.frame.size.height ) ;
+            
+        }
+
         [UIView animateWithDuration:0.3 animations:^{
             secondsView.alpha = 0.0;
             [sender superview].frame = CGRectMake ( frame.origin.x, frame.origin.y-200, frame.size.width, frame.size.height+200 );

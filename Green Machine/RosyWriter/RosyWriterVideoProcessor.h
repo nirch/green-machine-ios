@@ -64,6 +64,8 @@
 	AVCaptureConnection *videoConnection;
 	CMBufferQueueRef previewBufferQueue;
 	
+    NSNumber * movieIndex;
+    bool imageCreated;
 	NSURL *movieURL;
 	AVAssetWriter *assetWriter;
 	AVAssetWriterInput *assetWriterAudioIn;
