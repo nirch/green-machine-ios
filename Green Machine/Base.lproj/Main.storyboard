@@ -85,10 +85,6 @@
                                             <action selector="beginRecordPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4P5-g1-POE"/>
                                         </connections>
                                     </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="lock.png" id="pUi-9P-lsT">
-                                        <rect key="frame" x="217.5" y="15" width="45" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
-                                    </imageView>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" id="ujx-s6-4pF" userLabel="10 sec View">
                                         <rect key="frame" x="0.0" y="30" width="480" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -137,6 +133,10 @@
                                             <action selector="readyPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PLi-VI-Wwy"/>
                                         </connections>
                                     </button>
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="lock.png" id="pUi-9P-lsT">
+                                        <rect key="frame" x="217" y="15" width="45" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                             </view>

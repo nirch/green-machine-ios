@@ -17,13 +17,19 @@
 @implementation RecorderViewController
 
 
--(IBAction)readyPressed:(id)sender {
+-(IBAction)readyPressed:(UIButton *)sender {
+    DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
+    if ( background.isLocked.boolValue ) {
+        [alertLockedBackground show];
+        return;
+    }
+
     // Hide siluevte
 //    [self.view bringSubviewToFront:writerView.view];
     imageViewBackground.alpha = 0.0;
     
     [writerView initGreenMachine];
-    [sender removeFromSuperview];
+    sender.alpha = 0.0;
 }
 
 - (void)viewDidLoad
@@ -238,11 +244,6 @@
 }
 
 -(IBAction)beginRecordPressed:(id)sender {
-    DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
-    if ( background.isLocked.boolValue ) {
-        [alertLockedBackground show];
-        return;
-    }
     writerView.recordButton = sender;
     [writerView toggleRecording:sender];
 }
