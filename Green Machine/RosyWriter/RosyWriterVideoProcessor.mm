@@ -106,6 +106,34 @@
 }
 
 - ( void ) initGreenMachine {
+
+    // Lock focus
+    dispatch_async(movieWritingQueue, ^{
+        CGPoint point = CGPointMake(100,100);
+        AVCaptureDevice *device = [videoIn device];
+        NSError *error = nil;
+        if ([device lockForConfiguration:&error])
+        {
+            if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeLocked])
+            {
+                [device setFocusMode:AVCaptureFocusModeLocked];
+                [device setFocusPointOfInterest:point];
+            }
+            if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeLocked])
+            {
+                [device setExposureMode:AVCaptureExposureModeLocked];
+                [device setExposurePointOfInterest:point];
+            }
+            [device setSubjectAreaChangeMonitoringEnabled:false];
+            [device unlockForConfiguration];
+        }
+        else
+        {
+            NSLog(@"%@", error);
+        }
+    });
+
+    
     m_foregroundExtraction = new CUniformBackground();
     
     
@@ -803,41 +831,12 @@
 	/*
 	 * Create video connection
 	 */
-    AVCaptureDeviceInput *videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
+    videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
 
-    
-    // Lock focus
-    dispatch_async(movieWritingQueue, ^{
-        CGPoint point = CGPointMake(100,100);
-        AVCaptureDevice *device = [videoIn device];
-        NSError *error = nil;
-        if ([device lockForConfiguration:&error])
-        {
-            if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeLocked])
-            {
-                [device setFocusMode:AVCaptureFocusModeLocked];
-                [device setFocusPointOfInterest:point];
-            }
-            if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeLocked])
-            {
-                [device setExposureMode:AVCaptureExposureModeLocked];
-                [device setExposurePointOfInterest:point];
-            }
-            [device setSubjectAreaChangeMonitoringEnabled:false];
-            [device unlockForConfiguration];
-        }
-        else
-        {
-            NSLog(@"%@", error);
-        }
-    });
-
-    
-    
     
     if ([captureSession canAddInput:videoIn])
         [captureSession addInput:videoIn];
-	[videoIn release];
+//	[videoIn release];
     
 	AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
 	/*

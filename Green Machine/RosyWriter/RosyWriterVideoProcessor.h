@@ -53,7 +53,7 @@
 @interface RosyWriterVideoProcessor : NSObject <AVCaptureAudioDataOutputSampleBufferDelegate, AVCaptureVideoDataOutputSampleBufferDelegate> 
 {  
 //    id <RosyWriterVideoProcessorDelegate> delegate;
-	
+    AVCaptureDeviceInput *videoIn;
 	NSMutableArray *previousSecondTimestamps;
 	Float64 videoFrameRate;
 	CMVideoDimensions videoDimensions;
