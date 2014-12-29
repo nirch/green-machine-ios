@@ -10,11 +10,16 @@
 #import "Data.h"
 #import "RosyWriter/RosyWriterViewController.h"
 #import "BuyCreditsViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 
 @interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate> {
     RosyWriterViewController * writerView;
     BuyCreditsViewController * controllerBuyCredit;
+    
+    NSMutableArray * movies;
+    int selectedMovie;
+    
     
     IBOutlet UIButton * buttonRecord;
     IBOutlet UIButton * buttonReady;
@@ -66,4 +71,5 @@
 -(IBAction)readyPressed:(id)sender;
 -(IBAction)beginRecordPressed:(id)sender;
 -(IBAction)toggleCameraPressed:(id)sender;
+-(IBAction)helpPressed:(id)sender;
 @end

@@ -10,6 +10,7 @@
 #import "RecorderViewController.h"
 #import "DataBackground.h"
 
+
 @interface RecorderViewController ()
 
 @end
@@ -66,10 +67,16 @@
     
     viewInstructionsPortraight.alpha = viewInstructionsLandscape.alpha = 0.0;
     
-    if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
+    NSString * skippedFirstTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"skippedFirstTime"];
+    if ( !skippedFirstTime ) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"skippedFirstTime"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
         viewInstructionsLandscape.alpha = 1.0;
-    else
+        else
         viewInstructionsPortraight.alpha = 1.0;
+    }
     
     
     writerView = [[RosyWriterViewController alloc]initWithNibName:@"RosyWriterViewController" bundle:nil];
@@ -146,12 +153,50 @@
     [UIView animateWithDuration:0.3 animations:^{
         viewInstructionsLandscape.alpha = 0.0;
         viewInstructionsPortraight.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [viewInstructionsLandscape removeFromSuperview];
-        [viewInstructionsPortraight removeFromSuperview];
-    }];
+    } completion:nil];
 }
 
+
+-(void) refreshMovies {
+    movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    if ( [[scrollerMovies subviews] count] != [movies count] ) {
+        for ( UIView * view in [scrollerMovies subviews] ) {
+            [view removeFromSuperview];
+        }
+        
+        int x = 10;
+        int index=0;
+        for ( NSData * dataMovie in movies ) {
+            UIImage * image = [UIImage imageWithData:dataMovie];
+            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            int width = 200;
+            int height = (int) ( 200.0 / image.size.width * image.size.height);
+            button.frame = CGRectMake(x, 30, width, height);
+            
+            button.layer.shadowColor = [UIColor whiteColor].CGColor;
+            button.layer.shadowOpacity = 0.5;
+            button.layer.shadowRadius = 10;
+            button.layer.shadowOffset = CGSizeMake(3.0f,3.0f);
+            
+            button.backgroundColor = [UIColor whiteColor];
+            button.layer.cornerRadius = 5.0;
+            [button setImage:image  forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(playMovie:) forControlEvents:UIControlEventTouchUpInside];
+            [scrollerMovies addSubview:button];
+            
+            UIButton * deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [deleteButton setImage:[UIImage imageNamed:@"remove"] forState:UIControlStateNormal];
+            [deleteButton addTarget:self action:@selector(removePressed:) forControlEvents:UIControlEventTouchUpInside];
+            deleteButton.frame = CGRectMake ( x+width-25, 5, 50, 50 );
+            [scrollerMovies addSubview:deleteButton];
+            
+            x+= ( width  + 20 );
+            button.tag = index++;
+        }
+        scrollerMovies.contentSize = CGSizeMake ( x, scrollerMovies.frame.size.height ) ;
+        
+    }
+}
 -(IBAction)menuTogglePressed:(UIButton *)sender {
     CGRect frame = [sender superview].frame;
     if ( menuIsOpened ) {
@@ -168,35 +213,8 @@
     else {
         menuIsOpened = true;
         
-        NSArray * movies = [[Data shared] objectForKey:@"movies"];
-        if ( [[scrollerMovies subviews] count] != [movies count] ) {
-            for ( UIView * view in [scrollerMovies subviews] ) {
-                [view removeFromSuperview];
-            }
-            
-            int x = 10;
-            for ( NSData * dataMovie in movies ) {
-                UIImage * image = [UIImage imageWithData:dataMovie];
-                UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-                int width = 200;
-                int height = (int) ( 200.0 / image.size.width * image.size.height);
-                button.frame = CGRectMake(x, 30, width, height);
-
-                button.layer.shadowColor = [UIColor whiteColor].CGColor;
-                button.layer.shadowOpacity = 0.5;
-                button.layer.shadowRadius = 10;
-                button.layer.shadowOffset = CGSizeMake(3.0f,3.0f);
-                
-                button.backgroundColor = [UIColor whiteColor];
-                button.layer.cornerRadius = 5.0;
-                [button setImage:image  forState:UIControlStateNormal];
-                x+= ( width  + 20 );
-                [scrollerMovies addSubview:button];
-            }
-            scrollerMovies.contentSize = CGSizeMake ( x, scrollerMovies.frame.size.height ) ;
-            
-        }
-
+        [self refreshMovies];
+        
         [UIView animateWithDuration:0.3 animations:^{
             secondsView.alpha = 0.0;
             [sender superview].frame = CGRectMake ( frame.origin.x, frame.origin.y-200, frame.size.width, frame.size.height+200 );
@@ -319,6 +337,65 @@
 -(IBAction)toggleCameraPressed:(id)sender {
     useFrontCamera = !useFrontCamera;
 }
+
+-(IBAction)helpPressed:(id)sender {
+    if ( [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
+        viewInstructionsLandscape.alpha = 1.0;
+    else
+        viewInstructionsPortraight.alpha = 1.0;    
+}
+
+-(void)playMovieFinished:(NSNotification*)aNotification
+{
+    MPMoviePlayerController* player=[aNotification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:player];
+    
+    player.view.frame = CGRectMake(0, 0, 0, 0);
+    // Release the movie instance created in playMovieAtURL
+}
+-(IBAction)playMovie:(UIButton *)sender {
+    selectedMovie = sender.tag;
+    // The path for the video
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.MOV", selectedMovie]] isDirectory:false];
+    NSLog ( @"Playing: %@", movieURL);
+    
+    
+    MPMoviePlayerController * player = [[MPMoviePlayerController alloc] init];
+    player.view.frame = self.view.bounds;
+    [self.view addSubview:player.view];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playMovieFinished:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:player];
+    player.movieSourceType = MPMovieSourceTypeFile;
+    player.shouldAutoplay = true;
+    player.contentURL = movieURL;
+    [player prepareToPlay];
+    
+    player.controlStyle = MPMovieControlStyleFullscreen;
+    player.fullscreen = true;
+    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
+}
+-(IBAction)removePressed:(UIButton *)sender {
+    selectedMovie = sender.tag;
+    [[[UIAlertView alloc]initWithTitle:@"Delete this movie?" message:@"Do you want to delete this movie? You can not undo this action" delegate:self cancelButtonTitle:@"Keep" otherButtonTitles:@"Delete", nil]show ];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ( buttonIndex == 1 ) {
+        NSData * movie = [movies objectAtIndex:selectedMovie];
+        [movies removeObject:movie];
+        [[Data shared] setObject:movies forKey:@"movies"];
+        [[Data shared] synchronize];
+        [self refreshMovies];
+    }
+}
+
 
 
 

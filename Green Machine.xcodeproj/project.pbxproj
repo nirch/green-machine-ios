@@ -290,6 +290,7 @@
 		7F7DB7B11A2B369000C00B7D /* BuyCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */; };
 		7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */; };
 		7F7DB7B41A2B3B6B00C00B7D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */; };
+		7F90F26B1A519C9F003A80F6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F90F26A1A519C9F003A80F6 /* MediaPlayer.framework */; };
 		7FDA5A541937B278001F5B07 /* RecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDA5A531937B278001F5B07 /* RecorderViewController.m */; };
 		7FF26D5C1937AEB100F0FAEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D5B1937AEB100F0FAEB /* CoreGraphics.framework */; };
 		7FF26D5E1937AEB100F0FAEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF26D5D1937AEB100F0FAEB /* UIKit.framework */; };
@@ -608,6 +609,7 @@
 		7F7DB7AF1A2B369000C00B7D /* BuyCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyCreditsViewController.m; sourceTree = "<group>"; };
 		7F7DB7B01A2B369000C00B7D /* BuyCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyCreditsViewController.xib; sourceTree = "<group>"; };
 		7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7F90F26A1A519C9F003A80F6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7FDA5A521937B278001F5B07 /* RecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecorderViewController.h; sourceTree = "<group>"; };
 		7FDA5A531937B278001F5B07 /* RecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecorderViewController.m; sourceTree = "<group>"; };
 		7FF26D561937AEB100F0FAEB /* Green Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -634,6 +636,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F90F26B1A519C9F003A80F6 /* MediaPlayer.framework in Frameworks */,
 				7F7DB7B41A2B3B6B00C00B7D /* StoreKit.framework in Frameworks */,
 				7F64870D19B89B8B00AE6B59 /* OpenGLES.framework in Frameworks */,
 				7F64871419B89C0200AE6B59 /* Foundation.framework in Frameworks */,
@@ -1098,6 +1101,7 @@
 		7FF26D581937AEB100F0FAEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F90F26A1A519C9F003A80F6 /* MediaPlayer.framework */,
 				7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */,
 				7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */,
 				7F64871019B89BAE00AE6B59 /* QuartzCore.framework */,
