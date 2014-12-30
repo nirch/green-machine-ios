@@ -21,11 +21,12 @@
 }
 
 -(void) reset {
+    self.usingFrontCamera = false;
     self.backgrounds = [NSMutableArray array];
     [self.backgrounds removeAllObjects];
     self.currentBackground = [NSNumber numberWithInt:0];
     self.currentFormat = [NSNumber numberWithInt:1];
-    self.resolution = [NSNumber numberWithInt:360];
+//    self.resolution = [NSNumber numberWithInt:360];
     self.credits = [NSNumber numberWithInt:8];
     
     NSDictionary * dictSaved = [[NSUserDefaults standardUserDefaults] objectForKey:@"data"];

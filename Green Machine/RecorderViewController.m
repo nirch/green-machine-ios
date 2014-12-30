@@ -48,8 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    useFrontCamera = true;
     controllerBuyCredit = [[BuyCreditsViewController alloc]initWithNibName:@"BuyCreditsViewController" bundle:nil];
 
 
@@ -249,23 +247,23 @@
     
     [[[UIAlertView alloc]initWithTitle:@"Upgrade Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
--(IBAction)resolution360Pressed:(UIButton * )sender {
-    sender.selected = !sender.selected;
-    [(UIButton *)[bgResolutions viewWithTag:720] setSelected:false];
-    data.resolution = [NSNumber numberWithInt:360];
-}
--(IBAction)resolution720Pressed:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    [(UIButton *)[bgResolutions viewWithTag:360] setSelected:false];
-    data.resolution = [NSNumber numberWithInt:720];
-}
--(IBAction) resolutionPressed:(id)sender {
-    int resolution = data.resolution.intValue; 
-    [(UIButton *)[bgResolutions viewWithTag:resolution] setSelected:true];
-    
-    [self fadeIn:bgResolutions];
-//    [self fadeOut:bgBuyCredit];
-}
+//-(IBAction)resolution360Pressed:(UIButton * )sender {
+//    sender.selected = !sender.selected;
+//    [(UIButton *)[bgResolutions viewWithTag:720] setSelected:false];
+////    data.resolution = [NSNumber numberWithInt:360];
+//}
+//-(IBAction)resolution720Pressed:(UIButton *)sender {
+//    sender.selected = !sender.selected;
+//    [(UIButton *)[bgResolutions viewWithTag:360] setSelected:false];
+////    data.resolution = [NSNumber numberWithInt:720];
+//}
+//-(IBAction) resolutionPressed:(id)sender {
+////    int resolution = data.resolution.intValue; 
+//    [(UIButton *)[bgResolutions viewWithTag:resolution] setSelected:true];
+//    
+//    [self fadeIn:bgResolutions];
+////    [self fadeOut:bgBuyCredit];
+//}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ( buttonIndex == 0 ) return;
@@ -335,7 +333,8 @@
 
 
 -(IBAction)toggleCameraPressed:(id)sender {
-    useFrontCamera = !useFrontCamera;
+    [Data shared].usingFrontCamera = ![Data shared].usingFrontCamera;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toggleCamera" object:nil];
 }
 
 -(IBAction)helpPressed:(id)sender {

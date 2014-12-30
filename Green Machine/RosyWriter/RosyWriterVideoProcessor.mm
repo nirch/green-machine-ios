@@ -108,9 +108,9 @@
         else
             movieIndex = [NSNumber numberWithInt:0];
         movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.MOV", movieIndex]]];
-        NSLog ( @"Saving: %@", movieURL);
         [movieURL retain];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleCamera) name:@"toggleCamera" object:nil];
     }
     return self;
 }
@@ -166,6 +166,10 @@
     m_output_image = NULL;
 }
 
+-(void) toggleCamera {
+    [self stopAndTearDownCaptureSession];
+    [self setupAndStartCaptureSession];
+}
 - (void)dealloc
 {
     [previousSecondTimestamps release];
@@ -852,7 +856,10 @@
 	/*
 	 * Create video connection
 	 */
-    videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
+    if ( [[Data shared] usingFrontCamera])
+        videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionFront] error:nil];
+    else
+        videoIn = [[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
 
     
     if ([captureSession canAddInput:videoIn])
