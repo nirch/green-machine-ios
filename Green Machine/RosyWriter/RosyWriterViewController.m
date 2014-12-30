@@ -47,7 +47,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "RosyWriterViewController.h"
-
+#import "Data.h"
 static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 
 @implementation RosyWriterViewController
@@ -81,7 +81,12 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 		[videoProcessor setReferenceOrientation:orientation];
 }
 
-- (void)viewDidLoad 
+-(void) toggleCamera {
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if ( [Data shared].usingFrontCamera )
+        oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
+}
+- (void)viewDidLoad
 {
 	[super viewDidLoad];
 
@@ -102,8 +107,10 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
     self.previewView.frame = [UIScreen mainScreen].bounds;
 
 	oglView = [[RosyWriterPreviewView alloc] initWithFrame:CGRectZero];
-	// Our interface is always in portrait.
-//	oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:UIInterfaceOrientationPortrait];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleCamera) name:@"toggleCamera" object:nil];
+
+    
     [previewView addSubview:oglView];
 
     self.previewView.frame = self.view.frame;

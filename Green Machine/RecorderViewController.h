@@ -48,8 +48,6 @@
     UIAlertView * alertLockedBackground;
     UIAlertView * alertUseCredits;
     UIAlertView * alertBuyCredits;
-    
-    bool useFrontCamera;
 }
 
 -(IBAction)leftPressed:(id)sender;
@@ -63,8 +61,8 @@
 -(IBAction) upgradePressed:(id)sender;
 -(IBAction) resolutionPressed:(id)sender;
 
--(IBAction)resolution360Pressed:(id)sender;
--(IBAction)resolution720Pressed:(id)sender;
+//-(IBAction)resolution360Pressed:(id)sender;
+//-(IBAction)resolution720Pressed:(id)sender;
 
 -(IBAction)buyBackgroundPressed:(id)sender;
 

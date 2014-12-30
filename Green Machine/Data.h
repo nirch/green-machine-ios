@@ -19,10 +19,12 @@
 
 @property ( nonatomic, retain) NSNumber * credits;
 
+@property ( atomic) BOOL usingFrontCamera;
 @property ( nonatomic, retain) NSArray * formats;
 @property ( nonatomic, retain) NSArray * contours;
 @property ( nonatomic, retain) NSNumber * currentFormat;
 @property ( nonatomic, retain) NSMutableArray * backgrounds;
 @property ( nonatomic, retain) NSNumber * currentBackground;
-@property ( nonatomic, retain) NSNumber * resolution;
+
+//@property ( nonatomic, retain) NSNumber * resolution;
 @end
