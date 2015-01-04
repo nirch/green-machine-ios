@@ -162,7 +162,7 @@
             [view removeFromSuperview];
         }
         
-        int x = 10;
+        int x = 30;
         int index=0;
         for ( NSData * dataMovie in movies ) {
             UIImage * image = [UIImage imageWithData:dataMovie];
@@ -187,8 +187,15 @@
             [deleteButton addTarget:self action:@selector(removePressed:) forControlEvents:UIControlEventTouchUpInside];
             deleteButton.frame = CGRectMake ( x+width-25, 5, 50, 50 );
             [scrollerMovies addSubview:deleteButton];
+
+            UIButton * shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+            [shareButton addTarget:self action:@selector(sharePressed:) forControlEvents:UIControlEventTouchUpInside];
+            shareButton.frame = CGRectMake ( x-25, 5, 50, 50 );
+            [scrollerMovies addSubview:shareButton];
+
             
-            x+= ( width  + 20 );
+            x+= ( width  + 50 );
             button.tag = index++;
         }
         scrollerMovies.contentSize = CGSizeMake ( x, scrollerMovies.frame.size.height ) ;
@@ -359,7 +366,7 @@
     // The path for the video
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.MOV", selectedMovie]] isDirectory:false];
+    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
     NSLog ( @"Playing: %@", movieURL);
     
     
@@ -379,6 +386,33 @@
     player.controlStyle = MPMovieControlStyleFullscreen;
     player.fullscreen = true;
     player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
+}
+
+-(IBAction) sharePressed:(UIButton *)sender {
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    [sharingItems addObject:@"My latest creation, Using"];
+    [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
+    selectedMovie = sender.tag;
+    NSData * movie = [movies objectAtIndex:selectedMovie];
+
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
+    
+    AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:movieURL options:nil];
+    AVAsset * anAsset2 = [AVAsset assetWithURL:movieURL];
+
+
+    [sharingItems addObject:movie];
+    [sharingItems addObject:movieURL];
+    [sharingItems addObject:anAsset];
+    [sharingItems addObject:anAsset2];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [activityController setValue:@"A movie I created with Green Machine" forKey:@"subject"];
+    
+    activityController.popoverPresentationController.sourceView = sender;
+    [self presentViewController:activityController animated:false completion:nil];
 }
 -(IBAction)removePressed:(UIButton *)sender {
     selectedMovie = sender.tag;

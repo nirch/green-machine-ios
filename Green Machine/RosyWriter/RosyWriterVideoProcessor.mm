@@ -107,7 +107,7 @@
             movieIndex = [NSNumber numberWithInt:[movies count]+1];
         else
             movieIndex = [NSNumber numberWithInt:0];
-        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.MOV", movieIndex]]];
+        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.mp4", movieIndex]]];
         [movieURL retain];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleCamera) name:@"toggleCamera" object:nil];
