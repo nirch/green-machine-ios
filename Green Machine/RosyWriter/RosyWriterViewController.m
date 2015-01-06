@@ -71,7 +71,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	// If we try to resume the session in the background it will fail. Resume the session here as well to ensure we will succeed.
 	[videoProcessor resumeCaptureSession];
 }
-
+/*
 // UIDeviceOrientationDidChangeNotification selector
 - (void)deviceOrientationDidChange
 {
@@ -80,9 +80,11 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	if ( UIDeviceOrientationIsPortrait(orientation) || UIDeviceOrientationIsLandscape(orientation) )
 		[videoProcessor setReferenceOrientation:orientation];
 }
-
+*/
 -(void) toggleCamera {
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+//    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation orientation = UIDeviceOrientationLandscapeLeft;
+    
     if ( [Data shared].usingFrontCamera )
         oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
 }
@@ -93,12 +95,12 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
     // Initialize the class responsible for managing AV capture session and asset writer
     videoProcessor = [[RosyWriterVideoProcessor alloc] init];
 	videoProcessor.delegate = self;
-
+/*
 	// Keep track of changes to the device orientation so we can update the video processor
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	[notificationCenter addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-		
+*/
     // Setup and start the capture session
     [videoProcessor setupAndStartCaptureSession];
 
@@ -128,10 +130,10 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
     frameRateLabel = nil;
     dimensionsLabel = nil;
     typeLabel = nil;
-	
+
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-	[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+//	[notificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+//	[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 
 	[notificationCenter removeObserver:self name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
 
