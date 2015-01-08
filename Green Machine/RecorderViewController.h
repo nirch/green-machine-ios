@@ -38,6 +38,7 @@
     
     IBOutlet UILabel * labelBackgroundCost;
     IBOutlet UIView * viewLock;
+    IBOutlet UIView * viewDone;
     
     IBOutlet UIScrollView * scrollerMovies;
     
@@ -61,13 +62,15 @@
 -(IBAction) upgradePressed:(id)sender;
 -(IBAction) resolutionPressed:(id)sender;
 
-//-(IBAction)resolution360Pressed:(id)sender;
-//-(IBAction)resolution720Pressed:(id)sender;
-
 -(IBAction)buyBackgroundPressed:(id)sender;
 
 -(IBAction)readyPressed:(id)sender;
 -(IBAction)beginRecordPressed:(id)sender;
 -(IBAction)toggleCameraPressed:(id)sender;
 -(IBAction)helpPressed:(id)sender;
+
+
+-(IBAction) createMoviePressed:(id)sender;
+-(IBAction) retakeMoviePressed:(id)sender;
+-(IBAction) previewMoviePressed:(id)sender;
 @end

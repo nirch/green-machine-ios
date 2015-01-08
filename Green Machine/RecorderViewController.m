@@ -17,6 +17,23 @@
 
 @implementation RecorderViewController
 
+-(IBAction) createMoviePressed:(id)sender {
+    [UIView animateWithDuration:0.5 animations:^{
+        viewDone.alpha = 0.0;
+        [writerView.videoProcessor saveMovieToCameraRoll];
+    }];
+}
+-(IBAction) retakeMoviePressed:(id)sender {
+    [UIView animateWithDuration:0.5 animations:^{
+        viewDone.alpha = 0.0;
+        [self readyPressed:nil];
+    }];
+}
+
+-(IBAction) previewMoviePressed:(id)sender {
+    [writerView.videoProcessor saveMovieToCameraRoll];    
+}
+
 
 -(void) doneRecording {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
@@ -25,6 +42,7 @@
         imageViewBackground.alpha = 1.0;
         buttonRecord.alpha = 1.0;
         buttonReady.alpha = 1.0;
+        viewDone.alpha = 1.0;
     }];
 }
 -(IBAction)readyPressed:(UIButton *)sender {
@@ -56,6 +74,7 @@
     [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
     bgNameIndex = 1;
     menuIsOpened = false;
+    viewDone.alpha = 0.0;
     [self updateBackgroundImage];
 
     alertUseCredits = [[UIAlertView alloc]initWithTitle:@"Using credits" message:@"You may purchase this background using your existing credits" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"Use Credits", nil];
@@ -382,10 +401,11 @@
     player.shouldAutoplay = true;
     player.contentURL = movieURL;
     [player prepareToPlay];
+    [player play];
     
-    player.controlStyle = MPMovieControlStyleFullscreen;
-    player.fullscreen = true;
-    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
+//    player.controlStyle = MPMovieControlStyleFullscreen;
+//    player.fullscreen = true;
+//    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
 }
 
 -(IBAction) sharePressed:(UIButton *)sender {

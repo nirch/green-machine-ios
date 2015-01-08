@@ -69,7 +69,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 {
 	// For performance reasons, we manually pause/resume the session when saving a recording.
 	// If we try to resume the session in the background it will fail. Resume the session here as well to ensure we will succeed.
-	[videoProcessor resumeCaptureSession];
+	[self.videoProcessor resumeCaptureSession];
 }
 /*
 // UIDeviceOrientationDidChangeNotification selector
@@ -78,7 +78,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 	// Don't update the reference orientation when the device orientation is face up/down or unknown.
 	if ( UIDeviceOrientationIsPortrait(orientation) || UIDeviceOrientationIsLandscape(orientation) )
-		[videoProcessor setReferenceOrientation:orientation];
+		[self.videoProcessor setReferenceOrientation:orientation];
 }
 */
 -(void) toggleCamera {
@@ -86,15 +86,15 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
     UIDeviceOrientation orientation = UIDeviceOrientationLandscapeLeft;
     
     if ( [Data shared].usingFrontCamera )
-        oglView.transform = [videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
+        oglView.transform = [self.videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
 }
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 
     // Initialize the class responsible for managing AV capture session and asset writer
-    videoProcessor = [[RosyWriterVideoProcessor alloc] init];
-	videoProcessor.delegate = self;
+    self.videoProcessor = [[RosyWriterVideoProcessor alloc] init];
+	self.videoProcessor.delegate = self;
 /*
 	// Keep track of changes to the device orientation so we can update the video processor
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -102,7 +102,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 */
     // Setup and start the capture session
-    [videoProcessor setupAndStartCaptureSession];
+    [self.videoProcessor setupAndStartCaptureSession];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
 
@@ -120,7 +120,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 }
 
 -(void) initGreenMachine {
-    [videoProcessor initGreenMachine];
+    [self.videoProcessor initGreenMachine];
 }
 - (void)cleanup
 {
@@ -138,9 +138,9 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	[notificationCenter removeObserver:self name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
 
     // Stop and tear down the capture session
-	[videoProcessor stopAndTearDownCaptureSession];
-	videoProcessor.delegate = nil;
-//    [videoProcessor release];
+	[self.videoProcessor stopAndTearDownCaptureSession];
+	self.videoProcessor.delegate = nil;
+//    [self.videoProcessor release];
 }
 
 - (void)viewDidUnload 
@@ -175,24 +175,23 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	// Wait for the recording to start/stop before re-enabling the record button.
 	[[self recordButton] setEnabled:NO];
 	
-	if ( [videoProcessor isRecording] ) {
+	if ( [self.videoProcessor isRecording] ) {
 		// The recordingWill/DidStop delegate methods will fire asynchronously in response to this call
-		[videoProcessor stopRecording];
+		[self.videoProcessor stopRecording];
         [timer invalidate];
         
-        if ( self.seconds.intValue == 0 ) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"doneRecording" object:nil];
-        }
+        [self.videoProcessor stopRecording];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doneRecording" object:nil];
 	}
 	else {
 		// The recordingWill/DidStart delegate methods will fire asynchronously in response to this call
-        [videoProcessor startRecording];
+        [self.videoProcessor startRecording];
         
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
 	}
 }
 
-#pragma mark RosyWriterVideoProcessorDelegate
+#pragma mark RosyWriterself.videoProcessorDelegate
 
 - (void)recordingWillStart
 {
@@ -225,7 +224,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 		
 		// Pause the capture session so that saving will be as fast as possible.
 		// We resume the sesssion in recordingDidStop:
-		[videoProcessor pauseCaptureSession];
+		[self.videoProcessor pauseCaptureSession];
 	});
 }
 
@@ -236,7 +235,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 		
 		[UIApplication sharedApplication].idleTimerDisabled = NO;
 
-		[videoProcessor resumeCaptureSession];
+		[self.videoProcessor resumeCaptureSession];
 
 		if ([[UIDevice currentDevice] isMultitaskingSupported]) {
 			[[UIApplication sharedApplication] endBackgroundTask:backgroundRecordingID];

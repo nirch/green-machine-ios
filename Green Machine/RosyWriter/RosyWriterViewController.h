@@ -51,7 +51,6 @@
 
 @interface RosyWriterViewController : UIViewController <RosyWriterVideoProcessorDelegate>
 {
-    RosyWriterVideoProcessor *videoProcessor;
     RosyWriterPreviewView *oglView;
 	UILabel *frameRateLabel;
 	UILabel *dimensionsLabel;
@@ -64,6 +63,7 @@
 	UIBackgroundTaskIdentifier backgroundRecordingID;
 }
 
+@property (nonatomic, retain) RosyWriterVideoProcessor *videoProcessor;
 @property (nonatomic, retain) IBOutlet UIView *previewView;
 @property (nonatomic, retain) IBOutlet UIButton *recordButton;
 @property (nonatomic, retain) IBOutlet UILabel * secondsLabel;

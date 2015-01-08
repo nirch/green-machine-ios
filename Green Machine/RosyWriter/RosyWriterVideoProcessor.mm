@@ -95,26 +95,24 @@
 {
     if (self = [super init]) {
         previousSecondTimestamps = [[NSMutableArray alloc] init];
-        referenceOrientation = UIDeviceOrientationPortrait;
+//        referenceOrientation = UIDeviceOrientationPortrait;
+        referenceOrientation = UIDeviceOrientationLandscapeLeft;
         
         
         // The path for the video
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
 
-        NSArray * movies = [[Data shared] valueForKey:@"movies"];
-        if ( movies )
-            movieIndex = [NSNumber numberWithInt:[movies count]+1];
-        else
-            movieIndex = [NSNumber numberWithInt:0];
-        movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.mp4", movieIndex]]];
-        [movieURL retain];
-        
+        movieURL = [[NSURL alloc]initFileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, @"Movie.mp4"]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleCamera) name:@"toggleCamera" object:nil];
     }
     return self;
 }
 
+- ( void) stopGreenMachine {
+    CFRelease(m_foregroundExtraction);
+    m_foregroundExtraction = NULL;
+}
 - ( void ) initGreenMachine {
 
     // Lock focus
@@ -194,6 +192,19 @@
 	self.videoFrameRate = (self.videoFrameRate + newRate) / 2;
 }
 
+- (void)moveFile:(NSString *)filePath toFile:(NSString *) toPath
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:filePath]) {
+        NSError *error;
+        [fileManager removeItemAtPath:toPath error:&error];
+        BOOL success = [fileManager moveItemAtPath:filePath toPath:toPath error:&error];
+        if (!success)
+            [self showError:error];
+    }
+}
+
+
 - (void)removeFile:(NSURL *)fileURL
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -253,6 +264,43 @@
     self.recording = NO;
     [self.delegate recordingDidStop];
     
+
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    
+    NSString * from = [NSString stringWithFormat:@"%@/%@", documentsDirectory, @"Movie.mp4"];
+
+    NSMutableArray * movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    if ( movies )
+        movieIndex = [NSNumber numberWithInt:[movies count]+1];
+    else
+        movieIndex = [NSNumber numberWithInt:0];
+
+    NSString * to = [NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.mp4", movieIndex]];
+    
+    AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:from]];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    CMTime time = [asset duration];
+    time.value = 0;
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    NSData * data = UIImageJPEGRepresentation(thumbnail,1.0);
+    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
+    NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
+    
+    if ( !movies ) movies = [NSMutableArray array];
+    [movies insertObject:data atIndex:0];
+    [[Data shared] setObject:movies forKey:@"movies"];
+    [[Data shared] synchronize];
+    [data  writeToFile:dataPath atomically:YES];
+
+    
+    [self moveFile:from toFile:to];
+
+    
+    
 //	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
 //	[library writeVideoAtPathToSavedPhotosAlbum:movieURL
 //								completionBlock:^(NSURL *assetURL, NSError *error) {
@@ -289,14 +337,14 @@
 			if (assetWriterVideoIn.readyForMoreMediaData) {
 				//if (![assetWriterVideoIn appendSampleBuffer:sampleBuffer]) {
                 if (![_assetWriterPixelBufferIn appendPixelBuffer:processedPixelBuffer withPresentationTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)]) {
-					[self showError:[assetWriter error]];
+//					[self showError:[assetWriter error]];
 				}
 			}
 		}
 		else if (mediaType == AVMediaTypeAudio) {
 			if (assetWriterAudioIn.readyForMoreMediaData) {
 				if (![assetWriterAudioIn appendSampleBuffer:sampleBuffer]) {
-					[self showError:[assetWriter error]];
+//					[self showError:[assetWriter error]];
 				}
 			}
 		}
@@ -433,7 +481,7 @@
             readyToRecordVideo = NO;
             readyToRecordAudio = NO;
             
-            [self saveMovieToCameraRoll];
+//            [self saveMovieToCameraRoll];
         }];
 	});
 }
@@ -498,7 +546,7 @@
         image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
         
         // Extracting the foreground
-    
+/*
             // SAVING IMAGE TO DISK
         if ( !imageCreated ) {
             imageCreated = true;
@@ -520,7 +568,7 @@
             [data  writeToFile:dataPath atomically:YES];
             image_destroy(image, 1);
         }
-
+*/
         // [self saveImageType3:original_bgr_image];
         
         m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="YGk-oX-UPA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="YGk-oX-UPA">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -115,7 +115,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vwy-Ml-VMp">
-                                                <rect key="frame" x="0.0" y="20" width="480" height="165"/>
+                                                <rect key="frame" x="0.0" y="40" width="480" height="165"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="eMl-tP-dyR"/>
@@ -303,6 +303,68 @@
                                     <outletCollection property="gestureRecognizers" destination="rAt-Xu-Phx" appends="YES" id="lOx-IN-EV4"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" id="wOf-QD-s5u" userLabel="done menu">
+                                <rect key="frame" x="0.0" y="20" width="480" height="281"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.60000002384185791" contentMode="scaleToFill" id="f6I-gx-pOb">
+                                        <rect key="frame" x="0.0" y="30" width="480" height="281"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="OkJ-b7-5hk" userLabel="opened menu">
+                                        <rect key="frame" x="0.0" y="30" width="480" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bFl-z4-WtI">
+                                                <rect key="frame" x="165" y="55" width="150" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Create" image="create">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="createMoviePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pdh-Qp-jOw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5HR-9E-pda">
+                                                <rect key="frame" x="165" y="112" width="150" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Retake" image="retake">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="retakeMoviePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8sp-wd-sbn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BHx-Pi-vAV">
+                                                <rect key="frame" x="165" y="175" width="150" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Preview" image="play preview">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="previewMoviePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cGx-4X-wRW"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4e5-cc-FOj">
+                                        <rect key="frame" x="395" y="20" width="85" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="menuOpen">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="menuTogglePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2dP-Wz-uQi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -318,6 +380,7 @@
                         <outlet property="labelSeconds" destination="a05-PW-QfF" id="AZr-p9-MYg"/>
                         <outlet property="scrollerMovies" destination="vwy-Ml-VMp" id="Ewy-CK-A78"/>
                         <outlet property="secondsView" destination="ujx-s6-4pF" id="zgF-kQ-q5l"/>
+                        <outlet property="viewDone" destination="wOf-QD-s5u" id="MFQ-eL-OB0"/>
                         <outlet property="viewInstructionsLandscape" destination="aS4-8e-ucg" id="rd5-Ou-WBU"/>
                         <outlet property="viewInstructionsPortraight" destination="SRT-Ps-tL2" id="gvx-YN-1Ri"/>
                         <outlet property="viewLock" destination="pUi-9P-lsT" id="kaB-jC-O9h"/>
@@ -516,10 +579,13 @@
         <image name="camera rot" width="30" height="30"/>
         <image name="cameraBG" width="320" height="480"/>
         <image name="coins" width="30" height="30"/>
+        <image name="create" width="30" height="30"/>
         <image name="create.png" width="30" height="30"/>
         <image name="lock" width="30" height="30"/>
         <image name="menuOpen" width="30" height="30"/>
+        <image name="play preview" width="30" height="30"/>
         <image name="ready button" width="60" height="60"/>
+        <image name="retake" width="30" height="30"/>
         <image name="retake.png" width="30" height="30"/>
         <image name="start button" width="60" height="60"/>
         <image name="start button.png" width="60" height="60"/>

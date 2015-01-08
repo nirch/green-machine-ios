@@ -109,6 +109,9 @@
 - (void) pauseCaptureSession; // Pausing while a recording is in progress will cause the recording to be stopped and saved.
 - (void) resumeCaptureSession;
 - ( void ) initGreenMachine;
+- ( void) stopGreenMachine;
+
+- (void)saveMovieToCameraRoll;
 
 
 @property(readonly, getter=isRecording) BOOL recording;
@@ -122,4 +125,5 @@
 - (void)recordingDidStart;
 - (void)recordingWillStop;
 - (void)recordingDidStop;
+
 @end
