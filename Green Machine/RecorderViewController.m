@@ -9,20 +9,29 @@
 
 #import "RecorderViewController.h"
 #import "DataBackground.h"
-
+#import "GADInterstitial.h"
 
 @interface RecorderViewController ()
-
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation RecorderViewController
 
 -(IBAction) createMoviePressed:(id)sender {
+    if ([self.interstitial isReady]) {
+        [self.interstitial presentFromRootViewController:self];
+        GADRequest *request = [GADRequest request];
+        // Requests test ads on simulators.
+        request.testDevices = @[ GAD_SIMULATOR_ID ];
+        [self.interstitial loadRequest:request];
+    }
+    
     [UIView animateWithDuration:0.5 animations:^{
         viewDone.alpha = 0.0;
         [writerView.videoProcessor saveMovieToCameraRoll];
     }];
 }
+    
 -(IBAction) retakeMoviePressed:(id)sender {
     [UIView animateWithDuration:0.5 animations:^{
         viewDone.alpha = 0.0;
@@ -66,6 +75,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.interstitial = [[GADInterstitial alloc] init];
+    self.interstitial.adUnitID = @"ca-app-pub-3237461980709919/1152155383";
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on simulators.
+    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    [self.interstitial loadRequest:request];
+    
     controllerBuyCredit = [[BuyCreditsViewController alloc]initWithNibName:@"BuyCreditsViewController" bundle:nil];
 
 
@@ -413,21 +430,21 @@
     [sharingItems addObject:@"My latest creation, Using"];
     [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
     selectedMovie = sender.tag;
-    NSData * movie = [movies objectAtIndex:selectedMovie];
+//    NSData * movie = [movies objectAtIndex:selectedMovie];
 
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
     
-    AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:movieURL options:nil];
-    AVAsset * anAsset2 = [AVAsset assetWithURL:movieURL];
+//    AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:movieURL options:nil];
+//    AVAsset * anAsset2 = [AVAsset assetWithURL:movieURL];
 
 
-    [sharingItems addObject:movie];
+//    [sharingItems addObject:movie];
     [sharingItems addObject:movieURL];
-    [sharingItems addObject:anAsset];
-    [sharingItems addObject:anAsset2];
+//    [sharingItems addObject:anAsset];
+//    [sharingItems addObject:anAsset2];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [activityController setValue:@"A movie I created with Green Machine" forKey:@"subject"];
     

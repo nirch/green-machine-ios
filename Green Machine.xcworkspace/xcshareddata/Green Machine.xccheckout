@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ADA37399-2CA8-4128-A638-9C84DE2E11A9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Green Machine</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>37190B80555C42FB29D018322786A9ACBB1D2EE4</key>
+		<string>https://github.com/nirch/green-machine-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Green Machine.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>37190B80555C42FB29D018322786A9ACBB1D2EE4</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/nirch/green-machine-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>37190B80555C42FB29D018322786A9ACBB1D2EE4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>37190B80555C42FB29D018322786A9ACBB1D2EE4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Green%20Machine%201.3</string>
+		</dict>
+	</array>
+</dict>
+</plist>
