@@ -25,6 +25,11 @@
     IBOutlet UILabel *  labelBuy2;
     IBOutlet UILabel *  labelBuy3;
     IBOutlet UILabel *  labelBuy4;
+    
+    IBOutlet UIActivityIndicatorView * indicator1;
+    IBOutlet UIActivityIndicatorView * indicator2;
+    IBOutlet UIActivityIndicatorView * indicator3;
+    IBOutlet UIActivityIndicatorView * indicator4;
 }
 -(IBAction) back:(id)sender;
 - (IBAction)buy:(UIButton *)sender;

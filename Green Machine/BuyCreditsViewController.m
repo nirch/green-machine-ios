@@ -61,6 +61,7 @@
         NSString *formattedPrice = [numberFormatter stringFromNumber:product.price];
         switch (index) {
             case 0: {
+                [indicator1 stopAnimating];
                 [buttonBuy1 setTitle:formattedPrice forState:UIControlStateNormal];
                 [buttonBuy1 setTitle:formattedPrice forState:UIControlStateHighlighted];
                 labelBuy1.text = product.localizedTitle; //[[[Data shared] objectForKey:@"productcredits"] objectAtIndex:index];
@@ -70,6 +71,7 @@
                 break;
             }
             case 1: {
+                [indicator2 stopAnimating];
                 [buttonBuy2 setTitle:formattedPrice forState:UIControlStateNormal];
                 [buttonBuy2 setTitle:formattedPrice forState:UIControlStateHighlighted];
                 labelBuy2.text = product.localizedTitle; //[[[Data shared] objectForKey:@"productcredits"] objectAtIndex:index];
@@ -79,6 +81,7 @@
                 break;
             }
             case 2: {
+                [indicator3 stopAnimating];
                 [buttonBuy3 setTitle:formattedPrice forState:UIControlStateNormal];
                 [buttonBuy3 setTitle:formattedPrice forState:UIControlStateHighlighted];
                 labelBuy3.text = product.localizedTitle; //[[[Data shared] objectForKey:@"productcredits"] objectAtIndex:index];
@@ -88,6 +91,7 @@
                 break;
             }
             case 3: {
+                [indicator4 stopAnimating];
                 [buttonBuy4 setTitle:formattedPrice forState:UIControlStateNormal];
                 [buttonBuy4 setTitle:formattedPrice forState:UIControlStateHighlighted];
                 labelBuy4.text = product.localizedTitle; //[[[Data shared] objectForKey:@"productcredits"] objectAtIndex:index];
