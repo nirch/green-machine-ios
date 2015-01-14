@@ -10,6 +10,7 @@
 #import "RecorderViewController.h"
 #import "DataBackground.h"
 #import "GADInterstitial.h"
+#import "Localytics.h"
 
 @interface RecorderViewController ()
 @property(nonatomic, strong) GADInterstitial *interstitial;
@@ -18,6 +19,7 @@
 @implementation RecorderViewController
 
 -(IBAction) createMoviePressed:(id)sender {
+    [Localytics tagEvent:@"CreateMovie pressed"];
     if ([self.interstitial isReady]) {
         [self.interstitial presentFromRootViewController:self];
         GADRequest *request = [GADRequest request];
@@ -33,6 +35,7 @@
 }
     
 -(IBAction) retakeMoviePressed:(id)sender {
+    [Localytics tagEvent:@"Retake pressed"];
     [UIView animateWithDuration:0.5 animations:^{
         viewDone.alpha = 0.0;
         [self readyPressed:nil];
@@ -40,7 +43,8 @@
 }
 
 -(IBAction) previewMoviePressed:(id)sender {
-    [writerView.videoProcessor saveMovieToCameraRoll];    
+    [Localytics tagEvent:@"Preview pressed"];
+    [writerView.videoProcessor saveMovieToCameraRoll];
 }
 
 
@@ -193,6 +197,8 @@
 
 -(void) refreshMovies {
     movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    if ( ! movies )
+        movies = [[NSMutableArray alloc]init];
     if ( [[scrollerMovies subviews] count] != [movies count] ) {
         for ( UIView * view in [scrollerMovies subviews] ) {
             [view removeFromSuperview];
@@ -334,10 +340,22 @@
 }
 
 -(IBAction)buyBackgroundPressed:(id)sender {
+    
     int credits = [data credits].intValue;
     DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
     int cost = background.cost.intValue;
-    
+
+    NSDictionary *dictionary =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     [NSString stringWithFormat:@"%d", credits],
+     @"Current Credits",
+     [NSString stringWithFormat:@"%d", data.currentBackground.intValue],
+     @"Current Background Index",
+     [NSString stringWithFormat:@"%d", cost],
+     @"Cost",
+     nil];
+    [Localytics tagEvent:@"BuyBackground pressed" attributes:dictionary];
+
     if ( credits >= cost )
         [alertUseCredits show];
     else
@@ -345,6 +363,15 @@
 }
 
 -(IBAction)beginRecordPressed:(id)sender {
+    NSDictionary *dictionary =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     [NSString stringWithFormat:@"%d",bgNameIndex],
+     @"Background id",
+     ([Data shared].usingFrontCamera) ? @"Front camera" : @"Back camera",
+     @"Cemra used",
+     nil];
+    [Localytics tagEvent:@"Begin Record" attributes:dictionary];
+
     writerView.recordButton = sender;
     [writerView toggleRecording:sender];
 }
@@ -398,6 +425,7 @@
     // Release the movie instance created in playMovieAtURL
 }
 -(IBAction)playMovie:(UIButton *)sender {
+    [Localytics tagEvent:@"PlayMovie pressed"];
     selectedMovie = sender.tag;
     // The path for the video
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -426,6 +454,7 @@
 }
 
 -(IBAction) sharePressed:(UIButton *)sender {
+    [Localytics tagEvent:@"Share pressed"];
     NSMutableArray *sharingItems = [NSMutableArray new];
     [sharingItems addObject:@"My latest creation, Using"];
     [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];

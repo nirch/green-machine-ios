@@ -1,7 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-6.12.2"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK"
-OTHER_LDFLAGS = -ObjC -l"GoogleAdMobAds" -l"Pods-Google-Mobile-Ads-SDK" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreTelephony" -framework "EventKit" -framework "EventKitUI" -framework "MessageUI" -framework "StoreKit" -framework "SystemConfiguration" -weak_framework "AdSupport"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK" "${PODS_ROOT}/Headers/Public/Localytics"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-6.12.2" "$(PODS_ROOT)/Localytics/Localytics-iOS-3.0.0"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK" -isystem "${PODS_ROOT}/Headers/Public/Localytics"
+OTHER_LDFLAGS = -ObjC -l"GoogleAdMobAds" -l"Localytics" -l"Pods-Google-Mobile-Ads-SDK" -l"Pods-Localytics" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreTelephony" -framework "EventKit" -framework "EventKitUI" -framework "MessageUI" -framework "StoreKit" -framework "SystemConfiguration" -weak_framework "AdSupport"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

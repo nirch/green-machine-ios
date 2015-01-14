@@ -9,7 +9,7 @@
 #import "DoneViewController.h"
 #import "Data.h"
 #import "DataBackground.h"
-
+#import "Localytics.h"
 @interface DoneViewController ()
 
 @end
@@ -48,10 +48,13 @@
 }
 
 -(IBAction) retakePressed:(id)sender {
+    [Localytics tagEvent:@"Retake Pressed"];
+    
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 -(IBAction) previewPressed:(id)sender {
+    [Localytics tagEvent:@"Preview Pressed"];
     [[[UIAlertView alloc]initWithTitle:@"See preview Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 

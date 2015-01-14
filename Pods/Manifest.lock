@@ -1,10 +1,13 @@
 PODS:
   - Google-Mobile-Ads-SDK (6.12.2)
+  - Localytics (3.0.0)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 6.10)
+  - Localytics (~> 3.0)
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
+  Localytics: c42d816fd7bf4a770812a5af0d2e4a92bc6dcfdd
 
 COCOAPODS: 0.35.0

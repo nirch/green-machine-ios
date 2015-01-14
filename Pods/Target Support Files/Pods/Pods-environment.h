@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_Google_Mobile_Ads_SDK 12
 #define COCOAPODS_VERSION_PATCH_Google_Mobile_Ads_SDK 2
 
+// Localytics
+#define COCOAPODS_POD_AVAILABLE_Localytics
+#define COCOAPODS_VERSION_MAJOR_Localytics 3
+#define COCOAPODS_VERSION_MINOR_Localytics 0
+#define COCOAPODS_VERSION_PATCH_Localytics 0
+
