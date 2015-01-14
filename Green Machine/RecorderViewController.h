@@ -68,6 +68,7 @@
 -(IBAction)beginRecordPressed:(id)sender;
 -(IBAction)toggleCameraPressed:(id)sender;
 -(IBAction)helpPressed:(id)sender;
+-(IBAction)appReferelPressed:(id)sender;
 
 
 -(IBAction) createMoviePressed:(id)sender;

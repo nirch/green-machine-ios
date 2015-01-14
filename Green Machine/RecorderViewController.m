@@ -453,27 +453,29 @@
 //    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
 }
 
+-(IBAction)appReferelPressed:(id)sender {
+    [Localytics tagEvent:@"AppReferal pressed"];
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    [sharingItems addObject:@"You have to see this app."];
+    [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [activityController setValue:@"A great app called Green Machine" forKey:@"subject"];
+    activityController.popoverPresentationController.sourceView = sender;
+    [self presentViewController:activityController animated:false completion:nil];    
+}
 -(IBAction) sharePressed:(UIButton *)sender {
     [Localytics tagEvent:@"Share pressed"];
+    
     NSMutableArray *sharingItems = [NSMutableArray new];
     [sharingItems addObject:@"My latest creation, Using"];
     [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
-    selectedMovie = sender.tag;
-//    NSData * movie = [movies objectAtIndex:selectedMovie];
-
     
+    selectedMovie = sender.tag;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
-    
-//    AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:movieURL options:nil];
-//    AVAsset * anAsset2 = [AVAsset assetWithURL:movieURL];
-
-
-//    [sharingItems addObject:movie];
     [sharingItems addObject:movieURL];
-//    [sharingItems addObject:anAsset];
-//    [sharingItems addObject:anAsset2];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [activityController setValue:@"A movie I created with Green Machine" forKey:@"subject"];
     
