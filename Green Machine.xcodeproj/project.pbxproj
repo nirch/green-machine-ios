@@ -10,7 +10,6 @@
 		7F24FA4C19A237180043AA96 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4B19A237180043AA96 /* Data.m */; };
 		7F24FA4F19A238760043AA96 /* DataBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4D19A238760043AA96 /* DataBackground.m */; };
 		7F24FA6519A3523A0043AA96 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA6419A3523A0043AA96 /* RecordingViewController.m */; };
-		7F24FA6819A3524C0043AA96 /* DoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA6719A3524C0043AA96 /* DoneViewController.m */; };
 		7F24FAA019A393A00043AA96 /* RenderingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA9F19A393A00043AA96 /* RenderingViewController.m */; };
 		7F2824C81A488EFF0060394B /* american+shot+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C21A488EFF0060394B /* american+shot+360.ctr */; };
 		7F2824C91A488EFF0060394B /* close+up+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C31A488EFF0060394B /* close+up+360.ctr */; };
@@ -324,8 +323,6 @@
 		7F24FA4E19A238760043AA96 /* DataBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBackground.h; sourceTree = "<group>"; };
 		7F24FA6319A3523A0043AA96 /* RecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
 		7F24FA6419A3523A0043AA96 /* RecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
-		7F24FA6619A3524C0043AA96 /* DoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneViewController.h; sourceTree = "<group>"; };
-		7F24FA6719A3524C0043AA96 /* DoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneViewController.m; sourceTree = "<group>"; };
 		7F24FA9E19A393A00043AA96 /* RenderingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingViewController.h; sourceTree = "<group>"; };
 		7F24FA9F19A393A00043AA96 /* RenderingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderingViewController.m; sourceTree = "<group>"; };
 		7F2824C21A488EFF0060394B /* american+shot+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "american+shot+360.ctr"; sourceTree = "<group>"; };
@@ -1137,8 +1134,6 @@
 				7FDA5A531937B278001F5B07 /* RecorderViewController.m */,
 				7F24FA6319A3523A0043AA96 /* RecordingViewController.h */,
 				7F24FA6419A3523A0043AA96 /* RecordingViewController.m */,
-				7F24FA6619A3524C0043AA96 /* DoneViewController.h */,
-				7F24FA6719A3524C0043AA96 /* DoneViewController.m */,
 				7F24FA9E19A393A00043AA96 /* RenderingViewController.h */,
 				7F24FA9F19A393A00043AA96 /* RenderingViewController.m */,
 				7F7DB7AA1A2B366900C00B7D /* BuyCreditsViewController.h */,
@@ -1593,7 +1588,6 @@
 				7F703B3819A9DDDB006A0F62 /* ShaderUtilities.c in Sources */,
 				7F7DB7B11A2B369000C00B7D /* BuyCreditsViewController.m in Sources */,
 				7F24FAA019A393A00043AA96 /* RenderingViewController.m in Sources */,
-				7F24FA6819A3524C0043AA96 /* DoneViewController.m in Sources */,
 				7F6486FC19B8973600AE6B59 /* RosyWriterVideoProcessor.mm in Sources */,
 				7F703B3319A9DDDB006A0F62 /* RosyWriterPreviewView.m in Sources */,
 				7FF26D6A1937AEB100F0FAEB /* AppDelegate.m in Sources */,
