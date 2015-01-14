@@ -437,9 +437,6 @@
                                 <state key="normal" title="Done Recording">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="QqJ-BI-xt9" kind="push" id="k7N-xk-zWa"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -452,108 +449,47 @@
             </objects>
             <point key="canvasLocation" x="639" y="155"/>
         </scene>
-        <!--Done View Controller-->
-        <scene sceneID="MaO-Rt-zv2">
-            <objects>
-                <viewController id="QqJ-BI-xt9" customClass="DoneViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sw0-lU-0z9">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" id="N6I-Jo-0AL">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" id="H1Y-11-TgQ">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Oe-gW-ud1">
-                                        <rect key="frame" x="85" y="131" width="310" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" image="create.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="yvT-mC-dut" kind="push" id="Yle-2w-siY"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DONE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vJO-31-iCk">
-                                        <rect key="frame" x="118" y="70" width="244" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vGD-mW-Hz7">
-                                        <rect key="frame" x="85" y="239" width="310" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <inset key="titleEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="retake.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="v8g-zB-YLj"/>
-                    <connections>
-                        <outlet property="bg" destination="N6I-Jo-0AL" id="2ih-WS-sjH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZvJ-51-Jxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="897" y="47"/>
-        </scene>
         <!--Rendering View Controller-->
         <scene sceneID="hZm-pz-EpB">
             <objects>
                 <viewController id="yvT-mC-dut" customClass="RenderingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="egi-VP-VkF">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="background.png" id="d6R-kb-Esf">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="408"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="656"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <view alpha="0.20000000000000001" contentMode="scaleToFill" id="Hec-1Y-ic1">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <view contentMode="scaleToFill" id="DVH-t5-9Ta">
-                                <rect key="frame" x="90" y="74" width="300" height="200"/>
+                                <rect key="frame" x="10" y="227" width="300" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rendering your movie..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6et-oK-clG">
-                                <rect key="frame" x="30" y="41.5" width="420" height="47"/>
+                                <rect key="frame" x="20" y="79" width="280" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="BSL-xH-x42">
-                                <rect key="frame" x="0.0" y="270" width="480" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="xtd-25-6lr">
-                                <rect key="frame" x="0.0" y="270" width="480" height="2"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="start button.png" id="L6y-SQ-3bI">
-                                <rect key="frame" x="199.5" y="240" width="90" height="60"/>
+                                <rect key="frame" x="133" y="488" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hN5-dW-Q7M">
@@ -591,13 +527,11 @@
         <image name="cameraBG" width="320" height="480"/>
         <image name="coins" width="30" height="30"/>
         <image name="create" width="30" height="30"/>
-        <image name="create.png" width="30" height="30"/>
         <image name="lock" width="30" height="30"/>
         <image name="menuOpen" width="30" height="30"/>
         <image name="play preview" width="30" height="30"/>
         <image name="ready button" width="60" height="60"/>
         <image name="retake" width="30" height="30"/>
-        <image name="retake.png" width="30" height="30"/>
         <image name="share" width="32" height="32"/>
         <image name="start button" width="60" height="60"/>
         <image name="start button.png" width="60" height="60"/>
