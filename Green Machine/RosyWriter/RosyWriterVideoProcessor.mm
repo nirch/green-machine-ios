@@ -63,6 +63,7 @@
 @interface RosyWriterVideoProcessor () {
     
     //int counter;
+    BOOL        isRunningGreenMachine;
     CUniformBackground *m_foregroundExtraction;
     image_type *m_original_image;
     image_type *m_foreground_image;
@@ -94,6 +95,9 @@
 - (id) init
 {
     if (self = [super init]) {
+        isRunningGreenMachine = false;
+        m_foregroundExtraction = new CUniformBackground();
+
         previousSecondTimestamps = [[NSMutableArray alloc] init];
 //        referenceOrientation = UIDeviceOrientationPortrait;
         referenceOrientation = UIDeviceOrientationLandscapeLeft;
@@ -109,10 +113,6 @@
     return self;
 }
 
-- ( void) stopGreenMachine {
-    CFRelease(m_foregroundExtraction);
-    m_foregroundExtraction = NULL;
-}
 - ( void ) initGreenMachine {
 
     // Lock focus
@@ -142,8 +142,8 @@
     });
 
     
-    m_foregroundExtraction = new CUniformBackground();
-    
+//    m_foregroundExtraction = new CUniformBackground();
+    isRunningGreenMachine = true;
     
     
     NSString *backgroundImageName = [NSString stringWithFormat:@"LANDSCAPE %d 640x360.png", [[Data shared].currentBackground intValue]+1];
@@ -468,7 +468,6 @@
 		
 		recordingWillBeStopped = YES;
 		
-		// recordingDidStop is called from saveMovieToCameraRoll
 		[self.delegate recordingWillStop];
         
 		[assetWriter finishWritingWithCompletionHandler:^{
@@ -478,10 +477,14 @@
             [_assetWriterPixelBufferIn release];
             assetWriter = nil;
             
+            isRunningGreenMachine = false;
             readyToRecordVideo = NO;
             readyToRecordAudio = NO;
             
-//            [self saveMovieToCameraRoll];
+//          copied from  saveMovieToCameraRoll
+            recordingWillBeStopped = NO;
+            self.recording = NO;
+            [self.delegate recordingDidStop];
         }];
 	});
 }
@@ -531,10 +534,6 @@
 
 - (CMSampleBufferRef)processFrame:(CMSampleBufferRef)sampleBuffer
 {
-    if ( m_foregroundExtraction == NULL ) {
-        return sampleBuffer;
-    }
-    else {
         CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
         
         
@@ -606,8 +605,6 @@
     
         // Updating the current pixelbuffer with the new foreground/background image
         //[self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
-    }
-
 }
 
 #pragma mark Capture
@@ -636,8 +633,15 @@
 		// Synchronously process the pixel buffer to de-green it.
 		//[self processPixelBuffer:pixelBuffer];
         
-        // GreenMachine
-        processedSampleBuffer = [self processFrame:sampleBuffer];
+        if ( isRunningGreenMachine )
+        {
+            // GreenMachine
+            processedSampleBuffer = [self processFrame:sampleBuffer];
+            
+        }
+        else {
+            CMSampleBufferCreateCopy(kCFAllocatorDefault, sampleBuffer, &processedSampleBuffer);
+        }
         
 		// Enqueue it for preview.  This is a shallow queue, so if image processing is taking too long,
 		// we'll drop this frame for preview (this keeps preview latency low).
@@ -706,7 +710,7 @@
         }
         CFRelease(sampleBuffer);
         CFRelease(formatDescription);
-        if ( m_foregroundExtraction != NULL)
+//        if ( m_foregroundExtraction != NULL)
             if (connection == videoConnection && processedSampleBuffer) CFRelease(processedSampleBuffer);
     });
 }
