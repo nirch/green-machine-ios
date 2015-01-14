@@ -68,8 +68,11 @@
     // Hide siluevte
 //    [self.view bringSubviewToFront:writerView.view];
     imageViewBackground.alpha = 0.0;
-    writerView.seconds = [NSNumber numberWithInt:10];
-    writerView.secondsLabel = labelSeconds;
+    
+    if ( ![[Data shared] objectForKey:@"UnlimitedTime"] ) {
+        writerView.seconds = [NSNumber numberWithInt:10];
+        writerView.secondsLabel = labelSeconds;
+    }
     [writerView initGreenMachine];
     sender.alpha = 0.0;
     

@@ -72,7 +72,6 @@
             case SKPaymentTransactionStatePurchased: {
                 Data * data = [Data shared];
                 NSArray * productIdentifiers = [data objectForKey:@"productids"];
-                NSArray * productPicks = [data objectForKey:@"productpicks"];
                 NSString * productid = transaction.payment.productIdentifier;
                 
                 NSDictionary *dictionary =
@@ -82,14 +81,21 @@
                  nil];
                 [Localytics tagEvent:@"Payment Successfull" attributes:dictionary];
 
+
+                NSString * productidUnlimitedTIme = [data objectForKey:@"productidUnlimitedTime"];
+                if ( [productidUnlimitedTIme isEqualToString:productid]) {
+                    [data setObject:@"YES" forKey:@"UnlimitedTime"];
+                }
+                else {
+                    int index = [productIdentifiers indexOfObject:productid];
+                    NSArray * productPicks = [data objectForKey:@"productpicks"];
+                    int currnetpicks = [[data objectForKey:@"currentPicks"] intValue];
+                    currnetpicks += [[productPicks objectAtIndex:index]intValue];
+                    [data setObject:[NSString stringWithFormat:@"%d", currnetpicks] forKey:@"currentPicks"];
+                    [data synchronize];
                 
-                int index = [productIdentifiers indexOfObject:productid];
-                int currnetpicks = [[data objectForKey:@"currentPicks"] intValue];
-                currnetpicks += [[productPicks objectAtIndex:index]intValue];
-                [data setObject:[NSString stringWithFormat:@"%d", currnetpicks] forKey:@"currentPicks"];
-                [data synchronize];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePicks" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePicks" object:nil];
+                }
                 
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 

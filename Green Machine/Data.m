@@ -42,8 +42,9 @@
     }
     else {
         dict = [NSMutableDictionary dictionary];
-        [dict setObject:[NSArray arrayWithObjects:@"greenmachine.credits.5",@"greenmachine.credits.30",@"greenmachine.credits.60",@"greenmachine.credits.100",nil] forKey:@"productids"];
-        [dict setObject:[NSArray arrayWithObjects:@"5", @"30", @"60", @"100", nil] forKey:@"productcredits"];
+        [dict setObject:[NSArray arrayWithObjects:@"greenmachine.credits.5",@"greenmachine.credits.30",@"greenmachine.credits.60",@"greenmachine.unlimitedtime",nil] forKey:@"productids"];
+        [dict setObject:[NSArray arrayWithObjects:@"5", @"30", @"60",@"0", nil] forKey:@"productcredits"];
+        [dict setObject:@"greenmachine.unlimitedtime" forKey:@"productidUnlimitedTime"];
     }
     
 
@@ -64,8 +65,10 @@
         background.isLocked = [isLocked objectAtIndex:index];
         background.cost = [cost objectAtIndex:index];
         [self.backgrounds addObject:background];
-        [self synchronize];
     }
+    
+    [self setObject:@"YES" forKey:@"UnlimitedTime"];
+    [self synchronize];
 }
 
 

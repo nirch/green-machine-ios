@@ -143,7 +143,7 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 //    [self.videoProcessor release];
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
 	[super viewDidUnload];
 
@@ -159,7 +159,8 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 {	
 	[super viewDidDisappear:animated];
 
-	[timer invalidate];
+    if ( timer )
+        [timer invalidate];
 	timer = nil;
 }
 
@@ -178,7 +179,8 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	if ( [self.videoProcessor isRecording] ) {
 		// The recordingWill/DidStop delegate methods will fire asynchronously in response to this call
 		[self.videoProcessor stopRecording];
-        [timer invalidate];
+        if (timer)
+            [timer invalidate];
         
         [self.videoProcessor stopRecording];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doneRecording" object:nil];
@@ -187,7 +189,9 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 		// The recordingWill/DidStart delegate methods will fire asynchronously in response to this call
         [self.videoProcessor startRecording];
         
-        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
+        if ( self.secondsLabel ) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateLabels) userInfo:nil repeats:YES];
+        }
 	}
 }
 
