@@ -373,7 +373,10 @@
      ([Data shared].usingFrontCamera) ? @"Front camera" : @"Back camera",
      @"Cemra used",
      nil];
-    [Localytics tagEvent:@"Begin Record" attributes:dictionary];
+    if ( writerView.videoProcessor.recording )
+        [Localytics tagEvent:@"End Record" attributes:dictionary];
+    else
+        [Localytics tagEvent:@"Begin Record" attributes:dictionary];
 
     writerView.recordButton = sender;
     [writerView toggleRecording:sender];
