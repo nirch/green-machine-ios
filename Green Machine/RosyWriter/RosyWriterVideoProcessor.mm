@@ -482,6 +482,30 @@
             readyToRecordVideo = NO;
             readyToRecordAudio = NO;
             
+            // UnLock focus
+            dispatch_async(movieWritingQueue, ^{
+                AVCaptureDevice *device = [videoIn device];
+                NSError *error = nil;
+                if ([device lockForConfiguration:&error])
+                {
+                    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeLocked])
+                    {
+                        [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+                    }
+                    if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeLocked])
+                    {
+                        [device setExposureMode:AVCaptureFocusModeContinuousAutoFocus];
+                    }
+                    [device setSubjectAreaChangeMonitoringEnabled:true];
+                    [device unlockForConfiguration];
+                }
+                else
+                {
+                    NSLog(@"%@", error);
+                }
+            });
+
+            
 //          copied from  saveMovieToCameraRoll
             recordingWillBeStopped = NO;
             self.recording = NO;
