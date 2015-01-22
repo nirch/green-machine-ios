@@ -404,25 +404,25 @@
 }
 
 
-//- (void)orientationChanged:(NSNotification *)notification
-//{
-//    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-//    if (UIDeviceOrientationIsLandscape(deviceOrientation))
-//    {
-//        viewInstructionsPortraight.alpha = 0.0;
-//        viewInstructionsLandscape.alpha = 1.0;
-//    }
-//    else
-//    {
-//        viewInstructionsPortraight.alpha = 1.0;
-//        viewInstructionsLandscape.alpha = 0.0;
-//    }
-//    [self updateBackgroundImage];
+- (void)orientationChanged:(NSNotification *)notification
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation))
+    {
+        viewInstructionsPortraight.alpha = 0.0;
+        viewInstructionsLandscape.alpha = 1.0;
+    }
+    else
+    {
+        viewInstructionsPortraight.alpha = 1.0;
+        viewInstructionsLandscape.alpha = 0.0;
+    }
+    [self updateBackgroundImage];
 //    if ( deviceOrientation == UIDeviceOrientationPortrait)
 //        [self.view sendSubviewToBack:writerView.view];
 //    if ( deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
 //        [self.view bringSubviewToFront:writerView.view];
-//}
+}
 
 
 -(IBAction)toggleCameraPressed:(id)sender {

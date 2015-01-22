@@ -100,8 +100,8 @@
         m_foregroundExtraction = new CUniformBackground();
 
         previousSecondTimestamps = [[NSMutableArray alloc] init];
-//        referenceOrientation = UIDeviceOrientationPortrait;
-        referenceOrientation = UIDeviceOrientationLandscapeLeft;
+        referenceOrientation = UIDeviceOrientationPortrait;
+//        referenceOrientation = UIDeviceOrientationLandscapeLeft;
         
         
         // The path for the video

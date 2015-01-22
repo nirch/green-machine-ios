@@ -71,7 +71,6 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	// If we try to resume the session in the background it will fail. Resume the session here as well to ensure we will succeed.
 	[self.videoProcessor resumeCaptureSession];
 }
-/*
 // UIDeviceOrientationDidChangeNotification selector
 - (void)deviceOrientationDidChange
 {
@@ -80,7 +79,6 @@ static inline double radians (double degrees) { return degrees * (M_PI / 180); }
 	if ( UIDeviceOrientationIsPortrait(orientation) || UIDeviceOrientationIsLandscape(orientation) )
 		[self.videoProcessor setReferenceOrientation:orientation];
 }
-*/
 -(void) toggleCamera {
 //    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     UIDeviceOrientation orientation = UIDeviceOrientationLandscapeLeft;
