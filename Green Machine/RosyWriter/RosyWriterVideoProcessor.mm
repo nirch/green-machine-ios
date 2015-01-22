@@ -64,6 +64,7 @@
     
     //int counter;
     BOOL        isRunningGreenMachine;
+    BOOL        capturing1280X720;
     CUniformBackground *m_foregroundExtraction;
     image_type *m_original_image;
     image_type *m_foreground_image;
@@ -540,7 +541,13 @@
         //[self savePixelBuffer:pixelBuffer withName:@"Original"];
         
         // Converting the given PixelBuffer to image_type (and then converting it to BGR)
+    if ( capturing1280X720 ) {
         m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
+    }
+    else {
+        m_original_image = CVtool::CVPixelBufferRef_to_image_crop(pixelBuffer, 0, 60, 640, 360, m_original_image);
+        
+    }
         //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
         image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
         
@@ -886,8 +893,6 @@
 	 */
     captureSession = [[AVCaptureSession alloc] init];
     
-    captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
-    
     /*
 	 * Create audio connection
 	 */
@@ -916,6 +921,14 @@
     
     if ([captureSession canAddInput:videoIn])
         [captureSession addInput:videoIn];
+    
+    capturing1280X720 = [captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720];
+    if ( capturing1280X720)
+        captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
+    else
+        captureSession.sessionPreset = AVCaptureSessionPreset640x480;
+
+    
 //	[videoIn release];
     
 	AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
