@@ -463,6 +463,7 @@
 - (void) stopRecording
 {
 	dispatch_async(movieWritingQueue, ^{
+        isRunningGreenMachine = false;
 		
 		if ( recordingWillBeStopped || (self.recording == NO) )
 			return;
@@ -478,7 +479,7 @@
             [_assetWriterPixelBufferIn release];
             assetWriter = nil;
             
-            isRunningGreenMachine = false;
+//            isRunningGreenMachine = false;
             readyToRecordVideo = NO;
             readyToRecordAudio = NO;
             

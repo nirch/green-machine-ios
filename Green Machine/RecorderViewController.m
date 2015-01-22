@@ -58,7 +58,24 @@
         viewDone.alpha = 1.0;
     }];
 }
+-(void) cancelRecordingPressed {
+    imageViewBackground.alpha = 0.0;
+    [writerView.videoProcessor stopRecording];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
+    buttonReady.alpha = 1.0;
+    [cancelRecordingButton removeFromSuperview];
+    cancelRecordingButton = nil;
+}
 -(IBAction)readyPressed:(UIButton *)sender {
+    if ( nil == cancelRecordingButton ) {
+        cancelRecordingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cancelRecordingButton setImage:[UIImage imageNamed:@"remove"] forState:UIControlStateNormal];
+        [cancelRecordingButton setTitle:@"  Cancel efect" forState:UIControlStateNormal];
+        [cancelRecordingButton addTarget:self action:@selector(cancelRecordingPressed) forControlEvents:UIControlEventTouchUpInside];
+        cancelRecordingButton.center = self.view.center;
+        cancelRecordingButton.frame = CGRectMake(5, self.view.frame.size.height-50, 200, 30 );
+        [self.view addSubview:cancelRecordingButton];
+    }
     DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
     if ( background.isLocked.boolValue ) {
         [alertLockedBackground show];

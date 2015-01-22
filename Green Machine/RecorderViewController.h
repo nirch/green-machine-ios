@@ -49,6 +49,8 @@
     UIAlertView * alertLockedBackground;
     UIAlertView * alertUseCredits;
     UIAlertView * alertBuyCredits;
+    
+    UIButton * cancelRecordingButton;
 }
 
 -(IBAction)leftPressed:(id)sender;
