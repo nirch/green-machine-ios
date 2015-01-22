@@ -467,7 +467,10 @@
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [activityController setValue:@"A great app called Green Machine" forKey:@"subject"];
-    activityController.popoverPresentationController.sourceView = sender;
+    
+    if (  NSClassFromString(@"UIPopoverPresentationController")   ) {
+        activityController.popoverPresentationController.sourceView = sender;
+    }
     [self presentViewController:activityController animated:false completion:nil];    
 }
 -(IBAction) sharePressed:(UIButton *)sender {
@@ -485,7 +488,9 @@
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [activityController setValue:@"A movie I created with Green Machine" forKey:@"subject"];
     
-    activityController.popoverPresentationController.sourceView = sender;
+    if (  NSClassFromString(@"UIPopoverPresentationController")   ) {
+        activityController.popoverPresentationController.sourceView = sender;
+    }
     [self presentViewController:activityController animated:false completion:nil];
 }
 -(IBAction)removePressed:(UIButton *)sender {
