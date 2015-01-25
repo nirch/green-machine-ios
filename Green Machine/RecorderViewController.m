@@ -42,12 +42,6 @@
     }];
 }
 
--(IBAction) previewMoviePressed:(id)sender {
-    [Localytics tagEvent:@"Preview pressed"];
-    [writerView.videoProcessor saveMovieToCameraRoll];
-}
-
-
 -(void) doneRecording {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
      [UIView animateWithDuration:0.5 animations:^{
@@ -143,20 +137,6 @@
         writerView.view.frame = CGRectMake(0,0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
 
     [self.view insertSubview:writerView.view atIndex:0];
-
-    
-    // Hide siluevte
-//    [self.view bringSubviewToFront:writerView.view];
-
-    
-//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(orientationChanged:)
-//                                                 name:UIDeviceOrientationDidChangeNotification
-//                                               object:nil];
-//    [self orientationChanged:nil];
-
-
 }
 
 - (void) updateBackgroundImage {
@@ -267,7 +247,6 @@
 -(IBAction)menuTogglePressed:(UIButton *)sender {
     CGRect frame = [sender superview].frame;
     if ( menuIsOpened ) {
-        [self fadeOut:bgResolutions];
         [self fadeOut:viewLocked];
         menuIsOpened = false;
         [UIView animateWithDuration:0.3 animations:^{
@@ -306,34 +285,8 @@
     }];
 }
 -(IBAction) buycreditPressed:(id)sender {
-    [self fadeOut:bgResolutions];
-    
     [self.view addSubview:controllerBuyCredit.view];
-//    [self fadeIn:bgBuyCredit];
 }
--(IBAction) upgradePressed:(id)sender {
-    [self fadeOut:bgResolutions];
-    
-    [[[UIAlertView alloc]initWithTitle:@"Upgrade Not implemented yet" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-}
-//-(IBAction)resolution360Pressed:(UIButton * )sender {
-//    sender.selected = !sender.selected;
-//    [(UIButton *)[bgResolutions viewWithTag:720] setSelected:false];
-////    data.resolution = [NSNumber numberWithInt:360];
-//}
-//-(IBAction)resolution720Pressed:(UIButton *)sender {
-//    sender.selected = !sender.selected;
-//    [(UIButton *)[bgResolutions viewWithTag:360] setSelected:false];
-////    data.resolution = [NSNumber numberWithInt:720];
-//}
-//-(IBAction) resolutionPressed:(id)sender {
-////    int resolution = data.resolution.intValue; 
-//    [(UIButton *)[bgResolutions viewWithTag:resolution] setSelected:true];
-//    
-//    [self fadeIn:bgResolutions];
-////    [self fadeOut:bgBuyCredit];
-//}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ( buttonIndex == 0 ) return;
     if ( alertView == alertLockedBackground ) {
@@ -341,7 +294,6 @@
     }
     if ( alertView == alertBuyCredits ) {
         [self.view addSubview:controllerBuyCredit.view];
-//        [self presentViewController:controller animated:YES completion:nil];
     }
     if ( alertView == alertUseCredits ) {
         DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
@@ -456,24 +408,14 @@
     NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
     NSLog ( @"Playing: %@", movieURL);
     
+    moviePlayer =  [[MPMoviePlayerController alloc]
+                    initWithContentURL:movieURL];
     
-    MPMoviePlayerController * player = [[MPMoviePlayerController alloc] init];
-    player.view.frame = self.view.bounds;
-    [self.view addSubview:player.view];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(playMovieFinished:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:player];
-    player.movieSourceType = MPMovieSourceTypeFile;
-    player.shouldAutoplay = true;
-    player.contentURL = movieURL;
-    [player prepareToPlay];
-    [player play];
-    
-//    player.controlStyle = MPMovieControlStyleFullscreen;
-//    player.fullscreen = true;
-//    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
+    moviePlayer.controlStyle = MPMovieControlStyleDefault;
+    moviePlayer.shouldAutoplay = YES;
+    [self.view addSubview:moviePlayer.view];
+    [moviePlayer setFullscreen:YES animated:YES];
+
 }
 
 -(IBAction)appReferelPressed:(id)sender {

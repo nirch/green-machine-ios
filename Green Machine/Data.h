@@ -25,6 +25,4 @@
 @property ( nonatomic, retain) NSNumber * currentFormat;
 @property ( nonatomic, retain) NSMutableArray * backgrounds;
 @property ( nonatomic, retain) NSNumber * currentBackground;
-
-//@property ( nonatomic, retain) NSNumber * resolution;
 @end

@@ -14,6 +14,8 @@
 
 
 @interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate> {
+    MPMoviePlayerController * moviePlayer;
+    
     RosyWriterViewController * writerView;
     BuyCreditsViewController * controllerBuyCredit;
     
@@ -32,7 +34,6 @@
     IBOutlet UILabel * labelSeconds;
     
     IBOutlet UIView * bgBuyCredit;
-    IBOutlet UIView * bgResolutions;
     
     IBOutlet UIButton * buttonBuyCredit;
     
@@ -61,8 +62,6 @@
 -(IBAction)menuTogglePressed:(id)sender;
 
 -(IBAction) buycreditPressed:(id)sender;
--(IBAction) upgradePressed:(id)sender;
--(IBAction) resolutionPressed:(id)sender;
 
 -(IBAction)buyBackgroundPressed:(id)sender;
 
@@ -75,5 +74,4 @@
 
 -(IBAction) createMoviePressed:(id)sender;
 -(IBAction) retakeMoviePressed:(id)sender;
--(IBAction) previewMoviePressed:(id)sender;
 @end
