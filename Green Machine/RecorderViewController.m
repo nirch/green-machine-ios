@@ -45,7 +45,8 @@
 -(void) doneRecording {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
      [UIView animateWithDuration:0.5 animations:^{
-        labelSeconds.text = @"";
+         buttonToggleCamera.hidden = false;
+         labelSeconds.text = @"";
         imageViewBackground.alpha = 1.0;
         buttonRecord.alpha = 1.0;
         buttonReady.alpha = 1.0;
@@ -53,6 +54,7 @@
     }];
 }
 -(void) cancelRecordingPressed {
+    buttonToggleCamera.hidden = false;
     imageViewBackground.alpha = 0.0;
     [writerView.videoProcessor stopRecording];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
@@ -61,6 +63,7 @@
     cancelRecordingButton = nil;
 }
 -(IBAction)readyPressed:(UIButton *)sender {
+    buttonToggleCamera.hidden = true;
     if ( nil == cancelRecordingButton ) {
         cancelRecordingButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelRecordingButton setImage:[UIImage imageNamed:@"remove"] forState:UIControlStateNormal];

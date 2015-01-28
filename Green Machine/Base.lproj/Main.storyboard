@@ -375,6 +375,7 @@
                         <outlet property="buttonBuyCredit" destination="34B-C8-TJa" id="Lyl-Eb-lhD"/>
                         <outlet property="buttonReady" destination="nzV-Bz-wR3" id="MQr-Pc-svk"/>
                         <outlet property="buttonRecord" destination="2yJ-z8-AL0" id="oNY-XT-Yvu"/>
+                        <outlet property="buttonToggleCamera" destination="nSk-Ep-miZ" id="ZiX-tu-9Hz"/>
                         <outlet property="imageViewBackground" destination="DgM-Bk-n5m" id="IRP-CO-MNx"/>
                         <outlet property="labelBackgroundCost" destination="UcJ-m1-L1d" id="VTh-Q6-Aog"/>
                         <outlet property="labelSeconds" destination="a05-PW-QfF" id="AZr-p9-MYg"/>

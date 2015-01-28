@@ -36,6 +36,7 @@
     IBOutlet UIView * bgBuyCredit;
     
     IBOutlet UIButton * buttonBuyCredit;
+    IBOutlet UIButton * buttonToggleCamera;
     
     IBOutlet UILabel * labelBackgroundCost;
     IBOutlet UIView * viewLock;
