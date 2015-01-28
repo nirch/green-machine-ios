@@ -49,8 +49,6 @@
 		7F703A2C19A939DA006A0F62 /* close up port 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392C19A939DA006A0F62 /* close up port 2.png */; };
 		7F703A2D19A939DA006A0F62 /* close up port 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392D19A939DA006A0F62 /* close up port 20.png */; };
 		7F703A2E19A939DA006A0F62 /* close up port 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392E19A939DA006A0F62 /* close up port 21.png */; };
-		7F703A2F19A939DA006A0F62 /* close up port 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70392F19A939DA006A0F62 /* close up port 22.png */; };
-		7F703A3019A939DA006A0F62 /* close up port 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70393019A939DA006A0F62 /* close up port 23.png */; };
 		7F703A3119A939DA006A0F62 /* close up port 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70393119A939DA006A0F62 /* close up port 3.png */; };
 		7F703A3219A939DA006A0F62 /* close up port 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70393219A939DA006A0F62 /* close up port 4.png */; };
 		7F703A3319A939DA006A0F62 /* close up port 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70393319A939DA006A0F62 /* close up port 5.png */; };
@@ -72,8 +70,6 @@
 		7F703A4319A939DA006A0F62 /* As land 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394419A939DA006A0F62 /* As land 2.png */; };
 		7F703A4419A939DA006A0F62 /* As land 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394519A939DA006A0F62 /* As land 20.png */; };
 		7F703A4519A939DA006A0F62 /* As land 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394619A939DA006A0F62 /* As land 21.png */; };
-		7F703A4619A939DA006A0F62 /* As land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394719A939DA006A0F62 /* As land 22.png */; };
-		7F703A4719A939DA006A0F62 /* As land 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394819A939DA006A0F62 /* As land 23.png */; };
 		7F703A4819A939DA006A0F62 /* As land 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394919A939DA006A0F62 /* As land 3.png */; };
 		7F703A4919A939DA006A0F62 /* As land 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394A19A939DA006A0F62 /* As land 4.png */; };
 		7F703A4A19A939DA006A0F62 /* As land 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70394B19A939DA006A0F62 /* As land 5.png */; };
@@ -95,8 +91,6 @@
 		7F703A5A19A939DA006A0F62 /* head&shoulders port 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70395C19A939DA006A0F62 /* head&shoulders port 2.png */; };
 		7F703A5B19A939DA006A0F62 /* head&shoulders port 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70395D19A939DA006A0F62 /* head&shoulders port 20.png */; };
 		7F703A5C19A939DA006A0F62 /* head&shoulders port 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70395E19A939DA006A0F62 /* head&shoulders port 21.png */; };
-		7F703A5D19A939DA006A0F62 /* head&shoulders port 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70395F19A939DA006A0F62 /* head&shoulders port 22.png */; };
-		7F703A5E19A939DA006A0F62 /* head&shoulders port 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70396019A939DA006A0F62 /* head&shoulders port 23.png */; };
 		7F703A5F19A939DA006A0F62 /* head&shoulders port 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70396119A939DA006A0F62 /* head&shoulders port 3.png */; };
 		7F703A6019A939DA006A0F62 /* head&shoulders port 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70396219A939DA006A0F62 /* head&shoulders port 4.png */; };
 		7F703A6119A939DA006A0F62 /* head&shoulders port 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70396319A939DA006A0F62 /* head&shoulders port 5.png */; };
@@ -118,8 +112,6 @@
 		7F703A7119A939DA006A0F62 /* head&chest port 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397419A939DA006A0F62 /* head&chest port 2.png */; };
 		7F703A7219A939DA006A0F62 /* head&chest port 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397519A939DA006A0F62 /* head&chest port 20.png */; };
 		7F703A7319A939DA006A0F62 /* head&chest port 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397619A939DA006A0F62 /* head&chest port 21.png */; };
-		7F703A7419A939DA006A0F62 /* head&chest port 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397719A939DA006A0F62 /* head&chest port 22.png */; };
-		7F703A7519A939DA006A0F62 /* head&chest port 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397819A939DA006A0F62 /* head&chest port 23.png */; };
 		7F703A7619A939DA006A0F62 /* head&chest port 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397919A939DA006A0F62 /* head&chest port 3.png */; };
 		7F703A7719A939DA006A0F62 /* head&chest port 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397A19A939DA006A0F62 /* head&chest port 4.png */; };
 		7F703A7819A939DA006A0F62 /* head&chest port 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70397B19A939DA006A0F62 /* head&chest port 5.png */; };
@@ -141,8 +133,6 @@
 		7F703A8819A939DA006A0F62 /* torso port 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70398C19A939DA006A0F62 /* torso port 2.png */; };
 		7F703A8919A939DA006A0F62 /* torso port 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70398D19A939DA006A0F62 /* torso port 20.png */; };
 		7F703A8A19A939DA006A0F62 /* torso port 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70398E19A939DA006A0F62 /* torso port 21.png */; };
-		7F703A8B19A939DA006A0F62 /* torso port 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70398F19A939DA006A0F62 /* torso port 22.png */; };
-		7F703A8C19A939DA006A0F62 /* torso port 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70399019A939DA006A0F62 /* torso port 23.png */; };
 		7F703A8D19A939DA006A0F62 /* torso port 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70399119A939DA006A0F62 /* torso port 3.png */; };
 		7F703A8E19A939DA006A0F62 /* torso port 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70399219A939DA006A0F62 /* torso port 4.png */; };
 		7F703A8F19A939DA006A0F62 /* torso port 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F70399319A939DA006A0F62 /* torso port 5.png */; };
@@ -164,8 +154,6 @@
 		7F703A9F19A939DA006A0F62 /* As port 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A419A939DA006A0F62 /* As port 2.png */; };
 		7F703AA019A939DA006A0F62 /* As port 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A519A939DA006A0F62 /* As port 20.png */; };
 		7F703AA119A939DA006A0F62 /* As port 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A619A939DA006A0F62 /* As port 21.png */; };
-		7F703AA219A939DA006A0F62 /* As port 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A719A939DA006A0F62 /* As port 22.png */; };
-		7F703AA319A939DA006A0F62 /* As port 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A819A939DA006A0F62 /* As port 23.png */; };
 		7F703AA419A939DA006A0F62 /* As port 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039A919A939DA006A0F62 /* As port 3.png */; };
 		7F703AA519A939DA006A0F62 /* As port 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039AA19A939DA006A0F62 /* As port 4.png */; };
 		7F703AA619A939DA006A0F62 /* As port 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039AB19A939DA006A0F62 /* As port 5.png */; };
@@ -173,7 +161,6 @@
 		7F703AA819A939DA006A0F62 /* As port 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039AD19A939DA006A0F62 /* As port 7.png */; };
 		7F703AA919A939DA006A0F62 /* As port 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039AE19A939DA006A0F62 /* As port 8.png */; };
 		7F703AAA19A939DA006A0F62 /* As port 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039AF19A939DA006A0F62 /* As port 9.png */; };
-		7F703AAB19A939DA006A0F62 /* close up  land.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039B119A939DA006A0F62 /* close up  land.png */; };
 		7F703AAC19A939DA006A0F62 /* close up land 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039B219A939DA006A0F62 /* close up land 1.png */; };
 		7F703AAD19A939DA006A0F62 /* close up land 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039B319A939DA006A0F62 /* close up land 10.png */; };
 		7F703AAE19A939DA006A0F62 /* close up land 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039B419A939DA006A0F62 /* close up land 11.png */; };
@@ -188,7 +175,6 @@
 		7F703AB719A939DA006A0F62 /* close up land 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039BD19A939DA006A0F62 /* close up land 2.png */; };
 		7F703AB819A939DA006A0F62 /* close up land 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039BE19A939DA006A0F62 /* close up land 20.png */; };
 		7F703AB919A939DA006A0F62 /* close up land 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039BF19A939DA006A0F62 /* close up land 21.png */; };
-		7F703ABA19A939DA006A0F62 /* close up land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039C019A939DA006A0F62 /* close up land 22.png */; };
 		7F703ABB19A939DA006A0F62 /* close up land 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039C119A939DA006A0F62 /* close up land 3.png */; };
 		7F703ABC19A939DA006A0F62 /* close up land 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039C219A939DA006A0F62 /* close up land 4.png */; };
 		7F703ABD19A939DA006A0F62 /* close up land 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039C319A939DA006A0F62 /* close up land 5.png */; };
@@ -231,7 +217,6 @@
 		7F703AE219A939DA006A0F62 /* head&chest land 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039EA19A939DA006A0F62 /* head&chest land 2.png */; };
 		7F703AE319A939DA006A0F62 /* head&chest land 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039EB19A939DA006A0F62 /* head&chest land 20.png */; };
 		7F703AE419A939DA006A0F62 /* head&chest land 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039EC19A939DA006A0F62 /* head&chest land 21.png */; };
-		7F703AE519A939DA006A0F62 /* head&chest land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039ED19A939DA006A0F62 /* head&chest land 22.png */; };
 		7F703AE619A939DA006A0F62 /* head&chest land 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039EE19A939DA006A0F62 /* head&chest land 3.png */; };
 		7F703AE719A939DA006A0F62 /* head&chest land 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039EF19A939DA006A0F62 /* head&chest land 4.png */; };
 		7F703AE819A939DA006A0F62 /* head&chest land 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F7039F019A939DA006A0F62 /* head&chest land 5.png */; };
@@ -253,8 +238,6 @@
 		7F703AF819A939DA006A0F62 /* torso land 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0119A939DA006A0F62 /* torso land 2.png */; };
 		7F703AF919A939DA006A0F62 /* torso land 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0219A939DA006A0F62 /* torso land 20.png */; };
 		7F703AFA19A939DA006A0F62 /* torso land 21.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0319A939DA006A0F62 /* torso land 21.png */; };
-		7F703AFB19A939DA006A0F62 /* torso land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0419A939DA006A0F62 /* torso land 22.png */; };
-		7F703AFC19A939DA006A0F62 /* torso land 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0519A939DA006A0F62 /* torso land 23.png */; };
 		7F703AFD19A939DA006A0F62 /* torso land 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0619A939DA006A0F62 /* torso land 3.png */; };
 		7F703AFE19A939DA006A0F62 /* torso land 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0719A939DA006A0F62 /* torso land 4.png */; };
 		7F703AFF19A939DA006A0F62 /* torso land 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F703A0819A939DA006A0F62 /* torso land 5.png */; };
@@ -362,8 +345,6 @@
 		7F70392C19A939DA006A0F62 /* close up port 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 2.png"; sourceTree = "<group>"; };
 		7F70392D19A939DA006A0F62 /* close up port 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 20.png"; sourceTree = "<group>"; };
 		7F70392E19A939DA006A0F62 /* close up port 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 21.png"; sourceTree = "<group>"; };
-		7F70392F19A939DA006A0F62 /* close up port 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 22.png"; sourceTree = "<group>"; };
-		7F70393019A939DA006A0F62 /* close up port 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 23.png"; sourceTree = "<group>"; };
 		7F70393119A939DA006A0F62 /* close up port 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 3.png"; sourceTree = "<group>"; };
 		7F70393219A939DA006A0F62 /* close up port 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 4.png"; sourceTree = "<group>"; };
 		7F70393319A939DA006A0F62 /* close up port 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up port 5.png"; sourceTree = "<group>"; };
@@ -385,8 +366,6 @@
 		7F70394419A939DA006A0F62 /* As land 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 2.png"; sourceTree = "<group>"; };
 		7F70394519A939DA006A0F62 /* As land 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 20.png"; sourceTree = "<group>"; };
 		7F70394619A939DA006A0F62 /* As land 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 21.png"; sourceTree = "<group>"; };
-		7F70394719A939DA006A0F62 /* As land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 22.png"; sourceTree = "<group>"; };
-		7F70394819A939DA006A0F62 /* As land 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 23.png"; sourceTree = "<group>"; };
 		7F70394919A939DA006A0F62 /* As land 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 3.png"; sourceTree = "<group>"; };
 		7F70394A19A939DA006A0F62 /* As land 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 4.png"; sourceTree = "<group>"; };
 		7F70394B19A939DA006A0F62 /* As land 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 5.png"; sourceTree = "<group>"; };
@@ -408,8 +387,6 @@
 		7F70395C19A939DA006A0F62 /* head&shoulders port 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 2.png"; sourceTree = "<group>"; };
 		7F70395D19A939DA006A0F62 /* head&shoulders port 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 20.png"; sourceTree = "<group>"; };
 		7F70395E19A939DA006A0F62 /* head&shoulders port 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 21.png"; sourceTree = "<group>"; };
-		7F70395F19A939DA006A0F62 /* head&shoulders port 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 22.png"; sourceTree = "<group>"; };
-		7F70396019A939DA006A0F62 /* head&shoulders port 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 23.png"; sourceTree = "<group>"; };
 		7F70396119A939DA006A0F62 /* head&shoulders port 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 3.png"; sourceTree = "<group>"; };
 		7F70396219A939DA006A0F62 /* head&shoulders port 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 4.png"; sourceTree = "<group>"; };
 		7F70396319A939DA006A0F62 /* head&shoulders port 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders port 5.png"; sourceTree = "<group>"; };
@@ -431,8 +408,6 @@
 		7F70397419A939DA006A0F62 /* head&chest port 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 2.png"; sourceTree = "<group>"; };
 		7F70397519A939DA006A0F62 /* head&chest port 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 20.png"; sourceTree = "<group>"; };
 		7F70397619A939DA006A0F62 /* head&chest port 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 21.png"; sourceTree = "<group>"; };
-		7F70397719A939DA006A0F62 /* head&chest port 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 22.png"; sourceTree = "<group>"; };
-		7F70397819A939DA006A0F62 /* head&chest port 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 23.png"; sourceTree = "<group>"; };
 		7F70397919A939DA006A0F62 /* head&chest port 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 3.png"; sourceTree = "<group>"; };
 		7F70397A19A939DA006A0F62 /* head&chest port 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 4.png"; sourceTree = "<group>"; };
 		7F70397B19A939DA006A0F62 /* head&chest port 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest port 5.png"; sourceTree = "<group>"; };
@@ -454,8 +429,6 @@
 		7F70398C19A939DA006A0F62 /* torso port 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 2.png"; sourceTree = "<group>"; };
 		7F70398D19A939DA006A0F62 /* torso port 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 20.png"; sourceTree = "<group>"; };
 		7F70398E19A939DA006A0F62 /* torso port 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 21.png"; sourceTree = "<group>"; };
-		7F70398F19A939DA006A0F62 /* torso port 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 22.png"; sourceTree = "<group>"; };
-		7F70399019A939DA006A0F62 /* torso port 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 23.png"; sourceTree = "<group>"; };
 		7F70399119A939DA006A0F62 /* torso port 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 3.png"; sourceTree = "<group>"; };
 		7F70399219A939DA006A0F62 /* torso port 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 4.png"; sourceTree = "<group>"; };
 		7F70399319A939DA006A0F62 /* torso port 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso port 5.png"; sourceTree = "<group>"; };
@@ -477,8 +450,6 @@
 		7F7039A419A939DA006A0F62 /* As port 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 2.png"; sourceTree = "<group>"; };
 		7F7039A519A939DA006A0F62 /* As port 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 20.png"; sourceTree = "<group>"; };
 		7F7039A619A939DA006A0F62 /* As port 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 21.png"; sourceTree = "<group>"; };
-		7F7039A719A939DA006A0F62 /* As port 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 22.png"; sourceTree = "<group>"; };
-		7F7039A819A939DA006A0F62 /* As port 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 23.png"; sourceTree = "<group>"; };
 		7F7039A919A939DA006A0F62 /* As port 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 3.png"; sourceTree = "<group>"; };
 		7F7039AA19A939DA006A0F62 /* As port 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 4.png"; sourceTree = "<group>"; };
 		7F7039AB19A939DA006A0F62 /* As port 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 5.png"; sourceTree = "<group>"; };
@@ -486,7 +457,6 @@
 		7F7039AD19A939DA006A0F62 /* As port 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 7.png"; sourceTree = "<group>"; };
 		7F7039AE19A939DA006A0F62 /* As port 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 8.png"; sourceTree = "<group>"; };
 		7F7039AF19A939DA006A0F62 /* As port 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As port 9.png"; sourceTree = "<group>"; };
-		7F7039B119A939DA006A0F62 /* close up  land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up  land.png"; sourceTree = "<group>"; };
 		7F7039B219A939DA006A0F62 /* close up land 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 1.png"; sourceTree = "<group>"; };
 		7F7039B319A939DA006A0F62 /* close up land 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 10.png"; sourceTree = "<group>"; };
 		7F7039B419A939DA006A0F62 /* close up land 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 11.png"; sourceTree = "<group>"; };
@@ -501,7 +471,6 @@
 		7F7039BD19A939DA006A0F62 /* close up land 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 2.png"; sourceTree = "<group>"; };
 		7F7039BE19A939DA006A0F62 /* close up land 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 20.png"; sourceTree = "<group>"; };
 		7F7039BF19A939DA006A0F62 /* close up land 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 21.png"; sourceTree = "<group>"; };
-		7F7039C019A939DA006A0F62 /* close up land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 22.png"; sourceTree = "<group>"; };
 		7F7039C119A939DA006A0F62 /* close up land 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 3.png"; sourceTree = "<group>"; };
 		7F7039C219A939DA006A0F62 /* close up land 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 4.png"; sourceTree = "<group>"; };
 		7F7039C319A939DA006A0F62 /* close up land 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 5.png"; sourceTree = "<group>"; };
@@ -544,7 +513,6 @@
 		7F7039EA19A939DA006A0F62 /* head&chest land 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 2.png"; sourceTree = "<group>"; };
 		7F7039EB19A939DA006A0F62 /* head&chest land 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 20.png"; sourceTree = "<group>"; };
 		7F7039EC19A939DA006A0F62 /* head&chest land 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 21.png"; sourceTree = "<group>"; };
-		7F7039ED19A939DA006A0F62 /* head&chest land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 22.png"; sourceTree = "<group>"; };
 		7F7039EE19A939DA006A0F62 /* head&chest land 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 3.png"; sourceTree = "<group>"; };
 		7F7039EF19A939DA006A0F62 /* head&chest land 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 4.png"; sourceTree = "<group>"; };
 		7F7039F019A939DA006A0F62 /* head&chest land 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 5.png"; sourceTree = "<group>"; };
@@ -566,8 +534,6 @@
 		7F703A0119A939DA006A0F62 /* torso land 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 2.png"; sourceTree = "<group>"; };
 		7F703A0219A939DA006A0F62 /* torso land 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 20.png"; sourceTree = "<group>"; };
 		7F703A0319A939DA006A0F62 /* torso land 21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 21.png"; sourceTree = "<group>"; };
-		7F703A0419A939DA006A0F62 /* torso land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 22.png"; sourceTree = "<group>"; };
-		7F703A0519A939DA006A0F62 /* torso land 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 23.png"; sourceTree = "<group>"; };
 		7F703A0619A939DA006A0F62 /* torso land 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 3.png"; sourceTree = "<group>"; };
 		7F703A0719A939DA006A0F62 /* torso land 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 4.png"; sourceTree = "<group>"; };
 		7F703A0819A939DA006A0F62 /* torso land 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 5.png"; sourceTree = "<group>"; };
@@ -734,8 +700,6 @@
 				7F70392C19A939DA006A0F62 /* close up port 2.png */,
 				7F70392D19A939DA006A0F62 /* close up port 20.png */,
 				7F70392E19A939DA006A0F62 /* close up port 21.png */,
-				7F70392F19A939DA006A0F62 /* close up port 22.png */,
-				7F70393019A939DA006A0F62 /* close up port 23.png */,
 				7F70393119A939DA006A0F62 /* close up port 3.png */,
 				7F70393219A939DA006A0F62 /* close up port 4.png */,
 				7F70393319A939DA006A0F62 /* close up port 5.png */,
@@ -764,8 +728,6 @@
 				7F70394419A939DA006A0F62 /* As land 2.png */,
 				7F70394519A939DA006A0F62 /* As land 20.png */,
 				7F70394619A939DA006A0F62 /* As land 21.png */,
-				7F70394719A939DA006A0F62 /* As land 22.png */,
-				7F70394819A939DA006A0F62 /* As land 23.png */,
 				7F70394919A939DA006A0F62 /* As land 3.png */,
 				7F70394A19A939DA006A0F62 /* As land 4.png */,
 				7F70394B19A939DA006A0F62 /* As land 5.png */,
@@ -794,8 +756,6 @@
 				7F70395C19A939DA006A0F62 /* head&shoulders port 2.png */,
 				7F70395D19A939DA006A0F62 /* head&shoulders port 20.png */,
 				7F70395E19A939DA006A0F62 /* head&shoulders port 21.png */,
-				7F70395F19A939DA006A0F62 /* head&shoulders port 22.png */,
-				7F70396019A939DA006A0F62 /* head&shoulders port 23.png */,
 				7F70396119A939DA006A0F62 /* head&shoulders port 3.png */,
 				7F70396219A939DA006A0F62 /* head&shoulders port 4.png */,
 				7F70396319A939DA006A0F62 /* head&shoulders port 5.png */,
@@ -824,8 +784,6 @@
 				7F70397419A939DA006A0F62 /* head&chest port 2.png */,
 				7F70397519A939DA006A0F62 /* head&chest port 20.png */,
 				7F70397619A939DA006A0F62 /* head&chest port 21.png */,
-				7F70397719A939DA006A0F62 /* head&chest port 22.png */,
-				7F70397819A939DA006A0F62 /* head&chest port 23.png */,
 				7F70397919A939DA006A0F62 /* head&chest port 3.png */,
 				7F70397A19A939DA006A0F62 /* head&chest port 4.png */,
 				7F70397B19A939DA006A0F62 /* head&chest port 5.png */,
@@ -854,8 +812,6 @@
 				7F70398C19A939DA006A0F62 /* torso port 2.png */,
 				7F70398D19A939DA006A0F62 /* torso port 20.png */,
 				7F70398E19A939DA006A0F62 /* torso port 21.png */,
-				7F70398F19A939DA006A0F62 /* torso port 22.png */,
-				7F70399019A939DA006A0F62 /* torso port 23.png */,
 				7F70399119A939DA006A0F62 /* torso port 3.png */,
 				7F70399219A939DA006A0F62 /* torso port 4.png */,
 				7F70399319A939DA006A0F62 /* torso port 5.png */,
@@ -884,8 +840,6 @@
 				7F7039A419A939DA006A0F62 /* As port 2.png */,
 				7F7039A519A939DA006A0F62 /* As port 20.png */,
 				7F7039A619A939DA006A0F62 /* As port 21.png */,
-				7F7039A719A939DA006A0F62 /* As port 22.png */,
-				7F7039A819A939DA006A0F62 /* As port 23.png */,
 				7F7039A919A939DA006A0F62 /* As port 3.png */,
 				7F7039AA19A939DA006A0F62 /* As port 4.png */,
 				7F7039AB19A939DA006A0F62 /* As port 5.png */,
@@ -900,7 +854,6 @@
 		7F7039B019A939DA006A0F62 /* 6-close-up-land */ = {
 			isa = PBXGroup;
 			children = (
-				7F7039B119A939DA006A0F62 /* close up  land.png */,
 				7F7039B219A939DA006A0F62 /* close up land 1.png */,
 				7F7039B319A939DA006A0F62 /* close up land 10.png */,
 				7F7039B419A939DA006A0F62 /* close up land 11.png */,
@@ -915,7 +868,6 @@
 				7F7039BD19A939DA006A0F62 /* close up land 2.png */,
 				7F7039BE19A939DA006A0F62 /* close up land 20.png */,
 				7F7039BF19A939DA006A0F62 /* close up land 21.png */,
-				7F7039C019A939DA006A0F62 /* close up land 22.png */,
 				7F7039C119A939DA006A0F62 /* close up land 3.png */,
 				7F7039C219A939DA006A0F62 /* close up land 4.png */,
 				7F7039C319A939DA006A0F62 /* close up land 5.png */,
@@ -972,7 +924,6 @@
 				7F7039EA19A939DA006A0F62 /* head&chest land 2.png */,
 				7F7039EB19A939DA006A0F62 /* head&chest land 20.png */,
 				7F7039EC19A939DA006A0F62 /* head&chest land 21.png */,
-				7F7039ED19A939DA006A0F62 /* head&chest land 22.png */,
 				7F7039EE19A939DA006A0F62 /* head&chest land 3.png */,
 				7F7039EF19A939DA006A0F62 /* head&chest land 4.png */,
 				7F7039F019A939DA006A0F62 /* head&chest land 5.png */,
@@ -1001,8 +952,6 @@
 				7F703A0119A939DA006A0F62 /* torso land 2.png */,
 				7F703A0219A939DA006A0F62 /* torso land 20.png */,
 				7F703A0319A939DA006A0F62 /* torso land 21.png */,
-				7F703A0419A939DA006A0F62 /* torso land 22.png */,
-				7F703A0519A939DA006A0F62 /* torso land 23.png */,
 				7F703A0619A939DA006A0F62 /* torso land 3.png */,
 				7F703A0719A939DA006A0F62 /* torso land 4.png */,
 				7F703A0819A939DA006A0F62 /* torso land 5.png */,
@@ -1274,7 +1223,6 @@
 				7F703ACA19A939DA006A0F62 /* head&shoulders land 17.png in Resources */,
 				7F703AFF19A939DA006A0F62 /* torso land 5.png in Resources */,
 				7F703A3119A939DA006A0F62 /* close up port 3.png in Resources */,
-				7F703AFB19A939DA006A0F62 /* torso land 22.png in Resources */,
 				7F703A7619A939DA006A0F62 /* head&chest port 3.png in Resources */,
 				7F703A6319A939DA006A0F62 /* head&shoulders port 7.png in Resources */,
 				7F703ACC19A939DA006A0F62 /* head&shoulders land 19.png in Resources */,
@@ -1289,7 +1237,6 @@
 				7F703A8F19A939DA006A0F62 /* torso port 5.png in Resources */,
 				7F2824EB1A489DBE0060394B /* LANDSCAPE 4 640x360.png in Resources */,
 				7F703AEA19A939DA006A0F62 /* head&chest land 7.png in Resources */,
-				7F703AA219A939DA006A0F62 /* As port 22.png in Resources */,
 				7F703AA019A939DA006A0F62 /* As port 20.png in Resources */,
 				7F703B1119A939DA006A0F62 /* PORTRAIT 5.png in Resources */,
 				7F703ABB19A939DA006A0F62 /* close up land 3.png in Resources */,
@@ -1306,16 +1253,13 @@
 				7F703A7719A939DA006A0F62 /* head&chest port 4.png in Resources */,
 				7F703AD019A939DA006A0F62 /* head&shoulders land 3.png in Resources */,
 				7F703AE319A939DA006A0F62 /* head&chest land 20.png in Resources */,
-				7F703AA319A939DA006A0F62 /* As port 23.png in Resources */,
 				7F703AB419A939DA006A0F62 /* close up land 17.png in Resources */,
 				7F703A8019A939DA006A0F62 /* torso port 12.png in Resources */,
-				7F703AAB19A939DA006A0F62 /* close up  land.png in Resources */,
 				7F703AAC19A939DA006A0F62 /* close up land 1.png in Resources */,
 				7F703AE019A939DA006A0F62 /* head&chest land 18.png in Resources */,
 				7F703A2219A939DA006A0F62 /* close up port 10.png in Resources */,
 				7F703A3919A939DA006A0F62 /* As land 10.png in Resources */,
 				7F703A9919A939DA006A0F62 /* As port 14.png in Resources */,
-				7F703A8C19A939DA006A0F62 /* torso port 23.png in Resources */,
 				7F703A4119A939DA006A0F62 /* As land 18.png in Resources */,
 				7F703A3D19A939DA006A0F62 /* As land 14.png in Resources */,
 				7F703A3B19A939DA006A0F62 /* As land 12.png in Resources */,
@@ -1330,7 +1274,6 @@
 				7F703A4E19A939DA006A0F62 /* As land 9.png in Resources */,
 				7F703AB219A939DA006A0F62 /* close up land 15.png in Resources */,
 				7F703A3419A939DA006A0F62 /* close up port 6.png in Resources */,
-				7F703A7519A939DA006A0F62 /* head&chest port 23.png in Resources */,
 				7F703ACE19A939DA006A0F62 /* head&shoulders land 20.png in Resources */,
 				7F703A4919A939DA006A0F62 /* As land 4.png in Resources */,
 				7F703A2E19A939DA006A0F62 /* close up port 21.png in Resources */,
@@ -1368,7 +1311,6 @@
 				7F2824CA1A488EFF0060394B /* head+and+chest+360.ctr in Resources */,
 				7F703B0419A939DA006A0F62 /* LANDSCAPE 1.png in Resources */,
 				7F703A3519A939DA006A0F62 /* close up port 7.png in Resources */,
-				7F703A2F19A939DA006A0F62 /* close up port 22.png in Resources */,
 				7F703ADE19A939DA006A0F62 /* head&chest land 16.png in Resources */,
 				7F703ABC19A939DA006A0F62 /* close up land 4.png in Resources */,
 				7F703AFA19A939DA006A0F62 /* torso land 21.png in Resources */,
@@ -1395,7 +1337,6 @@
 				7F703AF419A939DA006A0F62 /* torso land 16.png in Resources */,
 				7F703AEF19A939DA006A0F62 /* torso land 11.png in Resources */,
 				7F703A8819A939DA006A0F62 /* torso port 2.png in Resources */,
-				7F703AFC19A939DA006A0F62 /* torso land 23.png in Resources */,
 				7F703AF719A939DA006A0F62 /* torso land 19.png in Resources */,
 				7F703AC319A939DA006A0F62 /* head&shoulders land 10.png in Resources */,
 				7F703AE719A939DA006A0F62 /* head&chest land 4.png in Resources */,
@@ -1429,7 +1370,6 @@
 				7F703AAA19A939DA006A0F62 /* As port 9.png in Resources */,
 				7F703AE919A939DA006A0F62 /* head&chest land 6.png in Resources */,
 				7F703A2B19A939DA006A0F62 /* close up port 19.png in Resources */,
-				7F703A7419A939DA006A0F62 /* head&chest port 22.png in Resources */,
 				7F703A7819A939DA006A0F62 /* head&chest port 5.png in Resources */,
 				7F703A4219A939DA006A0F62 /* As land 19.png in Resources */,
 				7F703A6119A939DA006A0F62 /* head&shoulders port 5.png in Resources */,
@@ -1437,7 +1377,6 @@
 				7F2824ED1A489DBE0060394B /* LANDSCAPE 6 640x360.png in Resources */,
 				7F703A7D19A939DA006A0F62 /* torso port 1.png in Resources */,
 				7F703A7019A939DA006A0F62 /* head&chest port 19.png in Resources */,
-				7F703A3019A939DA006A0F62 /* close up port 23.png in Resources */,
 				7F703A6B19A939DA006A0F62 /* head&chest port 14.png in Resources */,
 				7F703A6419A939DA006A0F62 /* head&shoulders port 8.png in Resources */,
 				7F703A7A19A939DA006A0F62 /* head&chest port 7.png in Resources */,
@@ -1458,7 +1397,6 @@
 				7F703A5C19A939DA006A0F62 /* head&shoulders port 21.png in Resources */,
 				7F703B0619A939DA006A0F62 /* LANDSCAPE 3.png in Resources */,
 				7F703A4819A939DA006A0F62 /* As land 3.png in Resources */,
-				7F703A4619A939DA006A0F62 /* As land 22.png in Resources */,
 				7F2824F01A489DBE0060394B /* LANDSCAPE 9 640x360.png in Resources */,
 				7F703A2A19A939DA006A0F62 /* close up port 18.png in Resources */,
 				7F703AB719A939DA006A0F62 /* close up land 2.png in Resources */,
@@ -1469,27 +1407,23 @@
 				7F703ABF19A939DA006A0F62 /* close up land 7.png in Resources */,
 				7F703A7119A939DA006A0F62 /* head&chest port 2.png in Resources */,
 				7F2824CC1A488EFF0060394B /* knees+up+360.ctr in Resources */,
-				7F703A5D19A939DA006A0F62 /* head&shoulders port 22.png in Resources */,
 				7F2824C81A488EFF0060394B /* american+shot+360.ctr in Resources */,
 				7F703A8919A939DA006A0F62 /* torso port 20.png in Resources */,
 				7F703B3619A9DDDB006A0F62 /* passThrough.fsh in Resources */,
 				7F703B0C19A939DA006A0F62 /* LANDSCAPE 9.png in Resources */,
 				7F703A3319A939DA006A0F62 /* close up port 5.png in Resources */,
 				7F703AA519A939DA006A0F62 /* As port 4.png in Resources */,
-				7F703A5E19A939DA006A0F62 /* head&shoulders port 23.png in Resources */,
 				7F703A4C19A939DA006A0F62 /* As land 7.png in Resources */,
 				7F703AC619A939DA006A0F62 /* head&shoulders land 13.png in Resources */,
 				7F703AF219A939DA006A0F62 /* torso land 14.png in Resources */,
 				7F703A7919A939DA006A0F62 /* head&chest port 6.png in Resources */,
 				7F703A2319A939DA006A0F62 /* close up port 11.png in Resources */,
-				7F703ABA19A939DA006A0F62 /* close up land 22.png in Resources */,
 				7F703AC419A939DA006A0F62 /* head&shoulders land 11.png in Resources */,
 				7F703A5A19A939DA006A0F62 /* head&shoulders port 2.png in Resources */,
 				7F703AC219A939DA006A0F62 /* head&shoulders land 1.png in Resources */,
 				7F703AF319A939DA006A0F62 /* torso land 15.png in Resources */,
 				7F703A4419A939DA006A0F62 /* As land 20.png in Resources */,
 				7F703B3719A9DDDB006A0F62 /* passThrough.vsh in Resources */,
-				7F703A8B19A939DA006A0F62 /* torso port 22.png in Resources */,
 				7F703B0219A939DA006A0F62 /* torso land 8.png in Resources */,
 				7F703A6019A939DA006A0F62 /* head&shoulders port 4.png in Resources */,
 				7F703A9B19A939DA006A0F62 /* As port 16.png in Resources */,
@@ -1511,7 +1445,6 @@
 				7F703AF019A939DA006A0F62 /* torso land 12.png in Resources */,
 				7F703A8D19A939DA006A0F62 /* torso port 3.png in Resources */,
 				7F703A4019A939DA006A0F62 /* As land 17.png in Resources */,
-				7F703A4719A939DA006A0F62 /* As land 23.png in Resources */,
 				7F703AEE19A939DA006A0F62 /* torso land 10.png in Resources */,
 				7F703A8319A939DA006A0F62 /* torso port 15.png in Resources */,
 				7F703AC119A939DA006A0F62 /* close up land 9.png in Resources */,
@@ -1526,7 +1459,6 @@
 				7F703A5B19A939DA006A0F62 /* head&shoulders port 20.png in Resources */,
 				7F703B0F19A939DA006A0F62 /* PORTRAIT 3.png in Resources */,
 				7F703A4A19A939DA006A0F62 /* As land 5.png in Resources */,
-				7F703AE519A939DA006A0F62 /* head&chest land 22.png in Resources */,
 				7F703B0D19A939DA006A0F62 /* PORTRAIT 1.png in Resources */,
 				7F703AD719A939DA006A0F62 /* head&chest land 1.png in Resources */,
 				7F2824EF1A489DBE0060394B /* LANDSCAPE 8 640x360.png in Resources */,

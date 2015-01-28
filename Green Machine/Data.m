@@ -59,7 +59,7 @@
                                 @(100),@(100),@(100),@(100)];
 
     
-    for ( int index = 0; index < 24; index ++ ) {
+    for ( int index = 0; index < 21; index ++ ) {
         DataBackground * background = [[DataBackground alloc]init:nil];
         background.isLocked = [isLocked objectAtIndex:index];
         background.cost = [cost objectAtIndex:index];

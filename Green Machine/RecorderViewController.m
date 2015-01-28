@@ -172,11 +172,11 @@
 
 -(IBAction)leftPressed:(id)sender {
     if ( data.currentBackground.intValue > 0) data.currentBackground = [NSNumber numberWithInt:data.currentBackground.intValue-1];
-    else data.currentBackground = [NSNumber numberWithInt:22];
+    else data.currentBackground = [NSNumber numberWithInt:20];
     [self updateBackgroundImage];
 }
 -(IBAction)rightPressed:(id)sender {
-    if ( data.currentBackground.intValue < 22 ) data.currentBackground = [NSNumber numberWithInt:data.currentBackground.intValue+1];
+    if ( data.currentBackground.intValue < 20 ) data.currentBackground = [NSNumber numberWithInt:data.currentBackground.intValue+1];
     else data.currentBackground = [NSNumber numberWithInt:0];
     [self updateBackgroundImage];
 }
