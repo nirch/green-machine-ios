@@ -51,6 +51,8 @@
         buttonRecord.alpha = 1.0;
         buttonReady.alpha = 1.0;
         viewDone.alpha = 1.0;
+        [cancelRecordingButton removeFromSuperview];
+        cancelRecordingButton = nil;
     }];
 }
 -(void) cancelRecordingPressed {
