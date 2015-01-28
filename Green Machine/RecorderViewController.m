@@ -145,6 +145,7 @@
 - (void) updateBackgroundImage {
     DataBackground * background = [data.backgrounds objectAtIndex:data.currentBackground.intValue];
     if ( background.isLocked.boolValue ) {
+        labelBackgroundCost.text = [NSString stringWithFormat:@"%@", background.cost];
         [self fadeIn:viewLocked];
         [self fadeIn:viewLock];
     }
@@ -160,11 +161,7 @@
     if (UIDeviceOrientationIsLandscape(deviceOrientation))
         name = [name stringByReplacingOccurrencesOfString:@"port" withString:@"land"];
 
-        
     imageViewBackground.image = [UIImage imageNamed:name];
-    if ( !background.isLocked.boolValue ) {
-        labelBackgroundCost.text = [NSString stringWithFormat:@"%@", background.cost];
-    }
 }
 
 - (void)didReceiveMemoryWarning
