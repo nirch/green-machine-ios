@@ -292,10 +292,10 @@
     if ( alertView == alertLockedBackground ) {
         [self buyBackgroundPressed:nil];
     }
-    if ( alertView == alertBuyCredits ) {
+    else if ( alertView == alertBuyCredits ) {
         [self.view addSubview:controllerBuyCredit.view];
     }
-    if ( alertView == alertUseCredits ) {
+    else if ( alertView == alertUseCredits ) {
         DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
         background.isLocked = [NSNumber numberWithBool:false];
         data.credits = [NSNumber numberWithInt:data.credits.intValue - background.cost.intValue];
@@ -308,6 +308,14 @@
             [self fadeOut:viewLocked];
             [self fadeOut:viewLock];
         }
+    }
+    else {
+        // Remove movie
+        NSData * movie = [movies objectAtIndex:selectedMovie];
+        [movies removeObject:movie];
+        [[Data shared] setObject:movies forKey:@"movies"];
+        [[Data shared] synchronize];
+        [self refreshMovies];
     }
 }
 
@@ -456,18 +464,4 @@
     selectedMovie = sender.tag;
     [[[UIAlertView alloc]initWithTitle:@"Delete this movie?" message:@"Do you want to delete this movie? You can not undo this action" delegate:self cancelButtonTitle:@"Keep" otherButtonTitles:@"Delete", nil]show ];
 }
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if ( buttonIndex == 1 ) {
-        NSData * movie = [movies objectAtIndex:selectedMovie];
-        [movies removeObject:movie];
-        [[Data shared] setObject:movies forKey:@"movies"];
-        [[Data shared] synchronize];
-        [self refreshMovies];
-    }
-}
-
-
-
-
 @end
