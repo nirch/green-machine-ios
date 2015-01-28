@@ -57,7 +57,7 @@
 }
 -(void) cancelRecordingPressed {
     buttonToggleCamera.hidden = false;
-    imageViewBackground.alpha = 0.0;
+    imageViewBackground.alpha = 1.0;
     [writerView.videoProcessor stopRecording];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
     buttonReady.alpha = 1.0;
@@ -81,8 +81,6 @@
         return;
     }
 
-    // Hide siluevte
-//    [self.view bringSubviewToFront:writerView.view];
     imageViewBackground.alpha = 0.0;
     
     if ( ![[Data shared] objectForKey:@"UnlimitedTime"] ) {
