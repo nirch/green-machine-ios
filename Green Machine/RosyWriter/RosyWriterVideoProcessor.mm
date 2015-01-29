@@ -147,9 +147,17 @@
     isRunningGreenMachine = true;
     
     
-    NSString *backgroundImageName = [NSString stringWithFormat:@"LANDSCAPE %d 640x360.png", [[Data shared].currentBackground intValue]+1];
+    NSString *backgroundImageName;
+    if ( [Data shared].usingFrontCamera)
+        backgroundImageName = [NSString stringWithFormat:@"LANDSCAPE %d 640x360 U.png", [[Data shared].currentBackground intValue]+1];
+    else
+        backgroundImageName = [NSString stringWithFormat:@"LANDSCAPE %d 640x360.png", [[Data shared].currentBackground intValue]+1];
+    
+    
     NSString * backgroundImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:backgroundImageName ofType:nil];
     UIImage *backgroundImage = [UIImage imageWithContentsOfFile:backgroundImagePath];
+    
+    
     image_type *background_image4 = CVtool::DecomposeUIimage(backgroundImage);
     m_background_image = image3_from(background_image4, NULL);
     image_destroy(background_image4, 1);
