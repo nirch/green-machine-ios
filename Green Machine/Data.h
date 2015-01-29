@@ -20,6 +20,8 @@
 @property ( nonatomic, retain) NSNumber * credits;
 
 @property ( atomic) BOOL usingFrontCamera;
+@property ( atomic) BOOL playingMovie;
+
 @property ( nonatomic, retain) NSArray * formats;
 @property ( nonatomic, retain) NSArray * contours;
 @property ( nonatomic, retain) NSNumber * currentFormat;

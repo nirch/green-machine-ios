@@ -12,6 +12,16 @@
 
 @implementation AppDelegate
 
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if ( [Data shared].playingMovie)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskLandscape;
+}
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Localytics autoIntegrate:@"70424e1ab6f163aeba16863-4d895c5a-9b7a-11e4-2a6c-004a77f8b47f" launchOptions:launchOptions];

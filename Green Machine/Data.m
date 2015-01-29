@@ -22,6 +22,7 @@
 
 -(void) reset {
     self.usingFrontCamera = false;
+    self.playingMovie = false;
     self.backgrounds = [NSMutableArray array];
     [self.backgrounds removeAllObjects];
     self.currentBackground = [NSNumber numberWithInt:0];

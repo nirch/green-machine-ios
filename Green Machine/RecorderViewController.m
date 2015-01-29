@@ -93,6 +93,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneRecording) name:@"doneRecording" object:nil];
 }
 
+-(void ) viewWillAppear:(BOOL)animated {
+    [UIViewController attemptRotationToDeviceOrientation];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -363,7 +366,6 @@
     return scrollerMovies;
 }
 
-
 - (void)orientationChanged:(NSNotification *)notification
 {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -399,14 +401,15 @@
 
 -(void)playMovieFinished:(NSNotification*)aNotification
 {
+    [Data shared].playingMovie = false;
+    [UIViewController attemptRotationToDeviceOrientation];
     MPMoviePlayerController* player=[aNotification object];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:player];
-    
-    player.view.frame = CGRectMake(0, 0, 0, 0);
-    // Release the movie instance created in playMovieAtURL
 }
+
+
 -(IBAction)playMovie:(UIButton *)sender {
     [Localytics tagEvent:@"PlayMovie pressed"];
     selectedMovie = sender.tag;
@@ -414,16 +417,12 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
-    NSLog ( @"Playing: %@", movieURL);
-    
-    moviePlayer =  [[MPMoviePlayerController alloc]
-                    initWithContentURL:movieURL];
-    
-    moviePlayer.controlStyle = MPMovieControlStyleDefault;
-    moviePlayer.shouldAutoplay = YES;
-    [self.view addSubview:moviePlayer.view];
-    [moviePlayer setFullscreen:YES animated:YES];
-
+    [Data shared].playingMovie = true;
+    MPMoviePlayerViewController * player = [[MPMoviePlayerViewController alloc]initWithContentURL:movieURL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMovieFinished:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:[player moviePlayer]];
+    [self presentMoviePlayerViewControllerAnimated:player];
 }
 
 -(IBAction)appReferelPressed:(id)sender {
