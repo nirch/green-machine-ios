@@ -282,10 +282,16 @@
     
     AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:from]];
     AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+
     CMTime time = [asset duration];
     time.value = 0;
     CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
-    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    UIImage *thumbnail;
+    if ( [Data shared].usingFrontCamera)
+        thumbnail = [UIImage imageWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationDown];
+    else
+        thumbnail = [UIImage imageWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    
     NSData * data = UIImageJPEGRepresentation(thumbnail,1.0);
     CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
     NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
