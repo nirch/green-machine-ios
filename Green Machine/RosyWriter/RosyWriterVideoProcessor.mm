@@ -505,7 +505,6 @@
                     NSLog(@"%@", error);
                 }
             });
-
             
 //          copied from  saveMovieToCameraRoll
             recordingWillBeStopped = NO;
@@ -560,12 +559,9 @@
 
 - (CMSampleBufferRef)processFrame:(CMSampleBufferRef)sampleBuffer
 {
-        CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        
-        
-        //[self savePixelBuffer:pixelBuffer withName:@"Original"];
-        
-        // Converting the given PixelBuffer to image_type (and then converting it to BGR)
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    
+    // Converting the given PixelBuffer to image_type (and then converting it to BGR)
     if ( capturing1280X720 ) {
         m_original_image = CVtool::CVPixelBufferRef_to_image_sample2(pixelBuffer, m_original_image);
     }
@@ -573,35 +569,9 @@
         m_original_image = CVtool::CVPixelBufferRef_to_image_crop(pixelBuffer, 0, 60, 640, 360, m_original_image);
         
     }
-        //m_original_image = CVtool::CVPixelBufferRef_to_image(pixelBuffer, m_original_image);
         image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
         
         // Extracting the foreground
-/*
-            // SAVING IMAGE TO DISK
-        if ( !imageCreated ) {
-            imageCreated = true;
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-
-            NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
-            NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
-            NSLog ( @"Saving: %@", dataPath);
-            image_type *image = image4_from(original_bgr_image, NULL);
-            UIImage *bgImage = CVtool::CreateUIImage(image);
-            NSData * data = UIImageJPEGRepresentation(bgImage, 1.0);
-            NSMutableArray * movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
-            if ( !movies ) movies = [NSMutableArray array];
-            [movies insertObject:data atIndex:0];
-            [[Data shared] setObject:movies forKey:@"movies"];
-            [[Data shared] synchronize];
-            
-            [data  writeToFile:dataPath atomically:YES];
-            image_destroy(image, 1);
-        }
-*/
-        // [self saveImageType3:original_bgr_image];
-        
         m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
     
         // Stitching the foreground and the background together (and then converting to RGB)
@@ -611,14 +581,8 @@
         // Destroying the temp image
         image_destroy(original_bgr_image, 1);
     
-        //[self saveImageType3:m_output_image withName:@"before"];
-    
         // Converting the result of the algo into CVPixelBuffer
         CVImageBufferRef processedPixelBuffer = CVtool::CVPixelBufferRef_from_image(m_output_image);
-    
-        //image_type *processedImageType = CVtool::CVPixelBufferRef_to_image(processedPixelBuffer, NULL);
-        //[self savePixelBuffer:processedPixelBuffer withName:@"afterPixel"];
-        //[self saveImageType3:processedImageType withName:@"afterImageType"];
     
         // Getting the sample timing info from the sample buffer
         CMSampleTimingInfo sampleTimingInfo = kCMTimingInfoInvalid;
@@ -631,12 +595,8 @@
         CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, processedPixelBuffer, true, NULL, NULL, videoInfo, &sampleTimingInfo, &processedSampleBuffer);
     
         CFRelease(processedPixelBuffer);
-        //CFRelease(videoInfo);
     
         return processedSampleBuffer;
-    
-        // Updating the current pixelbuffer with the new foreground/background image
-        //[self updatePixelBuffer:pixelBuffer fromImageType:m_output_image];
 }
 
 #pragma mark Capture
@@ -660,11 +620,6 @@
 		if ( self.videoType == 0 )
 			self.videoType = CMFormatDescriptionGetMediaSubType( formatDescription );
         
-		//CVImageBufferRef rawPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-		
-		// Synchronously process the pixel buffer to de-green it.
-		//[self processPixelBuffer:pixelBuffer];
-        
         if ( isRunningGreenMachine )
         {
             // GreenMachine
@@ -681,9 +636,7 @@
 
 		if ( !err ) {
 			dispatch_async(dispatch_get_main_queue(), ^{
-				//CVPixelBufferRef pixBuf = (CVPixelBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
                 CMSampleBufferRef sbuf = (CMSampleBufferRef)CMBufferQueueDequeueAndRetain(previewBufferQueue);
-                //NSLog(@"after dequeue %ld", CFGetRetainCount(processedSampleBuffer));
                 if (sbuf) {
                     CVImageBufferRef pixBuf = CMSampleBufferGetImageBuffer(sbuf);
                     
@@ -696,7 +649,6 @@
 
     CFRetain(sampleBuffer);
     CFRetain(formatDescription);
-    // if (connection == videoConnection && processedSampleBuffer) CFRetain(processedSampleBuffer);
     dispatch_async(movieWritingQueue, ^{
         
         if ( assetWriter ) {
@@ -742,8 +694,7 @@
         }
         CFRelease(sampleBuffer);
         CFRelease(formatDescription);
-//        if ( m_foregroundExtraction != NULL)
-            if (connection == videoConnection && processedSampleBuffer) CFRelease(processedSampleBuffer);
+        if (connection == videoConnection && processedSampleBuffer) CFRelease(processedSampleBuffer);
     });
 }
 
