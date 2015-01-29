@@ -103,8 +103,7 @@
                 break;
             }
             case SKPaymentTransactionStateFailed: {
-                [Localytics tagEvent:@"Payment Failed"];
-                [[[UIAlertView alloc]initWithTitle:@"AppStore issue" message:[NSString stringWithFormat:@"Your purchase has failed, please try again. erorr: %@", transaction.error.description] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil]show ];
+                [Localytics tagEvent:@"Payment Canceled"];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
             }
