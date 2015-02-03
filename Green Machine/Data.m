@@ -67,7 +67,7 @@
         [self.backgrounds addObject:background];
     }
     
-    [self setObject:@"YES" forKey:@"UnlimitedTime"];
+//    [self setObject:@"YES" forKey:@"UnlimitedTime"];
     [self synchronize];
 }
 
