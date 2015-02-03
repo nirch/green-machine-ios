@@ -202,7 +202,7 @@
     movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
     if ( ! movies )
         movies = [[NSMutableArray alloc]init];
-    if ( [[scrollerMovies subviews] count] != [movies count] ) {
+    if ( ([[scrollerMovies subviews] count]/3) != [movies count] ) {
         for ( UIView * view in [scrollerMovies subviews] ) {
             [view removeFromSuperview];
         }
