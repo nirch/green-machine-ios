@@ -84,6 +84,8 @@
     
     if ( [Data shared].usingFrontCamera )
         oglView.transform = [self.videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
+    else
+        oglView.transform = CGAffineTransformIdentity;
 }
 - (void)viewDidLoad
 {
