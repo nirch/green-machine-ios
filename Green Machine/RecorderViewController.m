@@ -366,7 +366,7 @@
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return scrollerMovies;
 }
-
+/*
 - (void)orientationChanged:(NSNotification *)notification
 {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -381,12 +381,8 @@
         viewInstructionsLandscape.alpha = 0.0;
     }
     [self updateBackgroundImage];
-//    if ( deviceOrientation == UIDeviceOrientationPortrait)
-//        [self.view sendSubviewToBack:writerView.view];
-//    if ( deviceOrientation == UIDeviceOrientationPortraitUpsideDown)
-//        [self.view bringSubviewToFront:writerView.view];
 }
-
+*/
 
 -(IBAction)toggleCameraPressed:(id)sender {
     [Data shared].usingFrontCamera = ![Data shared].usingFrontCamera;
