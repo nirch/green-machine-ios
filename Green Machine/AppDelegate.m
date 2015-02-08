@@ -97,7 +97,7 @@
                     [data setObject:@"YES" forKey:@"UnlimitedTime"];
                 }
                 else {
-                    int index = [productIdentifiers indexOfObject:productid];
+                    NSInteger index = [productIdentifiers indexOfObject:productid];
                     NSArray * productPicks = [data objectForKey:@"productpicks"];
                     int currnetpicks = [[data objectForKey:@"currentPicks"] intValue];
                     currnetpicks += [[productPicks objectAtIndex:index]intValue];

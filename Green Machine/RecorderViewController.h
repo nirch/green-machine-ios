@@ -20,7 +20,7 @@
     BuyCreditsViewController * controllerBuyCredit;
     
     NSMutableArray * movies;
-    int selectedMovie;
+    NSInteger selectedMovie;
     
     
     IBOutlet UIButton * buttonRecord;

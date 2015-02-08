@@ -53,7 +53,7 @@
     products = response.products;
     int i = 0;
     for ( SKProduct * product in response.products ) {
-        int index = [productIdentifiers indexOfObject:product.productIdentifier];
+        NSInteger index = [productIdentifiers indexOfObject:product.productIdentifier];
         NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
         [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
         [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];

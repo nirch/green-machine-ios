@@ -144,7 +144,7 @@
 }
 
 - (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName {
-    [dict setObject:[NSNumber numberWithInt:value] forKey:defaultName];
+    [dict setObject:[NSNumber numberWithInteger:value] forKey:defaultName];
 }
 - (void)setFloat:(float)value forKey:(NSString *)defaultName {
     [dict setObject:[NSNumber numberWithFloat:value] forKey:defaultName];

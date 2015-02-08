@@ -1147,7 +1147,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C729E762050646497A40C9F8 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -1200,7 +1200,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A351D62C34FAEBFBB467F096 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -1236,6 +1236,12 @@
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Localytics\"",
 					"-DNS_BLOCK_ASSERTIONS=1",
 				);
 				OTHER_LDFLAGS = (

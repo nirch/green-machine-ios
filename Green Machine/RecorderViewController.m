@@ -158,13 +158,21 @@
     }
 
     NSString * format = [data.formats objectAtIndex:bgNameIndex];
-    NSString * name = [NSString stringWithFormat:format, data.currentBackground.intValue+1];
+    int index = 0;
+    if ( data.currentBackground )
+        index = [data.currentBackground intValue];
+    NSString * name = [NSString stringWithFormat:format, index+1];
     
-    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    if (UIDeviceOrientationIsLandscape(deviceOrientation))
+//    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+//    if (UIDeviceOrientationIsLandscape(deviceOrientation))
         name = [name stringByReplacingOccurrencesOfString:@"port" withString:@"land"];
 
-    imageViewBackground.image = [UIImage imageNamed:name];
+    UIImage * image = [UIImage imageNamed:name];
+    if ( image )
+        imageViewBackground.image = [UIImage imageNamed:name];
+    else {
+        ;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -349,7 +357,7 @@
 -(IBAction)beginRecordPressed:(id)sender {
     NSDictionary *dictionary =
     [NSDictionary dictionaryWithObjectsAndKeys:
-     [NSString stringWithFormat:@"%d",bgNameIndex],
+     [NSString stringWithFormat:@"%d",(int)bgNameIndex],
      @"Background id",
      ([Data shared].usingFrontCamera) ? @"Front camera" : @"Back camera",
      @"Cemra used",
@@ -413,7 +421,7 @@
     // The path for the video
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
+    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", (int)selectedMovie]] isDirectory:false];
     [Data shared].playingMovie = true;
     MPMoviePlayerViewController * player = [[MPMoviePlayerViewController alloc]initWithContentURL:movieURL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMovieFinished:)
@@ -446,7 +454,7 @@
     selectedMovie = sender.tag;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", selectedMovie]] isDirectory:false];
+    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", (int)selectedMovie]] isDirectory:false];
     [sharingItems addObject:movieURL];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
     [activityController setValue:@"A movie I created with Green Machine" forKey:@"subject"];
