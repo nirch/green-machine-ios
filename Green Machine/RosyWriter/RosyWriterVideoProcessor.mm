@@ -105,7 +105,7 @@
         
         
         // The path for the video
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
         NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
 
         movieURL = [[NSURL alloc]initFileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, @"Movie.mp4"]];
@@ -275,20 +275,20 @@
     
 
 
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     
     NSString * from = [NSString stringWithFormat:@"%@/%@", documentsDirectory, @"Movie.mp4"];
 
     NSMutableArray * movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
     if ( movies )
-        movieIndex = [NSNumber numberWithInt:[movies count]+1];
+        movieIndex = [NSNumber numberWithInt:(int)[movies count]+1];
     else
         movieIndex = [NSNumber numberWithInt:0];
 
     NSString * to = [NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%@.mp4", movieIndex]];
-    
-    AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:from]];
+    NSURL * url = [NSURL fileURLWithPath:from];
+    AVAsset *asset = [AVAsset assetWithURL:url];
     AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
 
     CMTime time = [asset duration];
@@ -299,39 +299,30 @@
         thumbnail = [UIImage imageWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationDown];
     else
         thumbnail = [UIImage imageWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-    
-    NSData * data = UIImageJPEGRepresentation(thumbnail,1.0);
     CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
-    NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
-    
-    if ( !movies ) movies = [NSMutableArray array];
-    [movies insertObject:data atIndex:0];
-    [[Data shared] setObject:movies forKey:@"movies"];
-    [[Data shared] synchronize];
-    [data  writeToFile:dataPath atomically:YES];
 
     
     [self moveFile:from toFile:to];
 
+//    NSData * data = UIImageJPEGRepresentation(thumbnail,1.0);
+//    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
+//    NSString *path = [NSString stringWithFormat:@"/%@.jpg" , movieIndex];
+//    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:path];
+    
+    if ( !movies ) movies = [NSMutableArray array];
+    NSMutableDictionary * movie = [NSMutableDictionary dictionary];
+//    [movie setObject:data forKey:@"data"];
+    [movie setObject:to forKey:@"file"];
+    [movie setObject:UIImagePNGRepresentation(thumbnail) forKey:@"image"];
+    
+    [movies addObject:movie];
+    [[Data shared] setObject:movies forKey:@"movies"];
+    [[Data shared] synchronize];
     
     
-//	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//	[library writeVideoAtPathToSavedPhotosAlbum:movieURL
-//								completionBlock:^(NSURL *assetURL, NSError *error) {
-//									if (error)
-//										[self showError:error];
-//									else
-//										[self removeFile:movieURL];
-//									
-//									dispatch_async(movieWritingQueue, ^{
-//										recordingWillBeStopped = NO;
-//										self.recording = NO;
-//										
-//										[self.delegate recordingDidStop];
-//									});
-//								}];
-//	[library release];
+//    [data  writeToFile:dataPath atomically:YES];
+
+    
 }
 
 - (void) writeSampleBuffer:(CMSampleBufferRef)sampleBuffer ofType:(NSString *)mediaType withPixelBuffer:(CVPixelBufferRef)processedPixelBuffer
@@ -785,7 +776,7 @@
 
 - (void)saveImage:(UIImage *) image withName:(NSString *)name
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
 
     static int counter = 0;

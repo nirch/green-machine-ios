@@ -207,7 +207,9 @@
 
 
 -(void) refreshMovies {
-    movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    movies =  [[[[Data shared] objectForKey:@"movies"] reverseObjectEnumerator] allObjects];
+//    movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    
     if ( ! movies )
         movies = [[NSMutableArray alloc]init];
     if ( ([[scrollerMovies subviews] count]/3) != [movies count] ) {
@@ -217,8 +219,9 @@
         
         int x = 30;
         int index=0;
-        for ( NSData * dataMovie in movies ) {
-            UIImage * image = [UIImage imageWithData:dataMovie];
+        for ( NSDictionary * movie in movies ) {
+            NSData * dataImage = [movie objectForKey:@"image"];
+            UIImage * image = [UIImage imageWithData:dataImage];
             UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
             int width = 200;
             int height = (int) ( 200.0 / image.size.width * image.size.height);
@@ -323,10 +326,23 @@
     }
     else {
         // Remove movie
-        NSData * movie = [movies objectAtIndex:selectedMovie];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+        NSString * path = [NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", (int)selectedMovie]];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:path]) {
+            NSError *error;
+            [fileManager removeItemAtPath:path error:&error];
+        }
+
+        NSDictionary * movie = [movies objectAtIndex:selectedMovie];
         [movies removeObject:movie];
         [[Data shared] setObject:movies forKey:@"movies"];
         [[Data shared] synchronize];
+        
+
+        
         [self refreshMovies];
     }
 }
@@ -419,9 +435,9 @@
     [Localytics tagEvent:@"PlayMovie pressed"];
     selectedMovie = sender.tag;
     // The path for the video
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
-    NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", (int)selectedMovie]] isDirectory:false];
+    NSDictionary * movie = [movies objectAtIndex:selectedMovie];
+    NSString * path = [movie objectForKey:@"file"];
+    NSURL * movieURL = [NSURL fileURLWithPath:path isDirectory:false];
     [Data shared].playingMovie = true;
     MPMoviePlayerViewController * player = [[MPMoviePlayerViewController alloc]initWithContentURL:movieURL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMovieFinished:)
@@ -452,7 +468,7 @@
     [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
     
     selectedMovie = sender.tag;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
     NSURL * movieURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", documentsDirectory, [NSString stringWithFormat:@"Movie%d.mp4", (int)selectedMovie]] isDirectory:false];
     [sharingItems addObject:movieURL];
