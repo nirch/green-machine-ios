@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F14D6F61A89118C00F96D69 /* As land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6F51A89118C00F96D69 /* As land 22.png */; };
+		7F14D6F81A89119600F96D69 /* close up land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6F71A89119600F96D69 /* close up land 22.png */; };
+		7F14D6FA1A89119E00F96D69 /* head&shoulders land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6F91A89119E00F96D69 /* head&shoulders land 22.png */; };
+		7F14D6FC1A8911A600F96D69 /* head&chest land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FB1A8911A600F96D69 /* head&chest land 22.png */; };
+		7F14D6FE1A8911AD00F96D69 /* torso land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FD1A8911AD00F96D69 /* torso land 22.png */; };
+		7F14D7001A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FF1A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg */; };
 		7F24FA4C19A237180043AA96 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4B19A237180043AA96 /* Data.m */; };
 		7F24FA4F19A238760043AA96 /* DataBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4D19A238760043AA96 /* DataBackground.m */; };
 		7F24FA6519A3523A0043AA96 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA6419A3523A0043AA96 /* RecordingViewController.m */; };
@@ -186,6 +192,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F14D6F51A89118C00F96D69 /* As land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "As land 22.png"; sourceTree = "<group>"; };
+		7F14D6F71A89119600F96D69 /* close up land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close up land 22.png"; sourceTree = "<group>"; };
+		7F14D6F91A89119E00F96D69 /* head&shoulders land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&shoulders land 22.png"; sourceTree = "<group>"; };
+		7F14D6FB1A8911A600F96D69 /* head&chest land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 22.png"; sourceTree = "<group>"; };
+		7F14D6FD1A8911AD00F96D69 /* torso land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 22.png"; sourceTree = "<group>"; };
+		7F14D6FF1A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LANDSCAPE 22 640x360.jpg"; sourceTree = "<group>"; };
 		7F24FA4A19A237180043AA96 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		7F24FA4B19A237180043AA96 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		7F24FA4D19A238760043AA96 /* DataBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBackground.m; sourceTree = "<group>"; };
@@ -452,6 +464,7 @@
 		7F70393819A939DA006A0F62 /* 10-As-land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6F51A89118C00F96D69 /* As land 22.png */,
 				7F70393919A939DA006A0F62 /* As land 1.png */,
 				7F70393A19A939DA006A0F62 /* As land 10.png */,
 				7F70393B19A939DA006A0F62 /* As land 11.png */,
@@ -480,6 +493,7 @@
 		7F7039B019A939DA006A0F62 /* 6-close-up-land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6F71A89119600F96D69 /* close up land 22.png */,
 				7F7039B219A939DA006A0F62 /* close up land 1.png */,
 				7F7039B319A939DA006A0F62 /* close up land 10.png */,
 				7F7039B419A939DA006A0F62 /* close up land 11.png */,
@@ -508,6 +522,7 @@
 		7F7039C819A939DA006A0F62 /* 7-head-shoulders-land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6F91A89119E00F96D69 /* head&shoulders land 22.png */,
 				7F7039C919A939DA006A0F62 /* head&shoulders land 1.png */,
 				7F7039CA19A939DA006A0F62 /* head&shoulders land 10.png */,
 				7F7039CB19A939DA006A0F62 /* head&shoulders land 11.png */,
@@ -536,6 +551,7 @@
 		7F7039DE19A939DA006A0F62 /* 8-head-chest-land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6FB1A8911A600F96D69 /* head&chest land 22.png */,
 				7F7039DF19A939DA006A0F62 /* head&chest land 1.png */,
 				7F7039E019A939DA006A0F62 /* head&chest land 10.png */,
 				7F7039E119A939DA006A0F62 /* head&chest land 11.png */,
@@ -564,6 +580,7 @@
 		7F7039F519A939DA006A0F62 /* 9-torso-land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6FD1A8911AD00F96D69 /* torso land 22.png */,
 				7F7039F619A939DA006A0F62 /* torso land 1.png */,
 				7F7039F719A939DA006A0F62 /* torso land 10.png */,
 				7F7039F819A939DA006A0F62 /* torso land 11.png */,
@@ -592,6 +609,7 @@
 		7F703A0D19A939DA006A0F62 /* land */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D6FF1A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg */,
 				7F77CE501A7A384000FDD07D /* LANDSCAPE 1 640x360 U.png */,
 				7F77CE511A7A384000FDD07D /* LANDSCAPE 2 640x360 U.png */,
 				7F77CE521A7A384000FDD07D /* LANDSCAPE 3 640x360 U.png */,
@@ -827,6 +845,7 @@
 			files = (
 				7F77CE611A7A384000FDD07D /* LANDSCAPE 9 640x360 U.png in Resources */,
 				7F703A3819A939DA006A0F62 /* As land 1.png in Resources */,
+				7F14D6FA1A89119E00F96D69 /* head&shoulders land 22.png in Resources */,
 				7F703AAD19A939DA006A0F62 /* close up land 10.png in Resources */,
 				7F77CE5B1A7A384000FDD07D /* LANDSCAPE 3 640x360 U.png in Resources */,
 				7F703AD419A939DA006A0F62 /* head&shoulders land 7.png in Resources */,
@@ -835,9 +854,11 @@
 				7F703ACC19A939DA006A0F62 /* head&shoulders land 19.png in Resources */,
 				7FF26D721937AEB100F0FAEB /* Images.xcassets in Resources */,
 				7F703AAE19A939DA006A0F62 /* close up land 11.png in Resources */,
+				7F14D6FC1A8911A600F96D69 /* head&chest land 22.png in Resources */,
 				7F2824EC1A489DBE0060394B /* LANDSCAPE 5 640x360.png in Resources */,
 				7F2824EB1A489DBE0060394B /* LANDSCAPE 4 640x360.png in Resources */,
 				7F703AEA19A939DA006A0F62 /* head&chest land 7.png in Resources */,
+				7F14D6F81A89119600F96D69 /* close up land 22.png in Resources */,
 				7F703ABB19A939DA006A0F62 /* close up land 3.png in Resources */,
 				7F703AE619A939DA006A0F62 /* head&chest land 3.png in Resources */,
 				7F77CE5F1A7A384000FDD07D /* LANDSCAPE 7 640x360 U.png in Resources */,
@@ -855,7 +876,9 @@
 				7F703A3D19A939DA006A0F62 /* As land 14.png in Resources */,
 				7F703A3B19A939DA006A0F62 /* As land 12.png in Resources */,
 				7F77CE601A7A384000FDD07D /* LANDSCAPE 8 640x360 U.png in Resources */,
+				7F14D6F61A89118C00F96D69 /* As land 22.png in Resources */,
 				7F2824EE1A489DBE0060394B /* LANDSCAPE 7 640x360.png in Resources */,
+				7F14D7001A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg in Resources */,
 				7F703ACB19A939DA006A0F62 /* head&shoulders land 18.png in Resources */,
 				7F7DB7B21A2B369000C00B7D /* BuyCreditsViewController.xib in Resources */,
 				7F703A4E19A939DA006A0F62 /* As land 9.png in Resources */,
@@ -955,6 +978,7 @@
 				7F703AC119A939DA006A0F62 /* close up land 9.png in Resources */,
 				7F703AD319A939DA006A0F62 /* head&shoulders land 6.png in Resources */,
 				7F703AE219A939DA006A0F62 /* head&chest land 2.png in Resources */,
+				7F14D6FE1A8911AD00F96D69 /* torso land 22.png in Resources */,
 				7F703AEC19A939DA006A0F62 /* head&chest land 9.png in Resources */,
 				7F703ACD19A939DA006A0F62 /* head&shoulders land 2.png in Resources */,
 				7F703A4A19A939DA006A0F62 /* As land 5.png in Resources */,
@@ -1190,7 +1214,7 @@
 				);
 				OTHER_LIBTOOLFLAGS = "$(OTHER_LDFLAGS) $(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d068ec52-91c0-46de-8f05-a4439dd07c4f";
+				PROVISIONING_PROFILE = "aa14f390-7a88-49e5-a0d6-dc8095d40faa";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1253,7 +1277,7 @@
 				);
 				OTHER_LIBTOOLFLAGS = "$(OTHER_LDFLAGS) $(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d068ec52-91c0-46de-8f05-a4439dd07c4f";
+				PROVISIONING_PROFILE = "aa14f390-7a88-49e5-a0d6-dc8095d40faa";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				WRAPPER_EXTENSION = app;
 			};
