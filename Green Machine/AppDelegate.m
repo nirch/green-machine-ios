@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Data.h"
 #import "Localytics.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -29,6 +30,7 @@
     {
         [Localytics openSession];
     }
+    [Crashlytics startWithAPIKey:@"c97d8416316d508fc8ef881d5cbf9c5876cb4251"];
     
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 

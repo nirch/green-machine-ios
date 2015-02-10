@@ -13,6 +13,7 @@
 		7F14D6FC1A8911A600F96D69 /* head&chest land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FB1A8911A600F96D69 /* head&chest land 22.png */; };
 		7F14D6FE1A8911AD00F96D69 /* torso land 22.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FD1A8911AD00F96D69 /* torso land 22.png */; };
 		7F14D7001A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7F14D6FF1A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg */; };
+		7F14D7031A8A165500F96D69 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F14D7021A8A165500F96D69 /* Crashlytics.framework */; };
 		7F24FA4C19A237180043AA96 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4B19A237180043AA96 /* Data.m */; };
 		7F24FA4F19A238760043AA96 /* DataBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA4D19A238760043AA96 /* DataBackground.m */; };
 		7F24FA6519A3523A0043AA96 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F24FA6419A3523A0043AA96 /* RecordingViewController.m */; };
@@ -198,6 +199,7 @@
 		7F14D6FB1A8911A600F96D69 /* head&chest land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head&chest land 22.png"; sourceTree = "<group>"; };
 		7F14D6FD1A8911AD00F96D69 /* torso land 22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torso land 22.png"; sourceTree = "<group>"; };
 		7F14D6FF1A8911B500F96D69 /* LANDSCAPE 22 640x360.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LANDSCAPE 22 640x360.jpg"; sourceTree = "<group>"; };
+		7F14D7021A8A165500F96D69 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		7F24FA4A19A237180043AA96 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		7F24FA4B19A237180043AA96 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		7F24FA4D19A238760043AA96 /* DataBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBackground.m; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				7F64871419B89C0200AE6B59 /* Foundation.framework in Frameworks */,
 				7FF26D5E1937AEB100F0FAEB /* UIKit.framework in Frameworks */,
 				7FF26D5C1937AEB100F0FAEB /* CoreGraphics.framework in Frameworks */,
+				7F14D7031A8A165500F96D69 /* Crashlytics.framework in Frameworks */,
 				7F64870719B89B4D00AE6B59 /* AVFoundation.framework in Frameworks */,
 				7F64870919B89B6200AE6B59 /* CoreMedia.framework in Frameworks */,
 				7F64870B19B89B6700AE6B59 /* CoreVideo.framework in Frameworks */,
@@ -681,6 +684,7 @@
 		7FF26D581937AEB100F0FAEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F14D7021A8A165500F96D69 /* Crashlytics.framework */,
 				7F90F26A1A519C9F003A80F6 /* MediaPlayer.framework */,
 				7F7DB7B31A2B3B6B00C00B7D /* StoreKit.framework */,
 				7F64871219B89BB600AE6B59 /* MobileCoreServices.framework */,
@@ -774,6 +778,7 @@
 				7FF26D531937AEB100F0FAEB /* Frameworks */,
 				7FF26D541937AEB100F0FAEB /* Resources */,
 				1CF656BAE3CB7A7EC463B804 /* Copy Pods Resources */,
+				7F14D7011A8A158600F96D69 /* Run Crashlytics Script */,
 			);
 			buildRules = (
 			);
@@ -1013,6 +1018,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7F14D7011A8A158600F96D69 /* Run Crashlytics Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Crashlytics Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run c97d8416316d508fc8ef881d5cbf9c5876cb4251 91a7b11bdb01869562da63b8c201bd1407c647a80e40bea0ed8b604e161bcc09";
 		};
 		AF5C8C54E19B3E3099313E0A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
