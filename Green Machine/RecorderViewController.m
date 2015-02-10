@@ -221,7 +221,14 @@
         int index=0;
         for ( NSDictionary * movie in movies ) {
             NSData * dataImage = [movie objectForKey:@"image"];
-            UIImage * image = [UIImage imageWithData:dataImage];
+            bool usingFrontCamera = [[movie objectForKey:@"usingFrontCamera"] boolValue];
+            UIImage * imageLoaded = [UIImage imageWithData:dataImage];
+            UIImage * image;
+            if (usingFrontCamera)
+                image = [UIImage imageWithCGImage:imageLoaded.CGImage scale:imageLoaded.scale orientation:UIImageOrientationDown];
+            else
+                image = [UIImage imageWithCGImage:imageLoaded.CGImage scale:imageLoaded.scale orientation:UIImageOrientationUp];
+
             UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
             int width = 200;
             int height = (int) ( 200.0 / image.size.width * image.size.height);

@@ -314,6 +314,7 @@
 //    [movie setObject:data forKey:@"data"];
     [movie setObject:to forKey:@"file"];
     [movie setObject:UIImagePNGRepresentation(thumbnail) forKey:@"image"];
+    [movie setObject:[NSNumber numberWithBool:[Data shared].usingFrontCamera] forKey:@"usingFrontCamera"];
     
     [movies addObject:movie];
     [[Data shared] setObject:movies forKey:@"movies"];
