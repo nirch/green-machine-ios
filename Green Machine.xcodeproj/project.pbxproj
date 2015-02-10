@@ -22,7 +22,6 @@
 		7F2824C91A488EFF0060394B /* close+up+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C31A488EFF0060394B /* close+up+360.ctr */; };
 		7F2824CA1A488EFF0060394B /* head+and+chest+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C41A488EFF0060394B /* head+and+chest+360.ctr */; };
 		7F2824CB1A488EFF0060394B /* head+and+shoulders+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C51A488EFF0060394B /* head+and+shoulders+360.ctr */; };
-		7F2824CC1A488EFF0060394B /* knees+up+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C61A488EFF0060394B /* knees+up+360.ctr */; };
 		7F2824CD1A488EFF0060394B /* torso+360.ctr in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824C71A488EFF0060394B /* torso+360.ctr */; };
 		7F2824E91A489DBE0060394B /* LANDSCAPE 2 640x360.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824E01A489DBE0060394B /* LANDSCAPE 2 640x360.png */; };
 		7F2824EA1A489DBE0060394B /* LANDSCAPE 3 640x360.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F2824E11A489DBE0060394B /* LANDSCAPE 3 640x360.png */; };
@@ -212,7 +211,6 @@
 		7F2824C31A488EFF0060394B /* close+up+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "close+up+360.ctr"; sourceTree = "<group>"; };
 		7F2824C41A488EFF0060394B /* head+and+chest+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "head+and+chest+360.ctr"; sourceTree = "<group>"; };
 		7F2824C51A488EFF0060394B /* head+and+shoulders+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "head+and+shoulders+360.ctr"; sourceTree = "<group>"; };
-		7F2824C61A488EFF0060394B /* knees+up+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "knees+up+360.ctr"; sourceTree = "<group>"; };
 		7F2824C71A488EFF0060394B /* torso+360.ctr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "torso+360.ctr"; sourceTree = "<group>"; };
 		7F2824E01A489DBE0060394B /* LANDSCAPE 2 640x360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LANDSCAPE 2 640x360.png"; sourceTree = "<group>"; };
 		7F2824E11A489DBE0060394B /* LANDSCAPE 3 640x360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LANDSCAPE 3 640x360.png"; sourceTree = "<group>"; };
@@ -437,7 +435,6 @@
 				7F2824C31A488EFF0060394B /* close+up+360.ctr */,
 				7F2824C41A488EFF0060394B /* head+and+chest+360.ctr */,
 				7F2824C51A488EFF0060394B /* head+and+shoulders+360.ctr */,
-				7F2824C61A488EFF0060394B /* knees+up+360.ctr */,
 				7F2824C71A488EFF0060394B /* torso+360.ctr */,
 			);
 			path = Data;
@@ -956,7 +953,6 @@
 				7F703AF619A939DA006A0F62 /* torso land 18.png in Resources */,
 				7F703AC919A939DA006A0F62 /* head&shoulders land 16.png in Resources */,
 				7F703ABF19A939DA006A0F62 /* close up land 7.png in Resources */,
-				7F2824CC1A488EFF0060394B /* knees+up+360.ctr in Resources */,
 				7F2824C81A488EFF0060394B /* american+shot+360.ctr in Resources */,
 				7F703B3619A9DDDB006A0F62 /* passThrough.fsh in Resources */,
 				7F703A4C19A939DA006A0F62 /* As land 7.png in Resources */,

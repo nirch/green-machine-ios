@@ -49,7 +49,7 @@
     
 
     self.formats = @[ @"close up port %d", @"head&shoulders port %d", @"head&chest port %d", @"torso port %d", @"As port %d"];
-    self.contours = @[ @"close+up+360", @"head+and+shoulders+360", @"head+and+chest+360", @"torso+360", @"american+shot+360",@"knees+up+360"];
+    self.contours = @[ @"close+up+360", @"head+and+shoulders+360", @"head+and+chest+360", @"torso+360", @"american+shot+360"];
     
     NSArray * isLocked = @[ @(false), @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
                                 @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
@@ -60,7 +60,7 @@
                                 @(100),@(100),@(100),@(100)];
 
     
-    for ( int index = 0; index < 21; index ++ ) {
+    for ( int index = 0; index < 22; index ++ ) {
         DataBackground * background = [[DataBackground alloc]init:nil];
         background.isLocked = [isLocked objectAtIndex:index];
         background.cost = [cost objectAtIndex:index];

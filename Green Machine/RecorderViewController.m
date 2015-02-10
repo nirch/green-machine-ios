@@ -113,7 +113,7 @@
     self.navigationController.navigationBarHidden = true;
     data = [Data shared];
     [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
-    bgNameIndex = 1;
+    data.currentFormat = [NSNumber numberWithInt:1];
     menuIsOpened = false;
     viewDone.alpha = 0.0;
     [self updateBackgroundImage];
@@ -146,18 +146,24 @@
 }
 
 - (void) updateBackgroundImage {
-    DataBackground * background = [data.backgrounds objectAtIndex:data.currentBackground.intValue];
-    if ( background.isLocked.boolValue ) {
-        labelBackgroundCost.text = [NSString stringWithFormat:@"%@", background.cost];
-        [self fadeIn:viewLocked];
-        [self fadeIn:viewLock];
+    if ( data.currentBackground ) {
+        DataBackground * background = [data.backgrounds objectAtIndex:data.currentBackground.intValue];
+        if ( background.isLocked.boolValue ) {
+            labelBackgroundCost.text = [NSString stringWithFormat:@"%@", background.cost];
+            [self fadeIn:viewLocked];
+            [self fadeIn:viewLock];
+        }
+        else {
+            [self fadeOut:viewLocked];
+            [self fadeOut:viewLock];
+        }
     }
     else {
         [self fadeOut:viewLocked];
-        [self fadeOut:viewLock];
+        [self fadeOut:viewLock];        
     }
 
-    NSString * format = [data.formats objectAtIndex:bgNameIndex];
+    NSString * format = [data.formats objectAtIndex:data.currentFormat.intValue];
     int index = 0;
     if ( data.currentBackground )
         index = [data.currentBackground intValue];
@@ -193,8 +199,8 @@
 }
 
 -(IBAction)upPressed:(id)sender {
-    if ( bgNameIndex < 4) bgNameIndex++;
-    else bgNameIndex = 0;
+    if ( data.currentFormat.intValue < 4) data.currentFormat = [NSNumber numberWithInt:data.currentFormat.intValue+1];
+    else data.currentFormat = [NSNumber numberWithInt:0];
     [self updateBackgroundImage];
 
 }
@@ -380,7 +386,7 @@
 -(IBAction)beginRecordPressed:(id)sender {
     NSDictionary *dictionary =
     [NSDictionary dictionaryWithObjectsAndKeys:
-     [NSString stringWithFormat:@"%d",(int)bgNameIndex],
+     [NSString stringWithFormat:@"%d",(int)data.currentFormat.intValue],
      @"Background id",
      ([Data shared].usingFrontCamera) ? @"Front camera" : @"Back camera",
      @"Cemra used",

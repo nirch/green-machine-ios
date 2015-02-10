@@ -165,7 +165,6 @@
     NSString * countourFileName = [[Data shared].contours objectAtIndex:[[Data shared].currentFormat intValue]];
                                    
     NSString *contourFile = [[NSBundle mainBundle] pathForResource:countourFileName ofType:@"ctr"];
-    
     m_foregroundExtraction->ReadMask((char*)contourFile.UTF8String, 640, 360);
     
     m_original_image = NULL;
