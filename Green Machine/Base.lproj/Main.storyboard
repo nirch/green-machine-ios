@@ -96,17 +96,6 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2yJ-z8-AL0">
-                                        <rect key="frame" x="210" y="0.0" width="60" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <state key="normal" title="Record" backgroundImage="start button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="beginRecordPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4P5-g1-POE"/>
-                                        </connections>
-                                    </button>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" id="ujx-s6-4pF" userLabel="10 sec View">
                                         <rect key="frame" x="0.0" y="30" width="480" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -143,6 +132,17 @@
                                         </state>
                                         <connections>
                                             <action selector="menuTogglePressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vg7-tT-Z0J"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2yJ-z8-AL0">
+                                        <rect key="frame" x="210" y="0.0" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="Record" backgroundImage="start button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="beginRecordPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4P5-g1-POE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nzV-Bz-wR3">

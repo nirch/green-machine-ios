@@ -277,6 +277,7 @@
 -(IBAction)menuTogglePressed:(UIButton *)sender {
     CGRect frame = [sender superview].frame;
     if ( menuIsOpened ) {
+        buttonReady.hidden = buttonRecord.hidden = false;
         writerView.view.alpha = 1.0;
         [self fadeOut:viewLocked];
         menuIsOpened = false;
@@ -288,6 +289,7 @@
         }];
     }
     else {
+        buttonReady.hidden = buttonRecord.hidden = true;
         menuIsOpened = true;
         writerView.view.alpha = 0.0;
         [self refreshMovies];
