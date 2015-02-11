@@ -22,6 +22,9 @@
     [Localytics tagEvent:@"CreateMovie pressed"];
     if ([self.interstitial isReady]) {
         [self.interstitial presentFromRootViewController:self];
+        
+        self.interstitial = [[GADInterstitial alloc] init];
+        self.interstitial.adUnitID = @"ca-app-pub-3237461980709919/1152155383";
         GADRequest *request = [GADRequest request];
         // Requests test ads on simulators.
         request.testDevices = @[ GAD_SIMULATOR_ID ];
