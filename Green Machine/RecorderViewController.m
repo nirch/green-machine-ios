@@ -54,8 +54,6 @@
         buttonRecord.alpha = 1.0;
         buttonReady.alpha = 1.0;
         viewDone.alpha = 1.0;
-        [cancelRecordingButton removeFromSuperview];
-        cancelRecordingButton = nil;
     }];
 }
 -(void) cancelRecordingPressed {
@@ -400,6 +398,9 @@
         [Localytics tagEvent:@"End Record" attributes:dictionary];
     else
         [Localytics tagEvent:@"Begin Record" attributes:dictionary];
+
+    [cancelRecordingButton removeFromSuperview];
+    cancelRecordingButton = nil;
 
     writerView.recordButton = sender;
     [writerView toggleRecording:sender];
