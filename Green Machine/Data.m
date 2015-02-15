@@ -27,7 +27,6 @@
     [self.backgrounds removeAllObjects];
     self.currentBackground = [NSNumber numberWithInt:0];
     self.currentFormat = [NSNumber numberWithInt:1];
-    self.credits = [NSNumber numberWithInt:8];
     
     NSDictionary * dictSaved = [[NSUserDefaults standardUserDefaults] objectForKey:@"data"];
     if ( dictSaved!= nil && [dictSaved count] > 0 ) {
@@ -45,27 +44,29 @@
         [dict setObject:[NSArray arrayWithObjects:@"greenmachine.credits.5",@"greenmachine.credits.30",@"greenmachine.credits.60",@"greenmachine.unlimitedtime",nil] forKey:@"productids"];
         [dict setObject:[NSArray arrayWithObjects:@"5", @"30", @"60",@"0", nil] forKey:@"productcredits"];
         [dict setObject:@"greenmachine.unlimitedtime" forKey:@"productidUnlimitedTime"];
+
+         [dict setObject:[NSNumber numberWithInt:8] forKey:@"credits"];
+        NSArray * isLocked = @[ @(false), @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
+                                @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
+                                @(true),@(true),@(true),@(true)];
+        
+        NSArray * cost = @[ @(0), @(2),@(2),@(5),@(5),@(5),@(5),@(10),@(10),@(10),
+                            @(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),
+                            @(100),@(100),@(100),@(100)];
+        
+        
+        for ( int index = 0; index < 22; index ++ ) {
+            DataBackground * background = [[DataBackground alloc]init:nil];
+            background.isLocked = [isLocked objectAtIndex:index];
+            background.cost = [cost objectAtIndex:index];
+            [self.backgrounds addObject:background];
+        }
+
     }
     
 
     self.formats = @[ @"close up port %d", @"head&shoulders port %d", @"head&chest port %d", @"torso port %d", @"As port %d"];
     self.contours = @[ @"close+up+360", @"head+and+shoulders+360", @"head+and+chest+360", @"torso+360", @"american+shot+360"];
-    
-    NSArray * isLocked = @[ @(false), @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
-                                @(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),@(true),
-                                @(true),@(true),@(true),@(true)];
-    
-    NSArray * cost = @[ @(0), @(2),@(2),@(5),@(5),@(5),@(5),@(10),@(10),@(10),
-                                @(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),@(20),
-                                @(100),@(100),@(100),@(100)];
-
-    
-    for ( int index = 0; index < 22; index ++ ) {
-        DataBackground * background = [[DataBackground alloc]init:nil];
-        background.isLocked = [isLocked objectAtIndex:index];
-        background.cost = [cost objectAtIndex:index];
-        [self.backgrounds addObject:background];
-    }
     
 //    [self setObject:@"YES" forKey:@"UnlimitedTime"];
     [self synchronize];

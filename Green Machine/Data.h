@@ -17,8 +17,6 @@
 +(Data *) shared;
 +(BOOL) isRatine;
 
-@property ( nonatomic, retain) NSNumber * credits;
-
 @property ( atomic) BOOL usingFrontCamera;
 @property ( atomic) BOOL playingMovie;
 

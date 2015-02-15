@@ -113,7 +113,7 @@
 
     self.navigationController.navigationBarHidden = true;
     data = [Data shared];
-    [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
+    [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", [data objectForKey:@"credits"]] forState:UIControlStateNormal];
     data.currentFormat = [NSNumber numberWithInt:1];
     menuIsOpened = false;
     viewDone.alpha = 0.0;
@@ -214,8 +214,7 @@
 
 
 -(void) refreshMovies {
-    movies =  [[[[Data shared] objectForKey:@"movies"] reverseObjectEnumerator] allObjects];
-//    movies = [[[Data shared] objectForKey:@"movies"] mutableCopy];
+    movies =  [[[[[Data shared] objectForKey:@"movies"] reverseObjectEnumerator] allObjects] mutableCopy];
     
     if ( ! movies )
         movies = [[NSMutableArray alloc]init];
@@ -329,8 +328,9 @@
     else if ( alertView == alertUseCredits ) {
         DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
         background.isLocked = [NSNumber numberWithBool:false];
-        data.credits = [NSNumber numberWithInt:data.credits.intValue - background.cost.intValue];
-        [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", data.credits] forState:UIControlStateNormal];
+        [data setObject:[NSNumber numberWithInt:[[data objectForKey:@"credits"] intValue] - background.cost.intValue] forKey:@"credits"];
+        [data synchronize];
+        [buttonBuyCredit setTitle:[NSString stringWithFormat:@"%@", [data objectForKey:@"credits"]] forState:UIControlStateNormal];
         if ( background.isLocked.boolValue ) {
             [self fadeIn:viewLocked];
             [self fadeIn:viewLock];
@@ -365,7 +365,7 @@
 
 -(IBAction)buyBackgroundPressed:(id)sender {
     
-    int credits = [data credits].intValue;
+    int credits = [[[Data shared] objectForKey:@"credits"] intValue];
     DataBackground * background = [[data backgrounds] objectAtIndex:data.currentBackground.intValue];
     int cost = background.cost.intValue;
 
