@@ -483,7 +483,7 @@
     [Localytics tagEvent:@"Share pressed"];
     
     NSMutableArray *sharingItems = [NSMutableArray new];
-    [sharingItems addObject:@"My latest creation, Using"];
+    [sharingItems addObject:@"My latest creation, Using GreenMachine "];
     [sharingItems addObject:[NSURL URLWithString:@"https://itunes.apple.com/us/app/green-machine-everywhere/id934141102?ls=1&mt=8"]];
     
     selectedMovie = sender.tag;

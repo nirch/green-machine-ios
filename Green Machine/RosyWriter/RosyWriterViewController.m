@@ -73,14 +73,17 @@
 // UIDeviceOrientationDidChangeNotification selector
 - (void)deviceOrientationDidChange
 {
-	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-	// Don't update the reference orientation when the device orientation is face up/down or unknown.
-	if ( UIDeviceOrientationIsPortrait(orientation) || UIDeviceOrientationIsLandscape(orientation) )
-		[self.videoProcessor setReferenceOrientation:orientation];
+    UIDeviceOrientation orientation = UIDeviceOrientationLandscapeLeft;
+    if ( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+        orientation = UIDeviceOrientationLandscapeRight;
+
+    oglView.transform = [self.videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
 }
 -(void) toggleCamera {
 //    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     UIDeviceOrientation orientation = UIDeviceOrientationLandscapeLeft;
+    if ( [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+        orientation = UIDeviceOrientationLandscapeRight;
     
     if ( [Data shared].usingFrontCamera )
         oglView.transform = [self.videoProcessor transformFromCurrentVideoOrientationToOrientation:orientation];
@@ -94,12 +97,11 @@
     // Initialize the class responsible for managing AV capture session and asset writer
     self.videoProcessor = [[RosyWriterVideoProcessor alloc] init];
 	self.videoProcessor.delegate = self;
-/*
-	// Keep track of changes to the device orientation so we can update the video processor
+
+    // Keep track of changes to the device orientation so we can update the video processor
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	[notificationCenter addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-*/
     // Setup and start the capture session
     [self.videoProcessor setupAndStartCaptureSession];
 
