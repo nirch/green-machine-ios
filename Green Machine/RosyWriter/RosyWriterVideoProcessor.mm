@@ -581,7 +581,7 @@
     }
 
     CMSampleBufferRef processedSampleBuffer = NULL;
-    @try {
+//    @try {
         image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
         
         // Extracting the foreground
@@ -606,13 +606,13 @@
         
         CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, processedPixelBuffer, true, NULL, NULL, videoInfo, &sampleTimingInfo, &processedSampleBuffer);
         CFRelease(processedPixelBuffer);
-    }
-    @catch (NSException *exception) {
-    }
-    @finally {
+//    }
+//    @catch (NSException *exception) {
+//    }
+//    @finally {
         return processedSampleBuffer;
-    }
-    
+//    }
+
 }
 
 #pragma mark Capture
