@@ -48,6 +48,7 @@
 -(void) doneRecording {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"doneRecording" object:nil];
      [UIView animateWithDuration:0.5 animations:^{
+         buttonToggleMenu.hidden = false;
          buttonToggleCamera.hidden = false;
          labelSeconds.text = @"";
         imageViewBackground.alpha = 1.0;
@@ -57,6 +58,7 @@
     }];
 }
 -(void) cancelRecordingPressed {
+    buttonToggleMenu.hidden = false;
     buttonToggleCamera.hidden = false;
     imageViewBackground.alpha = 1.0;
     [writerView.videoProcessor stopRecording];
@@ -387,6 +389,7 @@
 }
 
 -(IBAction)beginRecordPressed:(id)sender {
+    buttonToggleMenu.hidden = true;
     NSDictionary *dictionary =
     [NSDictionary dictionaryWithObjectsAndKeys:
      [NSString stringWithFormat:@"%d",(int)data.currentFormat.intValue],

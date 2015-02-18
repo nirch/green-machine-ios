@@ -22,6 +22,7 @@
     NSMutableArray * movies;
     NSInteger selectedMovie;
     
+    IBOutlet UIButton * buttonToggleMenu;
     
     IBOutlet UIButton * buttonRecord;
     IBOutlet UIButton * buttonReady;
