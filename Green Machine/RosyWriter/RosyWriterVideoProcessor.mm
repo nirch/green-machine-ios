@@ -465,13 +465,39 @@
 	});
 }
 
+-(void) unlockFocus {
+    // UnLock focus
+    dispatch_async(movieWritingQueue, ^{
+        AVCaptureDevice *device = [videoIn device];
+        NSError *error = nil;
+        if ([device lockForConfiguration:&error])
+        {
+            if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeLocked])
+            {
+                [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+            }
+            if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeLocked])
+            {
+                [device setExposureMode:AVCaptureFocusModeContinuousAutoFocus];
+            }
+            [device setSubjectAreaChangeMonitoringEnabled:true];
+            [device unlockForConfiguration];
+        }
+        else
+        {
+            NSLog(@"%@", error);
+        }
+    });
+}
 - (void) stopRecording
 {
 	dispatch_async(movieWritingQueue, ^{
         isRunningGreenMachine = false;
 		
-		if ( recordingWillBeStopped || (self.recording == NO) )
+        if ( recordingWillBeStopped || (self.recording == NO) ) {
+            [self unlockFocus];
 			return;
+        }
 		
 		recordingWillBeStopped = YES;
 		
@@ -488,28 +514,7 @@
             readyToRecordVideo = NO;
             readyToRecordAudio = NO;
             
-            // UnLock focus
-            dispatch_async(movieWritingQueue, ^{
-                AVCaptureDevice *device = [videoIn device];
-                NSError *error = nil;
-                if ([device lockForConfiguration:&error])
-                {
-                    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeLocked])
-                    {
-                        [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-                    }
-                    if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeLocked])
-                    {
-                        [device setExposureMode:AVCaptureFocusModeContinuousAutoFocus];
-                    }
-                    [device setSubjectAreaChangeMonitoringEnabled:true];
-                    [device unlockForConfiguration];
-                }
-                else
-                {
-                    NSLog(@"%@", error);
-                }
-            });
+            [self unlockFocus];
             
 //          copied from  saveMovieToCameraRoll
             recordingWillBeStopped = NO;
@@ -574,34 +579,40 @@
         m_original_image = CVtool::CVPixelBufferRef_to_image_crop(pixelBuffer, 0, 60, 640, 360, m_original_image);
         
     }
+
+    CMSampleBufferRef processedSampleBuffer = NULL;
+    @try {
         image_type* original_bgr_image = image3_to_BGR(m_original_image, NULL);
         
         // Extracting the foreground
         m_foregroundExtraction->Process(original_bgr_image, 1, &m_foreground_image);
-    
+        
         // Stitching the foreground and the background together (and then converting to RGB)
         m_output_image = m_foregroundExtraction->GetImage(m_background_image, m_output_image);
         image3_bgr2rgb(m_output_image);
-    
+        
         // Destroying the temp image
         image_destroy(original_bgr_image, 1);
-    
+        
         // Converting the result of the algo into CVPixelBuffer
         CVImageBufferRef processedPixelBuffer = CVtool::CVPixelBufferRef_from_image(m_output_image);
-    
+        
         // Getting the sample timing info from the sample buffer
         CMSampleTimingInfo sampleTimingInfo = kCMTimingInfoInvalid;
         CMSampleBufferGetSampleTimingInfo(sampleBuffer, 0, &sampleTimingInfo);
-    
+        
         CMVideoFormatDescriptionRef videoInfo = NULL;
         CMVideoFormatDescriptionCreateForImageBuffer(NULL, processedPixelBuffer, &videoInfo);
-    
-        CMSampleBufferRef processedSampleBuffer = NULL;
+        
         CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, processedPixelBuffer, true, NULL, NULL, videoInfo, &sampleTimingInfo, &processedSampleBuffer);
-    
         CFRelease(processedPixelBuffer);
-    
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
         return processedSampleBuffer;
+    }
+    
 }
 
 #pragma mark Capture
