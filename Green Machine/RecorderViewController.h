@@ -11,9 +11,10 @@
 #import "RosyWriter/RosyWriterViewController.h"
 #import "BuyCreditsViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "GADInterstitial.h"
 
 
-@interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate> {
+@interface RecorderViewController : UIViewController <UIAlertViewDelegate,UIScrollViewDelegate,GADInterstitialDelegate> {
     MPMoviePlayerController * moviePlayer;
     
     RosyWriterViewController * writerView;

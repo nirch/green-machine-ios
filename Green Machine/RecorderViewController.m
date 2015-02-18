@@ -9,7 +9,6 @@
 
 #import "RecorderViewController.h"
 #import "DataBackground.h"
-#import "GADInterstitial.h"
 #import "Localytics.h"
 
 @interface RecorderViewController ()
@@ -18,18 +17,25 @@
 
 @implementation RecorderViewController
 
+- (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
+    self.interstitial = [[GADInterstitial alloc] init];
+    self.interstitial.adUnitID = @"ca-app-pub-3237461980709919/1152155383";
+    GADRequest *request = [GADRequest request];
+    self.interstitial.delegate = self;
+    // Requests test ads on simulators.
+    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    [self.interstitial loadRequest:request];
+    [[[UIAlertView alloc]initWithTitle:@"New Movie Added to your library" message:@"New movie added to your library. You may press the button on the bottom of the screen to open your library" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
 -(IBAction) createMoviePressed:(id)sender {
     [Localytics tagEvent:@"CreateMovie pressed"];
     if ([self.interstitial isReady]) {
+        self.interstitial.delegate = self;
         [self.interstitial presentFromRootViewController:self];
-        
-        self.interstitial = [[GADInterstitial alloc] init];
-        self.interstitial.adUnitID = @"ca-app-pub-3237461980709919/1152155383";
-        GADRequest *request = [GADRequest request];
-        // Requests test ads on simulators.
-        request.testDevices = @[ GAD_SIMULATOR_ID ];
-        [self.interstitial loadRequest:request];
     }
+    else
+        [[[UIAlertView alloc]initWithTitle:@"New Movie Added to your library" message:@"New movie added to your library. You may press the button on the bottom of the screen to open your library" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+
     
     [UIView animateWithDuration:0.5 animations:^{
         viewDone.alpha = 0.0;
