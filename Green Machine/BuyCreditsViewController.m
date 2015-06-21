@@ -112,6 +112,9 @@
     [[[UIAlertView alloc]initWithTitle:@"AppStore issue" message:[NSString stringWithFormat:@"Your purchase has failed- %@,\nPlease try again" , error.description] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil]show ];
 }
 
+-(IBAction) restorePurchasesPressed:(id)sender {
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
 - (IBAction)buy:(UIButton *)sender {
     SKProduct *product = [products objectAtIndex:sender.tag];
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
